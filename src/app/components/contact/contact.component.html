@@ -1,1 +1,267 @@
-<p>contact works!</p>
+<div class="container mt-4 d-flex flex-column align-items-center">
+    <h1 class="text-center">Contact Us - Get an Appraiser</h1>
+    <hr class="w-100">
+  
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="needs-validation" novalidate>
+      <fieldset class="border p-4 mb-4 rounded bg-light shadow-sm section-border">
+        <legend class="text-center">
+          Contact Details
+        </legend>
+  
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <label for="firstName" class="form-label">First name:</label>
+            <input type="text" id="firstName" [(ngModel)]="formData.firstName" name="firstName" required class="form-control">
+          </div>
+  
+          <div class="col-md-4">
+            <label for="lastName" class="form-label">Last name:</label>
+            <input type="text" id="lastName" [(ngModel)]="formData.lastName" name="lastName" required class="form-control">
+          </div>
+  
+          <div class="col-md-4">
+            <label for="emailAddress" class="form-label">Email address:</label>
+            <input type="email" id="emailAddress" [(ngModel)]="formData.emailAddress" name="emailAddress" required class="form-control">
+          </div>
+  
+          <div class="col-md-4">
+            <label for="phoneNumber" class="form-label">Phone number:</label>
+            <input type="text" id="phoneNumber" [(ngModel)]="formData.phoneNumber" name="phoneNumber" class="form-control">
+          </div>
+        </div>
+  
+  
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <label for="address" class="form-label">Address:</label>
+            <input type="text" id="address" [(ngModel)]="formData.address" name="address" required class="form-control">
+          </div>
+  
+          <div class="col-md-4">
+            <label for="reportType" class="form-label">Report type:</label>
+            <select id="reportType" [(ngModel)]="formData.reportType" name="reportType" required class="form-control">
+              <option value="">Select</option>
+              <option value="Full appraisal">Full appraisal</option>
+              <option value="Full appraisal with market rent">Full appraisal with market rent</option>
+              <option value="Market rent">Market rent</option>
+              <option value="Cancelled appraisal - report written">Cancelled appraisal - report written</option>
+              <option value="Capital gains">Capital gains</option>
+              <option value="Drive by">Drive by</option>
+              <option value="Desktop appraisal">Desktop appraisal</option>
+              <option value="Progress report">Progress report</option>
+              <option value="Completion certificate">Completion certificate</option>
+              <option value="Replacement cost">Replacement cost</option>
+              <option value="Consulting request">Consulting request</option>
+              <option value="Other">Other</option>
+            </select>
+            <div *ngIf="formData.reportType === 'Other'">
+              <input type="text" placeholder="Please specify" [(ngModel)]="formData.otherReport" name="otherReport" class="form-control mt-2">
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="propertyType" class="form-label">Property type:</label>
+            <select id="propertyType" [(ngModel)]="formData.propertyType" name="propertyType" required class="form-control">
+              <option value="">Select</option>
+              <option value="Residential">Residential</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="purposeType" class="form-label">Purpose type:</label>
+            <select id="purposeType" [(ngModel)]="formData.purposeType" name="purposeType" required class="form-control">
+              <option value="">Select</option>
+              <option value="Purchase">Purchase</option>
+              <option value="Refinance">Refinance</option>
+              <option value="Capital gains">Capital gains</option>
+              <option value="Divorce">Divorce</option>
+              <option value="Pre-list / pre-sale">Pre-list / pre-sale</option>
+              <option value="Relocation">Relocation</option>
+              <option value="Estate settlement with buyout">Estate settlement with buyout</option>
+              <option value="Estate settlement tittle tranfer">Estate settlement tittle tranfer</option>
+              <option value="Probate">Probate</option>
+              <option value="Tittle transfer">Tittle transfer</option>
+              <option value="Power of sale or foreclosure">Power of sale or foreclosure</option>
+              <option value="Consumer proposal">Consumer proposal</option>
+              <option value="Hst rebate - Canada revenue">Hst rebate - Canada revenue</option>
+              <option value="Prenups">Prenups</option>
+              <option value="Update">Update</option>
+              <option value="Internal asset management">Internal asset management</option>
+              <option value="Assist marketing subject property">Assist marketing subject property</option>
+              <option value="Other">Other</option>
+            </select>
+            <div *ngIf="formData.purposeType === 'Other'">
+              <input type="text" placeholder="Please specify" [(ngModel)]="formData.otherPurpose" name="otherPurpose" class="form-control mt-2">
+            </div>
+  
+            <div *ngIf="formData.purposeType === 'Purchase'">
+              <label for="purchaseType">Purchase type</label>
+              <select id="purchaseType" [(ngModel)]="formData.purchaseType" name="purchaseType" required>
+                <option value="">Select</option>
+                <option value="MLS sale">MLS sale</option>
+                <option value="Private sale">Private sale</option>
+                <option value="New construction">New construction</option>
+              </select>
+  
+              <div *ngIf="formData.purchaseType === 'New construction'">
+                <label for="constructionCompany">Construction company</label>
+                <select id="constructionCompany" [(ngModel)]="formData.constructionCompany" name="constructionCompany" required>
+                  <option value="">Select</option>
+                  <option value="Mattamy">Mattamy</option>
+                  <option value="Caivan">Caivan</option>
+                  <option value="Minto">Minto</option>
+                  <option value="Richcraft">Richcraft</option>
+                  <option value="Urbandale">Urbandale</option>
+                  <option value="Valecraft">Valecraft</option>
+                  <option value="Laridge">Laridge</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div *ngIf="formData.constructionCompany === 'Other'">
+                  <input type="text" placeholder="Please specify the construction company" [(ngModel)]="formData.otherConstructionCompany" name="otherConstructionCompany">
+                </div>
+  
+                <label for="houseModel">Model of the house</label>
+                <select id="houseModel" [(ngModel)]="formData.houseModel" name="houseModel" required>
+                  <option value="">Select</option>
+                  <option value="Variation for new construction">Variation for new construction</option>
+                  <option value="As is">As is</option>
+                  <option value="As if complete">As if complete</option>
+                </select>
+  
+                <label for="purchasePrice">Purchase price</label>
+                <input type="number" id="purchasePrice" [(ngModel)]="formData.purchasePrice" name="purchasePrice" placeholder="Enter purchase price">
+              </div>
+            </div>
+  
+            <div *ngIf="formData.purposeType === 'Refinance'">
+              <label for="mortgageType">Mortgage type</label>
+              <select id="mortgageType" [(ngModel)]="formData.mortgageType" name="mortgageType" required>
+                <option value="">Select</option>
+                <option value="1st Mortgage">1st Mortgage</option>
+                <option value="2nd Mortgage">2nd Mortgage</option>
+              </select>
+  
+              <label for="lender">Who is the lender?</label>
+              <input type="text" id="lender" [(ngModel)]="formData.lender" name="lender" placeholder="Enter lender name" required>
+  
+              <label for="refinanceAmount">Refinance amount</label>
+              <input type="number" id="refinanceAmount" [(ngModel)]="formData.refinanceAmount" name="refinanceAmount" placeholder="Enter refinance amount" required>
+  
+              <label for="loanToValue">Loan to value ratio</label>
+              <input type="number" id="loanToValue" [(ngModel)]="formData.loanToValue" name="loanToValue" placeholder="Enter loan-to-value ratio" required>
+            </div>
+  
+            <div *ngIf="formData.purposeType === 'Relocation'">
+              <label for="relocationType">Relocation type</label>
+              <select id="relocationType" [(ngModel)]="formData.relocationType" name="relocationType" required>
+                <option value="">Select</option>
+                <option value="BGRS">BGRS</option>
+                <option value="OPG">OPG</option>
+                <option value="WICHERT">WICHERT</option>
+                <option value="TRANSFEREASE">TRANSFEREASE</option>
+                <option value="RCMP">RCMP</option>
+                <option value="Other">Other</option>
+              </select>
+              <div *ngIf="formData.relocationType === 'Other'">
+                <input type="text" placeholder="Please specify the relocation type" [(ngModel)]="formData.otherRelocationType" name="otherRelocationType">
+              </div>
+  
+              <label for="referenceNumber">Reference number</label>
+              <input type="text" id="referenceNumber" [(ngModel)]="formData.referenceNumber" name="referenceNumber" placeholder="Enter reference number" required>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <label for="dwellingStyleType" class="form-label">Dwelling style:</label>
+            <select id="dwellingStyleType" [(ngModel)]="formData.dwellingStyleType" name="dwellingStyleType" required class="form-control">
+              <option value="">Select</option>
+              <option value="Detached">Detached</option>
+              <option value="Row unit">Row unit</option>
+              <option value="Semi detached">Semi detached</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Condominium">Condominium</option>
+            </select>
+          </div>
+  
+          <div class="col-md-4" *ngIf="formData.dwellingStyleType === 'Condominium'">
+            <label for="condoFees">Condo fees</label>
+            <input type="number" id="condoFees" [(ngModel)]="formData.condoFees" name="condoFees">
+  
+            <label for="parking">Parking</label>
+            <select id="parking" [(ngModel)]="formData.parking" name="parking">
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+  
+            <div *ngIf="formData.parking === 'Yes'">
+              <label for="parkingType">Parking type</label>
+              <select id="parkingType" [(ngModel)]="formData.parkingType" name="parkingType">
+                <option value="">Select</option>
+                <option value="Surface">Surface</option>
+                <option value="Covered">Covered</option>
+                <option value="Underground">Underground</option>
+              </select>
+  
+              <label for="parkingSpaces">How many parking spaces?</label>
+              <input type="number" id="parkingSpaces" [(ngModel)]="formData.parkingSpaces" name="parkingSpaces">
+            </div>
+  
+            <label for="locker">Locker</label>
+            <select id="locker" [(ngModel)]="formData.locker" name="locker">
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+  
+            <label for="specialAssessments">Special assessments</label>
+            <input type="text" id="specialAssessments" [(ngModel)]="formData.specialAssessments" name="specialAssessments" placeholder="Please provide the amount and scope of work">
+          </div>
+        </div>
+  
+  
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <label for="dwellingType" class="form-label">Dwelling type:</label>
+            <select id="dwellingType" [(ngModel)]="formData.dwellingType" name="dwellingType" required class="form-control">
+              <option value="">Select</option>
+              <option value="1 ½ storey">1 ½ storey</option>
+              <option value="2 storey">2 storey</option>
+              <option value="3 storey">3 storey</option>
+              <option value="Fourplex">Fourplex</option>
+              <option value="Bungalow (1 Storey)">Bungalow (1 Storey)</option>
+              <option value="Bungalow with loft">Bungalow with loft</option>
+              <option value="Double">Double</option>
+              <option value="Duplex / Secundary dwelling unit / In-law suite">Duplex / Secundary dwelling unit / In-law suite</option>
+              <option value="Hi ranch">Hi ranch</option>
+              <option value="Mobile">Mobile</option>
+              <option value="Modular">Modular</option>
+              <option value="One level">One level</option>
+              <option value="Split level">Split level</option>
+              <option value="Triplex">Triplex</option>
+              <option value="Other">Other</option>
+            </select>
+            <div *ngIf="formData.dwellingType === 'Other'">
+              <input type="text" placeholder="Please specify" [(ngModel)]="formData.otherDwellingType" name="otherDwellingType" class="form-control mt-2">
+            </div>
+          </div>
+  
+          <!-- <div class="col-md-4">
+            <label for="attachments">Attach Document(s) (Optional)</label>
+            <input type="file" id="attachments" (change)="handleFileInput($event)" multiple>
+          </div> -->
+  
+          <div class="col-md-4">
+            <label for="additionalInfo">Please provide any additional information that you feel may be pertinent to the valuation</label>
+            <textarea id="additionalInfo" [(ngModel)]="formData.additionalInfo" name="additionalInfo" rows="6"></textarea>
+          </div>
+        </div>
+      </fieldset>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
