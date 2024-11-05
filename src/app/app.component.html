@@ -1,45 +1,9 @@
 <div class="main-container">
-  <header class="header">
-    <div class="header-content">
-      <!-- Logo on the left -->
-      <img src="assets/logo.png" alt="Logo" class="logo">
-
-      <!-- Title in the center -->
-      <h1>Appraisal Management</h1>
-
-      <!-- Navigation on the right -->
-      <nav class="nav-bar">
-        <a routerLink="/" routerLinkActive="active">Home</a>
-        <a routerLink="/services" routerLinkActive="active">Services</a>
-        <a routerLink="/contact" routerLinkActive="active">Contact</a>
-      </nav>
-    </div>
-  </header>
-
+  <app-header></app-header>
   <main class="content">
     <router-outlet></router-outlet> <!-- Routed component will be displayed here -->
   </main>
 
   <!-- Footer with Contact Information -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="contact-info">
-        <p>Tel: +1 613 482 0859</p>
-        <p> quoteappraisal&#64;gmail.com </p>
-      </div>
-      <div class="footer-text">
-        <p>&copy; 2024 Get an Appraiser. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Phone and WhatsApp Icons for Direct Call/Message -->
-  <div class="icon-container">
-    <a href="tel:6137016253" class="contact-icon" aria-label="Call Us">
-      <i class="fas fa-phone-alt"></i> <!-- Phone icon -->
-    </a>
-    <a href="https://wa.me/16134820859" class="contact-icon whatsapp" target="_blank" aria-label="WhatsApp Us">
-      <i class="fab fa-whatsapp"></i> <!-- WhatsApp icon -->
-    </a>
-  </div>
+  <app-footer></app-footer>
 </div>
