@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
-  isMenuOpen = false;
+  menuValue: boolean = false
+  menu_icon: string = 'fa-solid fa-bars';
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  openMenu() {
+    this.menuValue = !this.menuValue;
+    this.menu_icon = this.menuValue ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  }
+
+  closeMenu() {
+    this.menuValue = false;
+    this.menu_icon = 'fa-solid fa-bars';
   }
 }
