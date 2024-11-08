@@ -1,0 +1,16 @@
+export class ContacDTO {
+    constructor(
+        public firstName: string = '',
+        public lastName: string = '',
+        public emailAddress: string = '',
+        public phoneNumber: string = '',
+        public address: string = '',
+        public reportType: string = '',
+        public propertyType: string = '',
+        public purposeType: string = '',
+        public dwellingStyle: string = '',
+        public dwellingType: string = '',
+        public adicionalInformation: string = '',
+        public purchasePurposeType: string = ''
+    ) {}
+}

@@ -1,0 +1,11 @@
+input[type="text"]::placeholder {             
+    text-align: center;
+}
+
+input[type="tel"]::placeholder {             
+    text-align: center;
+}
+
+input[type="email"]::placeholder {             
+    text-align: center;
+}
