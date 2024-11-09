@@ -9,3 +9,7 @@ input[type="tel"]::placeholder {
 input[type="email"]::placeholder {             
     text-align: center;
 }
+
+input[type="number"]::placeholder {             
+    text-align: center;
+}

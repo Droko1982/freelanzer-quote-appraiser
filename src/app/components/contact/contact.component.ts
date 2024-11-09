@@ -19,6 +19,7 @@ export class ContactComponent implements OnInit{
   purposeType: string[];
   purchase: string[];
   newConstruction: string[];
+  modelHause: string[];
   dwellingStyle: string[];
   dwellingType: string[];
 
@@ -29,6 +30,7 @@ export class ContactComponent implements OnInit{
     this.purposeType = [];
     this.purchase = [];
     this.newConstruction = [];
+    this.modelHause = [];
     this.dwellingStyle = [];
     this.dwellingType = [];
   }
@@ -39,7 +41,7 @@ export class ContactComponent implements OnInit{
       this.uploadDwellingType();
       this.uploadPurposeType();
       this.uploadReportType();
-      this.uploadNewConstruction
+      this.uploadNewConstruction();
   }
 
   private uploadPropertyType() {
@@ -105,6 +107,12 @@ export class ContactComponent implements OnInit{
       "Valecraft",
       "Laridge",
       "Other"
+    ],
+
+    this.modelHause = [
+      "As If",
+      "As If Completed",
+      "Variation for new construction"
     ]
   }
 

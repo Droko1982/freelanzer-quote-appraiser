@@ -11,6 +11,8 @@ export class ContacDTO {
         public dwellingStyle: string = '',
         public dwellingType: string = '',
         public adicionalInformation: string = '',
-        public purchasePurposeType: string = ''
+        public purchasePurposeType: string = '',
+        public newConstructionPurposeType: string = '',
+        public purchasePricePurposeType: string = ''
     ) {}
 }
