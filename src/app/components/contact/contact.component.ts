@@ -19,6 +19,8 @@ export class ContactComponent implements OnInit{
   purposeType: string[];
   purchase: string[];
   newConstruction: string[];
+  refinance: string[];
+  relocation: string[];
   modelHause: string[];
   dwellingStyle: string[];
   dwellingType: string[];
@@ -30,6 +32,8 @@ export class ContactComponent implements OnInit{
     this.purposeType = [];
     this.purchase = [];
     this.newConstruction = [];
+    this.refinance = [];
+    this.relocation = [];
     this.modelHause = [];
     this.dwellingStyle = [];
     this.dwellingType = [];
@@ -42,6 +46,8 @@ export class ContactComponent implements OnInit{
       this.uploadPurposeType();
       this.uploadReportType();
       this.uploadNewConstruction();
+      this.uploadRefinance();
+      this.uploadRelocation();
   }
 
   private uploadPropertyType() {
@@ -113,6 +119,24 @@ export class ContactComponent implements OnInit{
       "As If",
       "As If Completed",
       "Variation for new construction"
+    ]
+  }
+
+  private uploadRefinance(){
+    this.refinance = [
+      "1st Mortgage",
+      "2nd Mortgage"
+    ]; 
+  }  
+
+  private uploadRelocation() {
+    this.relocation = [
+      "BGRS",
+      "OPG",
+      "WICHERT",
+      "TRANSFEREASE",
+      "RCMP",
+      "Other"
     ]
   }
 

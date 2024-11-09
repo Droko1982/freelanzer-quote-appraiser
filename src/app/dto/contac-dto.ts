@@ -13,6 +13,12 @@ export class ContacDTO {
         public adicionalInformation: string = '',
         public purchasePurposeType: string = '',
         public newConstructionPurposeType: string = '',
-        public purchasePricePurposeType: string = ''
+        public purchasePricePurposeType: string = '',
+        public purchaseModelHause: string = '',
+        public refinancePurposeType: string = '',
+        public lenderPurchose: string = '',
+        public refinanceAmount: string = '',
+        public loanValueRatio: string = '',
+        public relocationType: string = '',
     ) {}
 }
