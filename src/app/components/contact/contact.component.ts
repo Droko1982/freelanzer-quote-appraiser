@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import emailjs, {type EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-contact',
@@ -57,10 +58,31 @@ export class ContactComponent implements OnInit{
       this.uploadRelocation();
   }
 
-  public sendForm() {
-    console.log('Formulario enviado', this.contacDto)
+  public sendForm(): void {
+    const payload = {
+      contacDto: this.contacDto,
+    };
+  
+    emailjs.send('service_80v805a', 'template_o493cvx', payload, 'EXTD0KsKrLZm8oxMz')
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Formulario enviado',
+          text: 'Tu formulario ha sido enviado exitosamente.',
+          confirmButtonText: 'Aceptar'
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al enviar',
+          text: 'Hubo un problema al enviar el formulario. Por favor, intenta de nuevo.',
+          footer: `<small>Error: ${(error as EmailJSResponseStatus).text}</small>`,
+          confirmButtonText: 'Aceptar'
+        });
+      });
   }
-
+  
   private uploadPropertyType() {
     this.propertyType = [
       "Residential", 
