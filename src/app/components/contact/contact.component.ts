@@ -67,10 +67,15 @@ export class ContactComponent implements OnInit{
       .then(() => {
         Swal.fire({
           icon: 'success',
-          title: 'Formulario enviado',
-          text: 'Tu formulario ha sido enviado exitosamente.',
-          confirmButtonText: 'Aceptar'
+          title: 'Form sent',
+          timer: 3000,
+          text: 'Your form has been sent successfully.',
+          confirmButtonText: 'Accept'
         });
+
+        setTimeout(() => {
+          this.route.navigate(['/'])
+        }, 3000)
       })
       .catch((error) => {
         Swal.fire({
