@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';  // Correct import from @angular/forms
-import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import emailjs, {type EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-contact',
@@ -27,7 +30,8 @@ export class ContactComponent implements OnInit{
   parkingType: string[];
   dwellingType: string[];
 
-  constructor(){
+  constructor(
+    private route: Router){
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -54,6 +58,36 @@ export class ContactComponent implements OnInit{
       this.uploadRelocation();
   }
 
+  public sendForm(): void {
+    const payload = {
+      contacDto: this.contacDto,
+    };
+  
+    emailjs.send('service_80v805a', 'template_o493cvx', payload, 'EXTD0KsKrLZm8oxMz')
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Form sent',
+          timer: 3000,
+          text: 'Your form has been sent successfully.',
+          confirmButtonText: 'Accept'
+        });
+
+        setTimeout(() => {
+          this.route.navigate(['/'])
+        }, 3000)
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al enviar',
+          text: 'Hubo un problema al enviar el formulario. Por favor, intenta de nuevo.',
+          footer: `<small>Error: ${(error as EmailJSResponseStatus).text}</small>`,
+          confirmButtonText: 'Aceptar'
+        });
+      });
+  }
+  
   private uploadPropertyType() {
     this.propertyType = [
       "Residential", 
