@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';  // Correct import from @angular/forms
-import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -27,7 +29,8 @@ export class ContactComponent implements OnInit{
   parkingType: string[];
   dwellingType: string[];
 
-  constructor(){
+  constructor(
+    private route: Router){
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -52,6 +55,10 @@ export class ContactComponent implements OnInit{
       this.uploadNewConstruction();
       this.uploadRefinance();
       this.uploadRelocation();
+  }
+
+  public sendForm() {
+    console.log('Formulario enviado', this.contacDto)
   }
 
   private uploadPropertyType() {

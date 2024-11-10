@@ -13,3 +13,9 @@ input[type="email"]::placeholder {
 input[type="number"]::placeholder {             
     text-align: center;
 }
+
+.custom-button {
+    font-size: 0.9rem; 
+    padding: 8px 16px; 
+  }
+  
