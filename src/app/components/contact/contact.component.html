@@ -6,7 +6,7 @@
     <div class="card-body p-4" style="margin-bottom: 20px;">
       <form #f="ngForm">
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">First Name: </label>
+          <label class="col-sm-4 col-form-label text-center">First Name: </label>
           <div class="col-sm-8">
             <input #firstName="ngModel" class="form-control"
               [ngClass]="firstName.invalid && firstName.dirty ? 'is-invalid' : ''" type="text" name="firstName"
@@ -65,7 +65,7 @@
           <label class="col-sm-4 col-form-label">Please Specify</label>
           <div class="col-sm-8">
             <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify"
-              [(ngModel)]="contacDto.adicionalInformation"></textarea>
+              [(ngModel)]="contacDto.adicionalInformation" name="aditionalInformation"></textarea>
           </div>
           }
         </div>
@@ -97,7 +97,7 @@
           <label class="col-sm-4 col-form-label">Please Specify</label>
           <div class="col-sm-8">
             <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify"
-              [(ngModel)]="contacDto.adicionalInformation"></textarea>
+              [(ngModel)]="contacDto.adicionalInformation" name="pleaseSpecify"></textarea>
           </div>
 
           } @else if (contacDto.purposeType === 'Purchase') {
@@ -128,7 +128,7 @@
           <label for="" class="col-sm-4 col-form-label">Other Company</label>
           <div class="col-sm-8">
             <input type="text" class="form-control mt-2 text-center"
-              placeholder="Please specify the Construction Company" [(ngModel)]="contacDto.othercompany">
+              placeholder="Please specify the Construction Company" [(ngModel)]="contacDto.othercompany" name="othercompany">
           </div>
           }
 
@@ -201,7 +201,7 @@
           <label for="" class="col-sm-4 col-form-label">Specify The Relocation Type</label>
           <div class="col-sm-8">
             <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify The Relocation Type"
-              [(ngModel)]="contacDto.adicionalInformationRelocation"></textarea>
+              [(ngModel)]="contacDto.adicionalInformationRelocation" name="aditionalInformationRelocation"></textarea>
           </div>
           }
 
@@ -301,7 +301,7 @@
           <label class="col-sm-4 col-form-label">Please Specify</label>
           <div class="col-sm-8">
             <textarea type="textarea" class="form-control mt-2 text-center" placeholder="Please Specify"
-              [(ngModel)]="contacDto.otherDwellingType"></textarea>
+              [(ngModel)]="contacDto.otherDwellingType" name="otherDwellingType"></textarea>
           </div>
           }
         </div>
@@ -311,7 +311,7 @@
             Pertinent To The Valuation</label>
             <div class="col-sm-8">
               <textarea type="textarea" class="form-control mt-2 text-center" placeholder="Please Specify Additional Information"
-                [(ngModel)]="contacDto.otherDwellingType"></textarea>
+                [(ngModel)]="contacDto.otherDwellingType" name="adicionalInformationExtend"></textarea>
             </div>
         </div>
       </form>
