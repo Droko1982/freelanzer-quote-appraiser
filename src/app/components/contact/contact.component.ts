@@ -23,6 +23,8 @@ export class ContactComponent implements OnInit{
   relocation: string[];
   modelHause: string[];
   dwellingStyle: string[];
+  parking: string[];
+  parkingType: string[];
   dwellingType: string[];
 
   constructor(){
@@ -36,6 +38,8 @@ export class ContactComponent implements OnInit{
     this.relocation = [];
     this.modelHause = [];
     this.dwellingStyle = [];
+    this.parking = [];
+    this.parkingType = [];
     this.dwellingType = [];
   }
 
@@ -147,7 +151,19 @@ export class ContactComponent implements OnInit{
       "Semi Datached",
       "Apartament",
       "Condominium"
+    ],
+    
+    this.parking = [
+      "Yes",
+      "No"
+    ],
+
+    this.parkingType = [
+      "Surface",
+      "Covered",
+      "Underground"
     ]
+    
   }
 
   private uploadDwellingType() {

@@ -20,5 +20,15 @@ export class ContacDTO {
         public refinanceAmount: string = '',
         public loanValueRatio: string = '',
         public relocationType: string = '',
+        public othercompany: string = '',
+        public adicionalInformationRelocation: string = '',
+        public reference: string = '',
+        public condoFees: string = '',
+        public parking: string = '',
+        public parkingSpace: string = '',
+        public parkingType: string = '',
+        public parkingLocker: string = '',
+        public specialAssessments: string = '',
+        public otherDwellingType: string = ''
     ) {}
 }

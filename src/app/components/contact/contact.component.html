@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-center align-items-center vh-30">
-  <div class="card" style="width: 100%; max-width: 1500px; ">
+  <div class="card" style="width: 100%; max-width: 1500px; margin-bottom: 20px; ">
     <div class="card-header text-center">
       <h5><i class="fa-solid fa-pen-nib"></i> Contact Us - Get an Appraiser </h5>
     </div>
-    <div class="card-body p-4">
+    <div class="card-body p-4" style="margin-bottom: 20px;">
       <form #f="ngForm">
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label">First Name: </label>
@@ -60,6 +60,7 @@
               }
             </select>
           </div>
+
           @if (contacDto.reportType === 'Other') {
           <label class="col-sm-4 col-form-label">Please Specify</label>
           <div class="col-sm-8">
@@ -81,7 +82,7 @@
           </div>
         </div>
 
-        <div class="mb-3 row">
+        <div class="mb-3 row" style="margin-bottom: 20px;">
           <label class="col-sm-4 col-form-label">Purpose Type</label>
           <div class="col-sm-8">
             <select class="form-select" name="purposeType" [(ngModel)]="contacDto.purposeType">
@@ -122,6 +123,14 @@
               }
             </select>
           </div>
+
+          @if (contacDto.newConstructionPurposeType === 'Other') {
+          <label for="" class="col-sm-4 col-form-label">Other Company</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control mt-2 text-center"
+              placeholder="Please specify the Construction Company" [(ngModel)]="contacDto.othercompany">
+          </div>
+          }
 
           <label for="" class="col-sm-4 col-form-label">Model Of The Hause</label>
           <div class="col-sm-8">
@@ -188,9 +197,123 @@
             </select>
           </div>
 
+          @if (contacDto.relocationType === 'Other') {
+          <label for="" class="col-sm-4 col-form-label">Specify The Relocation Type</label>
+          <div class="col-sm-8">
+            <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify The Relocation Type"
+              [(ngModel)]="contacDto.adicionalInformationRelocation"></textarea>
+          </div>
+          }
+
+          <label for="" class="col-sm-4 col-form-label">Reference Number</label>
+          <div class="col-sm-8">
+            <input #reference="ngModel" type="number" class="form-control"
+              [ngClass]="reference.invalid && reference.dirty ? 'is-valid' : ''"
+              placeholder="Please Enter Reference Number" name="reference" [(ngModel)]="contacDto.refinanceAmount"
+              required style="margin-top: 10px;">
+          </div>
           }
         </div>
 
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label">Dwelling Style</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="dwellingStyle" [(ngModel)]="contacDto.dwellingStyle">
+              <option value="" selected class="text-center">Please Select Dwelling Style</option>
+              @for (item of dwellingStyle; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.dwellingStyle === 'Condominium') {
+          <label for="" class="col-sm-4 col-form-label">Condo Fees</label>
+          <div class="col-sm-8">
+            <input #condo="ngModel" type="number" class="form-control"
+              [ngClass]="condo.invalid && condo.dirty ? 'is-valid' : ''" placeholder="Please Enter Reference Number"
+              name="condo" [(ngModel)]="contacDto.condoFees" required style="margin-top: 10px;">
+          </div>
+
+          <label for="" class="col-sm-4 col-form-label">It Has Parking</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="parking" [(ngModel)]="contacDto.parking" style="margin-top: 10px;">
+              <option value="" selected class="text-center">Please Select</option>
+              @for (item of parking; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.parking == 'Yes') {
+
+          <label for="" class="col-sm-4 col-form-label">Parking Type</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="parkingType" [(ngModel)]="contacDto.parkingType"
+              style="margin-top: 10px;">
+              <option value="" selected class="text-center">Please Select Parking type</option>
+              @for (item of parkingType; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          <label for="" class="col-sm-4 col-form-label">How Many Parking Spaces?</label>
+          <div class="col-sm-8">
+            <input #spaces="ngModel" type="number" class="form-control"
+              [ngClass]="spaces.invalid && spaces.dirty ? 'is-valid' : ''" placeholder="Please Enter Parking Number"
+              name="spaces" [(ngModel)]="contacDto.parkingSpace" required style="margin-top: 10px;">
+          </div>
+
+          <label for="" class="col-sm-4 col-form-label">Locker</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="parkingLocker" [(ngModel)]="contacDto.parkingLocker"
+              style="margin-top: 10px;">
+              <option value="" selected class="text-center">Please Select</option>
+              @for (item of parking; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          <label for="" class="col-sm-4 col-form-label">Special Assessments</label>
+          <div class="col-sm-8">
+            <input #special="ngModel" type="text" class="form-control"
+              [ngClass]="special.invalid && special.dirty ? 'is-valid' : ''"
+              placeholder="Please Enter Special Assessments" name="special" [(ngModel)]="contacDto.specialAssessments"
+              required style="margin-top: 10px;">
+          </div>
+          }
+          }
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label">Dwelling Type</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="dwellingType" [(ngModel)]="contacDto.dwellingType">
+              <option value="" selected class="text-center">Please Select Dwelling Type</option>
+              @for (item of dwellingType; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.dwellingType === 'Other') {
+          <label class="col-sm-4 col-form-label">Please Specify</label>
+          <div class="col-sm-8">
+            <textarea type="textarea" class="form-control mt-2 text-center" placeholder="Please Specify"
+              [(ngModel)]="contacDto.otherDwellingType"></textarea>
+          </div>
+          }
+        </div>
+
+        <div class="mb-3 row">
+          <label for="" class="col-sm-4 col-form-label text-wrap">Please Provide Any Additional Information That You Feel May Be
+            Pertinent To The Valuation</label>
+            <div class="col-sm-8">
+              <textarea type="textarea" class="form-control mt-2 text-center" placeholder="Please Specify Additional Information"
+                [(ngModel)]="contacDto.otherDwellingType"></textarea>
+            </div>
+        </div>
       </form>
     </div>
   </div>
