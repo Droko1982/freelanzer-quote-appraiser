@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
@@ -10,8 +10,8 @@ import emailjs, {type EmailJSResponseStatus } from 'emailjs-com';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  templateUrl: './contact.component.html',  
-  styleUrls: ['./contact.component.css'],  
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css'],
   imports: [NgIf, NgFor, FormsModule, CommonModule]
 })
 export class ContactComponent implements OnInit{
@@ -29,9 +29,12 @@ export class ContactComponent implements OnInit{
   parking: string[];
   parkingType: string[];
   dwellingType: string[];
+  isRetrospectiveAppraisal: string[];
+
 
   constructor(
-    private route: Router){
+    private route: Router,
+    private http: HttpClient){
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -45,6 +48,7 @@ export class ContactComponent implements OnInit{
     this.parking = [];
     this.parkingType = [];
     this.dwellingType = [];
+    this.isRetrospectiveAppraisal = [];
   }
 
   ngOnInit(): void {
@@ -56,42 +60,17 @@ export class ContactComponent implements OnInit{
       this.uploadNewConstruction();
       this.uploadRefinance();
       this.uploadRelocation();
+      this.uploadIsRetrospectiveAppraisal();
   }
 
-  public sendForm(): void {
-    const payload = {
-      contacDto: this.contacDto,
-    };
-  
-    emailjs.send('service_80v805a', 'template_o493cvx', payload, 'EXTD0KsKrLZm8oxMz')
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Form sent',
-          timer: 3000,
-          text: 'Your form has been sent successfully.',
-          confirmButtonText: 'Accept'
-        });
-
-        setTimeout(() => {
-          this.route.navigate(['/'])
-        }, 3000)
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error al enviar',
-          text: 'Hubo un problema al enviar el formulario. Por favor, intenta de nuevo.',
-          footer: `<small>Error: ${(error as EmailJSResponseStatus).text}</small>`,
-          confirmButtonText: 'Aceptar'
-        });
-      });
+  public sendEmail(e: Event) {
+    console.log(this.contacDto);
   }
-  
+
   private uploadPropertyType() {
     this.propertyType = [
-      "Residential", 
-      "Commercial", 
+      "Residential",
+      "Commercial",
     ];
   }
 
@@ -164,8 +143,8 @@ export class ContactComponent implements OnInit{
     this.refinance = [
       "1st Mortgage",
       "2nd Mortgage"
-    ]; 
-  }  
+    ];
+  }
 
   private uploadRelocation() {
     this.relocation = [
@@ -186,7 +165,7 @@ export class ContactComponent implements OnInit{
       "Apartament",
       "Condominium"
     ],
-    
+
     this.parking = [
       "Yes",
       "No"
@@ -197,7 +176,7 @@ export class ContactComponent implements OnInit{
       "Covered",
       "Underground"
     ]
-    
+
   }
 
   private uploadDwellingType() {
@@ -217,6 +196,13 @@ export class ContactComponent implements OnInit{
       "Split Level",
       "Triplex",
       "Other"
+    ]
+  }
+
+  private uploadIsRetrospectiveAppraisal() {
+    this.isRetrospectiveAppraisal = [
+      "Yes",
+      "No"
     ]
   }
 

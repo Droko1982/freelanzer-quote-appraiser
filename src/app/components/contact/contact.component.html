@@ -1,59 +1,61 @@
 <div class="d-flex justify-content-center align-items-center vh-30">
   <div class="card" style="width: 100%; max-width: 1500px; margin-top: 20px; ">
     <div class="card-header text-center">
-      <h1 class="left-5 "><i class="fa-solid fa-pen-nib"></i> Contact Us - Get an Appraiser </h1>
+      <h2 class="left-5 "><i class="bi bi-clipboard2-check-fill"></i> Contact Us - Get an Appraiser </h2>
     </div>
     <div class="card-body p-4" style="margin-bottom: 20px;">
-      <form #f="ngForm">
+      <form #f="ngForm" (ngSubmit)="sendEmail($event)" class="needs-validation" novalidate>
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">First Name </label>
+          <label class="col-sm-4 col-form-label" for="firstName">First Name </label>
           <div class="col-sm-8">
             <input #firstName="ngModel" class="form-control"
               [ngClass]="firstName.invalid && firstName.dirty ? 'is-invalid' : ''" type="text" name="firstName"
-              [(ngModel)]="contacDto.firstName" required placeholder="Please Enter Your First Name" />
+              id="firstName" [(ngModel)]="contacDto.firstName" required placeholder="Please Enter Your First Name" />
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Last Name </label>
+          <label class="col-sm-4 col-form-label" for="lastName">Last Name </label>
           <div class="col-sm-8">
             <input #lastName="ngModel" class="form-control"
               [ngClass]="lastName.invalid && lastName.dirty ? 'is-invalid' : ''" type="text" name="lastName"
-              [(ngModel)]="contacDto.lastName" required placeholder="Please Enter Your Last Name" />
+              id="lastName" [(ngModel)]="contacDto.lastName" required placeholder="Please Enter Your Last Name" />
           </div>
         </div>
 
+
+
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Email Addres </label>
+          <label class="col-sm-4 col-form-label" for="emailAddress">Email Addres </label>
           <div class="col-sm-8">
             <input #email="ngModel" class="form-control" [ngClass]="email.invalid && email.dirty ? 'is-invalid' : ''"
-              type="email" name="email" [(ngModel)]="contacDto.emailAddress" required
+              type="email" name="emailAddress" id="emailAddress" [(ngModel)]="contacDto.emailAddress" required
               placeholder="Please Enter Your Email Address" />
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Phone Number </label>
+          <label class="col-sm-4 col-form-label" for="phoneNumber">Phone Number </label>
           <div class="col-sm-8">
             <input #phone="ngModel" class="form-control" [ngClass]="phone.invalid && phone.dirty ? 'is-invalid' : ''"
-              type="tel" name="phone" [(ngModel)]="contacDto.phoneNumber" required
+              type="tel" name="phoneNumber" id="phoneNumber" [(ngModel)]="contacDto.phoneNumber" required
               placeholder="Please Enter Your Phone Number" />
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Address </label>
+          <label class="col-sm-4 col-form-label" for="address">Address </label>
           <div class="col-sm-8">
             <input #phone="ngModel" class="form-control" placeholder="Please Enter Your Address"
-              [ngClass]="phone.invalid && phone.dirty ? 'is-invalid' : ''" type="text" name="phone"
+              [ngClass]="phone.invalid && phone.dirty ? 'is-invalid' : ''" type="text" name="address" id="address"
               [(ngModel)]="contacDto.address" required />
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Report Type </label>
+          <label class="col-sm-4 col-form-label" for="reportType">Report Type </label>
           <div class="col-sm-8">
-            <select class="form-select" name="reportType" [(ngModel)]="contacDto.reportType">
+            <select class="form-select" name="reportType" id="reportType" [(ngModel)]="contacDto.reportType">
               <option value="" selected class="text-center">Please Select Report Type </option>
               @for (item of reportType; track item) {
               <option class="text-center" [value]="item">{{item}}</option>
@@ -62,18 +64,18 @@
           </div>
 
           @if (contacDto.reportType === 'Other') {
-          <label class="col-sm-4 col-form-label">Please Specify</label>
+          <label class="col-sm-4 col-form-label" for="otherReport">Please Specify</label>
           <div class="col-sm-8">
             <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify"
-              [(ngModel)]="contacDto.adicionalInformation" name="aditionalInformation"></textarea>
+              [(ngModel)]="contacDto.otherReport" name="otherReport" id="otherReport"></textarea>
           </div>
           }
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Property Type </label>
+          <label class="col-sm-4 col-form-label" for="propertyType">Property Type </label>
           <div class="col-sm-8">
-            <select name="propertyType" class="form-select" [(ngModel)]="contacDto.propertyType">
+            <select name="propertyType" id="propertyType" class="form-select" [(ngModel)]="contacDto.propertyType">
               <option value="" selected class="text-center">Please Select Property Type</option>
               @for (item of propertyType; track $index) {
               <option class="text-center" [value]="item">{{item}}</option>
@@ -83,9 +85,9 @@
         </div>
 
         <div class="mb-3 row" style="margin-bottom: 20px;">
-          <label class="col-sm-4 col-form-label">Purpose Type</label>
+          <label class="col-sm-4 col-form-label" for="purposeType">Purpose Type</label>
           <div class="col-sm-8">
-            <select class="form-select" name="purposeType" [(ngModel)]="contacDto.purposeType">
+            <select class="form-select" name="purposeType" id="purposeType" [(ngModel)]="contacDto.purposeType">
               <option value="" selected class="text-center">Please Select purpose Type</option>
               @for (item of purposeType; track $index) {
               <option value="" class="text-center" [value]="item">{{item}}</option>
@@ -94,16 +96,16 @@
           </div>
 
           @if (contacDto.purposeType === 'Other') {
-          <label class="col-sm-4 col-form-label">Please Specify</label>
+          <label class="col-sm-4 col-form-label" for="otherPurpose">Please Specify</label>
           <div class="col-sm-8">
             <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify"
-              [(ngModel)]="contacDto.adicionalInformation" name="pleaseSpecify"></textarea>
+              [(ngModel)]="contacDto.otherPurpose" name="otherPurpose" id="otherPurpose"></textarea>
           </div>
 
           } @else if (contacDto.purposeType === 'Purchase') {
-          <label class="col-sm-4 col-form-label">Purchase Type</label>
+          <label class="col-sm-4 col-form-label" for="purchaseType">Purchase Type</label>
           <div class="col-sm-8">
-            <select name="purchase" id="" class="form-select" [(ngModel)]="contacDto.purchasePurposeType"
+            <select name="purchaseType" id="purchaseType" class="form-select" [(ngModel)]="contacDto.purchaseType"
               style="margin-top: 10px;">
               <option value="" class="text-center">Please Select Purchase Type</option>
               @for (item of purchase; track $index) {
@@ -112,11 +114,11 @@
             </select>
           </div>
 
-          @if (contacDto.purchasePurposeType == 'New Construction') {
-          <label for="" class="col-sm-4 col-form-label">Construction Company</label>
+          @if (contacDto.purchaseType == 'New Construction') {
+          <label for="" class="col-sm-4 col-form-label" for="constructionCompany">Construction Company</label>
           <div class="col-sm-8">
-            <select name="newconstruction" class="form-select" [(ngModel)]="contacDto.newConstructionPurposeType"
-              style="margin-top: 10px;">
+            <select name="constructionCompany" id="constructionCompany" class="form-select"
+              [(ngModel)]="contacDto.constructionCompany" style="margin-top: 10px;">
               <option value="" class="text-center">Please Select Construction Company</option>
               @for (item of newConstruction; track $index) {
               <option value="" class="text-center" [value]="item">{{item}}</option>
@@ -124,17 +126,18 @@
             </select>
           </div>
 
-          @if (contacDto.newConstructionPurposeType === 'Other') {
-          <label for="" class="col-sm-4 col-form-label">Other Company</label>
+          @if (contacDto.constructionCompany === 'Other') {
+          <label for="" class="col-sm-4 col-form-label" for="othercompany">Other Company</label>
           <div class="col-sm-8">
             <input type="text" class="form-control mt-2 text-center"
-              placeholder="Please specify the Construction Company" [(ngModel)]="contacDto.othercompany" name="othercompany">
+              placeholder="Please specify the Construction Company" [(ngModel)]="contacDto.otherConstructionCompany"
+              name="otherConstructionCompany" id="othercompany">
           </div>
           }
 
-          <label for="" class="col-sm-4 col-form-label">Model Of The Hause</label>
+          <label for="" class="col-sm-4 col-form-label" for="houseModel">Model Of The Hause</label>
           <div class="col-sm-8">
-            <select name="model" id="" class="form-select" [(ngModel)]="contacDto.purchaseModelHause"
+            <select name="houseModel" id="houseModel" class="form-select" [(ngModel)]="contacDto.houseModel"
               style="margin-top: 10px;">
               <option value="" class="text-center">Please Select Model Of The Hause</option>
               @for (item of modelHause; track $index) {
@@ -143,18 +146,18 @@
             </select>
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">Purchase Price</label>
+          <label for="" class="col-sm-4 col-form-label" for="purchasePrice">Purchase Price</label>
           <div class="col-sm-8">
             <input #price="ngModel" class="form-control" [ngClass]="price.invalid && price.dirty ? 'is-invalid' : ''"
-              type="number" placeholder="Please Enter Purchase Price " name="price"
-              [(ngModel)]="contacDto.purchasePricePurposeType" required style="margin-top: 10px;" />
+              type="number" placeholder="Please Enter Purchase Price " name="purchasePrice" id="purchasePrice"
+              [(ngModel)]="contacDto.purchasePrice" required style="margin-top: 10px;" />
           </div>
           }
 
           } @else if (contacDto.purposeType === 'Refinance') {
-          <label for="" class="col-sm-4 col-form-label">Morgan Type</label>
+          <label for="" class="col-sm-4 col-form-label" for="mortgageType">Mortgage Type</label>
           <div class="col-sm-8">
-            <select name="morgan" id="" class="form-select" [ngModel]="contacDto.refinancePurposeType"
+            <select name="mortgageType" id="mortgageType" class="form-select" [ngModel]="contacDto.mortgageType"
               style="margin-top: 10px;">
               <option value="" class="text-center">Please Select Morgan Type</option>
               @for (item of refinance; track $index) {
@@ -163,32 +166,33 @@
             </select>
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">¿Who Is The Lender?</label>
+          <label for="" class="col-sm-4 col-form-label" for="lender">¿Who Is The Lender?</label>
           <div class="col-sm-8">
             <input #lender="ngModel" type="text" class="form-control"
               [ngClass]="lender.invalid && lender.dirty ? 'is-valid' : ''" placeholder="Please Enter The Lender"
-              name="lender" [(ngModel)]="contacDto.lenderPurchose" required style="margin-top: 10px;">
+              name="lender" id="lender" [(ngModel)]="contacDto.lender" required style="margin-top: 10px;">
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">Refinance Amount</label>
+          <label for="" class="col-sm-4 col-form-label" for="refinanceAmount">Refinance Amount</label>
           <div class="col-sm-8">
             <input #amount="ngModel" type="number" class="form-control"
               [ngClass]="amount.invalid && amount.dirty ? 'is-valid' : ''" placeholder="Please Enter Refinance Amount"
-              name="lender" [(ngModel)]="contacDto.refinanceAmount" required style="margin-top: 10px;">
+              name="refinanceAmount" id="refinanceAmount" [(ngModel)]="contacDto.refinanceAmount" required
+              style="margin-top: 10px;">
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">Loan To Value Ratio</label>
+          <label for="" class="col-sm-4 col-form-label" for="loanToValue">Loan To Value Ratio</label>
           <div class="col-sm-8">
             <input #value="ngModel" type="number" class="form-control"
               [ngClass]="value.invalid && value.dirty ? 'is-valid' : ''" placeholder="Please Enter Value Ratio"
-              name="lender" [(ngModel)]="contacDto.loanValueRatio" required
+              name="loanToValue" id="loanToValue" [(ngModel)]="contacDto.loanToValue" required
               style="margin-bottom: 10px; margin-top: 10px;">
           </div>
 
           } @else if (contacDto.purposeType === 'Relocation') {
-          <label class="col-sm-4 col-form-label">Relocation Type</label>
+          <label class="col-sm-4 col-form-label" for="relocationType">Relocation Type</label>
           <div class="col-sm-8">
-            <select name="relocation" id="" class="form-select" [(ngModel)]="contacDto.relocationType"
+            <select name="relocationType" id="relocationType" class="form-select" [(ngModel)]="contacDto.relocationType"
               style="margin-top: 10px;">
               <option value="" class="text-center">Please Select Purchase Type</option>
               @for (item of relocation; track $index) {
@@ -198,27 +202,30 @@
           </div>
 
           @if (contacDto.relocationType === 'Other') {
-          <label for="" class="col-sm-4 col-form-label">Specify The Relocation Type</label>
+          <label for="" class="col-sm-4 col-form-label" for="otherRelocationType">Specify The Relocation
+            Type</label>
           <div class="col-sm-8">
             <textarea type="text" class="form-control mt-2 text-center" placeholder="Please Specify The Relocation Type"
-              [(ngModel)]="contacDto.adicionalInformationRelocation" name="aditionalInformationRelocation"></textarea>
+              [(ngModel)]="contacDto.otherRelocationType" name="otherRelocationType"
+              id="otherRelocationType"></textarea>
           </div>
           }
 
-          <label for="" class="col-sm-4 col-form-label">Reference Number</label>
+          <label for="" class="col-sm-4 col-form-label" for="refinanceAmount">Reference Number</label>
           <div class="col-sm-8">
             <input #reference="ngModel" type="number" class="form-control"
               [ngClass]="reference.invalid && reference.dirty ? 'is-valid' : ''"
-              placeholder="Please Enter Reference Number" name="reference" [(ngModel)]="contacDto.refinanceAmount"
-              required style="margin-top: 10px;">
+              placeholder="Please Enter Reference Number" name="referenceAmount" id="referenceAmount"
+              [(ngModel)]="contacDto.refinanceAmount" required style="margin-top: 10px;">
           </div>
           }
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Dwelling Style</label>
+          <label class="col-sm-4 col-form-label" for="dwellingStyleType">Dwelling Style</label>
           <div class="col-sm-8">
-            <select class="form-select" name="dwellingStyle" [(ngModel)]="contacDto.dwellingStyle">
+            <select class="form-select" name="dwellingStyleType" id="dwellingStyleType"
+              [(ngModel)]="contacDto.dwellingStyleType">
               <option value="" selected class="text-center">Please Select Dwelling Style</option>
               @for (item of dwellingStyle; track item) {
               <option class="text-center" [value]="item">{{item}}</option>
@@ -226,17 +233,18 @@
             </select>
           </div>
 
-          @if (contacDto.dwellingStyle === 'Condominium') {
-          <label for="" class="col-sm-4 col-form-label">Condo Fees</label>
+          @if (contacDto.dwellingStyleType === 'Condominium') {
+          <label for="condoFees" class="col-sm-4 col-form-label">Condo Fees</label>
           <div class="col-sm-8">
             <input #condo="ngModel" type="number" class="form-control"
               [ngClass]="condo.invalid && condo.dirty ? 'is-valid' : ''" placeholder="Please Enter Reference Number"
-              name="condo" [(ngModel)]="contacDto.condoFees" required style="margin-top: 10px;">
+              name="condoFees" id="condoFees" [(ngModel)]="contacDto.condoFees" required style="margin-top: 10px;">
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">It Has Parking</label>
+          <label for="parking" class="col-sm-4 col-form-label">It Has Parking</label>
           <div class="col-sm-8">
-            <select class="form-select" name="parking" [(ngModel)]="contacDto.parking" style="margin-top: 10px;">
+            <select class="form-select" name="parking" id="parking" [(ngModel)]="contacDto.parking"
+              style="margin-top: 10px;">
               <option value="" selected class="text-center">Please Select</option>
               @for (item of parking; track item) {
               <option class="text-center" [value]="item">{{item}}</option>
@@ -246,9 +254,9 @@
 
           @if (contacDto.parking == 'Yes') {
 
-          <label for="" class="col-sm-4 col-form-label">Parking Type</label>
+          <label for="parkingType" class="col-sm-4 col-form-label">Parking Type</label>
           <div class="col-sm-8">
-            <select class="form-select" name="parkingType" [(ngModel)]="contacDto.parkingType"
+            <select class="form-select" name="parkingType" id="parkingType" [(ngModel)]="contacDto.parkingType"
               style="margin-top: 10px;">
               <option value="" selected class="text-center">Please Select Parking type</option>
               @for (item of parkingType; track item) {
@@ -257,16 +265,17 @@
             </select>
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">How Many Parking Spaces?</label>
+          <label for="parkingSpaces" class="col-sm-4 col-form-label">How Many Parking Spaces?</label>
           <div class="col-sm-8">
             <input #spaces="ngModel" type="number" class="form-control"
               [ngClass]="spaces.invalid && spaces.dirty ? 'is-valid' : ''" placeholder="Please Enter Parking Number"
-              name="spaces" [(ngModel)]="contacDto.parkingSpace" required style="margin-top: 10px;">
+              name="parkingSpaces" id="parkingSpaces" [(ngModel)]="contacDto.parkingSpaces" required
+              style="margin-top: 10px;">
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">Locker</label>
+          <label for="locker" class="col-sm-4 col-form-label">Locker</label>
           <div class="col-sm-8">
-            <select class="form-select" name="parkingLocker" [(ngModel)]="contacDto.parkingLocker"
+            <select class="form-select" name="locker" id="locker" [(ngModel)]="contacDto.locker"
               style="margin-top: 10px;">
               <option value="" selected class="text-center">Please Select</option>
               @for (item of parking; track item) {
@@ -275,21 +284,21 @@
             </select>
           </div>
 
-          <label for="" class="col-sm-4 col-form-label">Special Assessments</label>
+          <label for="specialAssessments" class="col-sm-4 col-form-label">Special Assessments</label>
           <div class="col-sm-8">
             <input #special="ngModel" type="text" class="form-control"
               [ngClass]="special.invalid && special.dirty ? 'is-valid' : ''"
-              placeholder="Please Enter Special Assessments" name="special" [(ngModel)]="contacDto.specialAssessments"
-              required style="margin-top: 10px;">
+              placeholder="Please Enter Special Assessments" name="specialAssessments" id="specialAssessments"
+              [(ngModel)]="contacDto.specialAssessments" required style="margin-top: 10px;">
           </div>
           }
           }
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label">Dwelling Type</label>
+          <label class="col-sm-4 col-form-label" for="dwellingType">Dwelling Type</label>
           <div class="col-sm-8">
-            <select class="form-select" name="dwellingType" [(ngModel)]="contacDto.dwellingType">
+            <select class="form-select" name="dwellingType" id="dwellingType" [(ngModel)]="contacDto.dwellingType">
               <option value="" selected class="text-center">Please Select Dwelling Type</option>
               @for (item of dwellingType; track item) {
               <option class="text-center" [value]="item">{{item}}</option>
@@ -298,27 +307,53 @@
           </div>
 
           @if (contacDto.dwellingType === 'Other') {
-          <label class="col-sm-4 col-form-label">Please Specify</label>
+          <label class="col-sm-4 col-form-label" for="otherDwellingType">Please Specify</label>
           <div class="col-sm-8">
             <textarea type="textarea" class="form-control mt-2 text-center" placeholder="Please Specify"
-              [(ngModel)]="contacDto.otherDwellingType" name="otherDwellingType"></textarea>
+              [(ngModel)]="contacDto.otherDwellingType" name="otherDwellingType" id="otherDwellingType"></textarea>
           </div>
           }
         </div>
 
         <div class="mb-3 row">
-          <label for="" class="col-sm-4 col-form-label text-wrap">Please Provide Any Additional Information That You Feel May Be
+          <label for="specialAssessments" class="col-sm-4 col-form-label text-wrap">Please Provide Any
+            Additional Information
+            That You Feel May Be
             Pertinent To The Valuation</label>
-            <div class="col-sm-8">
-              <textarea type="textarea" class="form-control mt-2 text-center" placeholder="Please Specify Additional Information"
-                [(ngModel)]="contacDto.otherDwellingType" name="adicionalInformationExtend"></textarea>
-            </div>
+          <div class="col-sm-8">
+            <textarea type="textarea" class="form-control mt-2 text-center"
+              placeholder="Please Specify Additional Information" [(ngModel)]="contacDto.specialAssessments"
+              name="specialAssessments" id="specialAssessments"></textarea>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="isRetrospectiveAppraisal" class="col-sm-4 col-form-label text-wrap">Is this a
+            Retrospective Appraisal?</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="isRetrospectiveAppraisal" id="isRetrospectiveAppraisal"
+              [(ngModel)]="contacDto.isRetrospectiveAppraisal">
+              <option value="" selected class="text-center">Please Select</option>
+              @for (item of isRetrospectiveAppraisal; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.isRetrospectiveAppraisal === 'Yes') {
+          <label for="retrospectiveAppraisalDate" class="col-sm-4 col-form-label">Retrospective Date</label>
+          <div class="col-sm-8">
+            <input type="date" class="form-control mt-2 text-center" placeholder="Please Enter Date"
+              [(ngModel)]="contacDto.retrospectiveAppraisalDate" name="retrospectiveAppraisalDate"
+              id="retrospectiveAppraisalDate">
+          </div>
+          }
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <button class="btn btn-primary btn-sm fw-bold custom-button" (click)="sendForm()">
-            <i class="fa-solid fa-paper-plane"></i> Send Form
-          </button>
+          <div class="button-container">
+            <button class="btn-primary"><i class="bi bi-send-check-fill"></i> Send Form</button>
+          </div>
         </div>
       </form>
     </div>

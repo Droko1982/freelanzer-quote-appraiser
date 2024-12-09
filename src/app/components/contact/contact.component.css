@@ -1,21 +1,56 @@
-input[type="text"]::placeholder {             
+input[type="text"]::placeholder {
     text-align: center;
 }
 
-input[type="tel"]::placeholder {             
+input[type="tel"]::placeholder {
     text-align: center;
 }
 
-input[type="email"]::placeholder {             
+input[type="email"]::placeholder {
     text-align: center;
 }
 
-input[type="number"]::placeholder {             
+input[type="number"]::placeholder {
     text-align: center;
 }
 
 .custom-button {
-    font-size: 0.9rem; 
-    padding: 8px 16px; 
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
-  
+
+
+  .custom-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background-color: #005f73;
+    color: #ffffff;
+    font-size: 1.2em;
+    padding: 5px 36px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-primary:hover {
+    background-color: #0a9396;
+    transform: scale(1.07);
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
