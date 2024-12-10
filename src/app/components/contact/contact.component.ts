@@ -6,6 +6,7 @@ import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import emailjs, {type EmailJSResponseStatus } from 'emailjs-com';
+import { ContactService } from '../../service/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -31,10 +32,9 @@ export class ContactComponent implements OnInit{
   dwellingType: string[];
   isRetrospectiveAppraisal: string[];
 
-
   constructor(
     private route: Router,
-    private http: HttpClient){
+    private contactService: ContactService){
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -64,7 +64,19 @@ export class ContactComponent implements OnInit{
   }
 
   public sendEmail(e: Event) {
-    console.log(this.contacDto);
+    if (!this.contacDto.firstName || !this.contacDto.emailAddress) {
+      console.error('First name and email are required');
+      return;
+    }
+
+    this.contactService.sendContact(this.contacDto).subscribe({
+      next: (response) => {
+        console.log('Correo Enviado: ', response);
+      },
+      error: (error) => {
+        console.error('Error al enviar correo: ', error);
+      }
+    });
   }
 
   private uploadPropertyType() {
