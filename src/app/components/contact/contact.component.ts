@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import emailjs, {type EmailJSResponseStatus } from 'emailjs-com';
-import { ContactService } from '../../service/contact.service';
+import emailjs, { type EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-contact',
@@ -15,11 +14,11 @@ import { ContactService } from '../../service/contact.service';
   styleUrls: ['./contact.component.css'],
   imports: [NgIf, NgFor, FormsModule, CommonModule]
 })
-export class ContactComponent implements OnInit{
+export class ContactComponent implements OnInit {
 
   contacDto: ContacDTO = new ContacDTO();
-  propertyType: string [];
-  reportType: string [];
+  propertyType: string[];
+  reportType: string[];
   purposeType: string[];
   purchase: string[];
   newConstruction: string[];
@@ -33,8 +32,7 @@ export class ContactComponent implements OnInit{
   isRetrospectiveAppraisal: string[];
 
   constructor(
-    private route: Router,
-    private contactService: ContactService){
+    private route: Router) {
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -52,31 +50,98 @@ export class ContactComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.uploadPropertyType();
-      this.uploadDwellingStyle();
-      this.uploadDwellingType();
-      this.uploadPurposeType();
-      this.uploadReportType();
-      this.uploadNewConstruction();
-      this.uploadRefinance();
-      this.uploadRelocation();
-      this.uploadIsRetrospectiveAppraisal();
+    this.uploadPropertyType();
+    this.uploadDwellingStyle();
+    this.uploadDwellingType();
+    this.uploadPurposeType();
+    this.uploadReportType();
+    this.uploadNewConstruction();
+    this.uploadRefinance();
+    this.uploadRelocation();
+    this.uploadIsRetrospectiveAppraisal();
   }
 
-  public sendEmail(e: Event) {
-    if (!this.contacDto.firstName || !this.contacDto.emailAddress) {
-      console.error('First name and email are required');
-      return;
-    }
+  public sendEmail(event: Event): void {
 
-    this.contactService.sendContact(this.contacDto).subscribe({
-      next: (response) => {
-        console.log('Correo Enviado: ', response);
-      },
-      error: (error) => {
-        console.error('Error al enviar correo: ', error);
-      }
-    });
+    const templateParams = {
+      firstName: this.contacDto.firstName,
+      lastName: this.contacDto.lastName,
+      emailAddress: this.contacDto.emailAddress,
+      phoneNumber: this.contacDto.phoneNumber,
+      address: this.contacDto.address,
+      reportType: this.contacDto.reportType,
+      otherReport: this.contacDto.otherReport,
+      propertyType: this.contacDto.propertyType,
+      purposeType: this.contacDto.purposeType,
+      otherPurpose: this.contacDto.otherPurpose,
+      dwellingStyleType: this.contacDto.dwellingStyleType,
+      dwellingType: this.contacDto.dwellingType,
+      otherDwellingType: this.contacDto.otherDwellingType,
+      additionalInfo: this.contacDto.additionalInfo,
+      purchaseType: this.contacDto.purchaseType,
+      constructionCompany: this.contacDto.constructionCompany,
+      otherConstructionCompany: this.contacDto.otherConstructionCompany,
+      houseModel: this.contacDto.houseModel,
+      purchasePrice: this.contacDto.purchasePrice,
+      mortgageType: this.contacDto.mortgageType,
+      lender: this.contacDto.lender,
+      refinanceAmount: this.contacDto.refinanceAmount,
+      loanToValue: this.contacDto.loanToValue,
+      relocationType: this.contacDto.relocationType,
+      otherRelocationType: this.contacDto.otherRelocationType,
+      referenceNumber: this.contacDto.referenceNumber,
+      condoFees: this.contacDto.condoFees,
+      parking: this.contacDto.parking,
+      parkingType: this.contacDto.parkingType,
+      parkingSpaces: this.contacDto.parkingSpaces,
+      locker: this.contacDto.locker,
+      specialAssessments: this.contacDto.specialAssessments,
+      isRetrospectiveAppraisal: this.contacDto.isRetrospectiveAppraisal,
+      retrospectiveAppraisalDate: this.contacDto.retrospectiveAppraisalDate,
+    };
+
+    emailjs.send('service_rikywrb', 'template_qqmr6lx', templateParams, '2z8UW16Wu-y-K_V_T')
+      .then((response) => {
+        Swal.fire({
+          icon: 'success',
+          title: '<h3 style="color: #4CAF50;">Form Submitted Successfully!</h3>',
+          html: `
+          <p style="color: #555;">Your form has been sent successfully. We will contact you shortly.</p>
+          <p style="font-size: 0.9rem; color: #888;">Thank you for reaching out!</p>
+        `,
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#4CAF50',
+          background: '#f9f9f9',
+          customClass: {
+            popup: 'swal-custom-popup',
+            title: 'swal-custom-title',
+            htmlContainer: 'swal-custom-html',
+          },
+          timer: 5000,
+          timerProgressBar: true,
+        });
+        console.log('SUCCESS!', response.status, response.text);
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: '<h3 style="color: #E74C3C;">Error Sending Form</h3>',
+          html: `
+          <p style="color: #555;">There was a problem submitting your form. Please try again later.</p>
+          <p style="font-size: 0.9rem; color: #888;">If the issue persists, contact our support team.</p>
+        `,
+          confirmButtonText: 'Retry',
+          confirmButtonColor: '#E74C3C',
+          background: '#f9f9f9',
+          customClass: {
+            popup: 'swal-custom-popup',
+            title: 'swal-custom-title',
+            htmlContainer: 'swal-custom-html',
+          },
+        });
+        console.error('FAILED...', err);
+      });
+
   }
 
   private uploadPropertyType() {
@@ -103,7 +168,7 @@ export class ContactComponent implements OnInit{
     ];
   }
 
-  private uploadPurposeType(){
+  private uploadPurposeType() {
     this.purposeType = [
       "Purchase",
       "Refinance",
@@ -125,11 +190,11 @@ export class ContactComponent implements OnInit{
       "Other"
     ],
 
-    this.purchase = [
-      "MLS Sale",
-      "Private Sale",
-      "New Construction"
-    ]
+      this.purchase = [
+        "MLS Sale",
+        "Private Sale",
+        "New Construction"
+      ]
   }
 
   private uploadNewConstruction() {
@@ -144,14 +209,14 @@ export class ContactComponent implements OnInit{
       "Other"
     ],
 
-    this.modelHause = [
-      "As If",
-      "As If Completed",
-      "Variation for new construction"
-    ]
+      this.modelHause = [
+        "As If",
+        "As If Completed",
+        "Variation for new construction"
+      ]
   }
 
-  private uploadRefinance(){
+  private uploadRefinance() {
     this.refinance = [
       "1st Mortgage",
       "2nd Mortgage"
@@ -178,16 +243,16 @@ export class ContactComponent implements OnInit{
       "Condominium"
     ],
 
-    this.parking = [
-      "Yes",
-      "No"
-    ],
+      this.parking = [
+        "Yes",
+        "No"
+      ],
 
-    this.parkingType = [
-      "Surface",
-      "Covered",
-      "Underground"
-    ]
+      this.parkingType = [
+        "Surface",
+        "Covered",
+        "Underground"
+      ]
 
   }
 
