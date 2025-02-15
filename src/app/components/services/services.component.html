@@ -1,60 +1,81 @@
-<div class="container my-5 services-container">
-    <div class="text-center mb-4">
-      <h2 class="fw-bold text-dark">Our Services</h2>
-      <p class="text-muted">
-        We offer a comprehensive range of appraisal services to meet your residential and commercial needs. Our team is committed to providing accurate and professional appraisals for a wide variety of property types.
-      </p>
-    </div>
-  
+<section class="container my-5 services-container">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-dark">Our Services</h2>
+    <p class="text-muted">
+      We offer a comprehensive range of appraisal services to meet your residential and commercial needs. Our team is
+      committed to providing accurate and professional appraisals for a wide variety of property types.
+    </p>
+  </div>
+
+  <article>
     <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 text-muted">
       @for (item of services; track $index) {
-        <li class="col">
+      <li class="col">
         <i class="bi bi-check-circle-fill text-primary me-2"></i> {{ item }}
       </li>
-    }
+      }
     </ul>
-  
-    <!-- Divider Line -->
-    <hr class="my-5" />
-  
+  </article>
+
+  <!-- Divider Line -->
+  <hr class="my-5" />
+
+  <section>
     <div class="text-center mb-4">
       <h2 class="fw-bold text-dark">Service Areas</h2>
     </div>
-  
-    <h3 class="fw-semibold text-secondary mt-4">Ottawa and Surrounding Areas</h3>
-    <p class="text-muted">
-      Ottawa, Barrhaven, Manotick, Kanata, Nepean, West Carleton, Goulbourn, Rideau, Osgoode, Rockliffe Park, Gloucester, Vanier, Orleans, Cumberland.
-    </p>
-  
-    <h3 class="fw-semibold text-secondary mt-4">Other Areas in Ontario</h3>
-    <p class="text-muted">
-      Arnprior, Renfrew, Pembroke, Petawawa, Lanark, Calabogie, Perth, Smiths Falls, Carleton Place, Almonte, Mississippi Mills, Stittsville, Richmond, Kemptville, Brockville, Greely, Metcalfe, Winchester, Chesterville, Mountain, Russell, Embrun, Casselman, Vars, Limoges, Cumberland, Rockland.
-    </p>
-  
-    <h3 class="fw-semibold text-secondary mt-4">Greater Toronto Area and Nearby Locations</h3>
-    <p class="text-muted">
-      Oshawa, Whitby, Ajax, Pickering, Cobourg, Port Hope, Peterborough, Belleville, Barrie, Orillia, Lindsay, Kawartha Lakes, Uxbridge, Bracebridge, Gravenhurst, Newmarket, Aurora, Vaughan, Richmond Hill, Markham, Midland, Collingwood, Huntsville, Orangeville, Caledon, Shelburne, Alliston, Fergus, Mount Forest, Mississauga, Oakville, Burlington, Milton, Hamilton, Dundas, Georgetown, Guelph, Brantford, Cambridge, Kitchener, Waterloo, Stratford, Woodstock, Niagara Falls, St. Catharines, Welland, Fort Erie, Port Colborne, Grimsby, Beamsville, Stoney Creek.
-    </p>
-  
-    <!-- Divider Line -->
-    <hr class="my-5" />
-  
+
+    <article>
+      <h3 class="fw-semibold text-secondary mt-4">Ottawa and Surrounding Areas</h3>
+      <p class="text-muted">
+        Ottawa, Barrhaven, Manotick, Kanata, Nepean, West Carleton, Goulbourn, Rideau, Osgoode, Rockliffe Park,
+        Gloucester, Vanier, Orleans, Cumberland.
+      </p>
+
+      <h3 class="fw-semibold text-secondary mt-4">Other Areas in Ontario</h3>
+      <p class="text-muted">
+        Arnprior, Renfrew, Pembroke, Petawawa, Lanark, Calabogie, Perth, Smiths Falls, Carleton Place, Almonte,
+        Mississippi Mills, Stittsville, Richmond, Kemptville, Brockville, Greely, Metcalfe, Winchester, Chesterville,
+        Mountain, Russell, Embrun, Casselman, Vars, Limoges, Cumberland, Rockland.
+      </p>
+
+      <h3 class="fw-semibold text-secondary mt-4">Greater Toronto Area and Nearby Locations</h3>
+      <p class="text-muted">
+        Oshawa, Whitby, Ajax, Pickering, Cobourg, Port Hope, Peterborough, Belleville, Barrie, Orillia, Lindsay,
+        Kawartha Lakes, Uxbridge, Bracebridge, Gravenhurst, Newmarket, Aurora, Vaughan, Richmond Hill, Markham, Midland,
+        Collingwood, Huntsville, Orangeville, Caledon, Shelburne, Alliston, Fergus, Mount Forest, Mississauga, Oakville,
+        Burlington, Milton, Hamilton, Dundas, Georgetown, Guelph, Brantford, Cambridge, Kitchener, Waterloo, Stratford,
+        Woodstock, Niagara Falls, St. Catharines, Welland, Fort Erie, Port Colborne, Grimsby, Beamsville, Stoney Creek.
+      </p>
+    </article>
+  </section>
+
+  <!-- Divider Line -->
+  <hr class="my-5" />
+
+  <section>
     <div class="text-center mb-4">
       <h2 class="fw-bold text-dark">Our Professional Appraiser Designations</h2>
     </div>
-  
-    <h3 class="fw-semibold text-secondary mt-4">Accredited Appraiser Canadian Institute (AACI)</h3>
-    <p class="text-muted">
-      This designation is typically pursued by commercial property appraisers, though it also covers residential appraisals. AACI appraisers are qualified to appraise a wide range of real property types, including complex commercial, industrial, institutional, and agricultural properties.
-    </p>
-  
-    <h3 class="fw-semibold text-secondary mt-4">Canadian Residential Appraiser (CRA)</h3>
-    <p class="text-muted">
-      This designation is focused on residential property appraisals. CRA appraisers specialize in appraising individual dwellings, including single-family homes, duplexes, and triplexes.
-    </p>
-  
-    <div class="d-flex justify-content-center mt-4">
-      <button class="btn btn-primary btn-lg fw-bold" (click)="getAppraiser()">Get a Specialized Appraiser</button>
-    </div>
+
+    <article>
+      <h3 class="fw-semibold text-secondary mt-4">Accredited Appraiser Canadian Institute (AACI)</h3>
+      <p class="text-muted">
+        This designation is typically pursued by commercial property appraisers, though it also covers residential
+        appraisals. AACI appraisers are qualified to appraise a wide range of real property types, including complex
+        commercial, industrial, institutional, and agricultural properties.
+      </p>
+
+      <h3 class="fw-semibold text-secondary mt-4">Canadian Residential Appraiser (CRA)</h3>
+      <p class="text-muted">
+        This designation is focused on residential property appraisals. CRA appraisers specialize in appraising
+        individual dwellings, including single-family homes, duplexes, and triplexes.
+      </p>
+    </article>
+  </section>
+
+  <div class="d-flex justify-content-center mt-4">
+    <button class="btn btn-primary btn-lg fw-bold" (click)="getAppraiser()" aria-label="Get a Specialized Appraiser">Get
+      a Specialized Appraiser</button>
   </div>
-  
+</section>

@@ -3,8 +3,8 @@
         <div class="row d-flex align-items-center w-100 justify-content-center">
             <div class="col-md-3 col-sm-3 col-3 d-flex align-items-center">
                 <div class="logo">
-                    <a href="" routerLink="/">
-                        <img src="../../../assets/logo.png" class="logo" alt="">
+                    <a href="" routerLink="/" title="Home">
+                        <img src="../../../assets/logo.png" class="logo" alt="Appraisal Management Logo">
                     </a>
                 </div>
             </div>
@@ -12,7 +12,7 @@
                 <h1 class="mb-0">Appraisal Management</h1>
             </div>
             <div class="col-md-3 col-sm-3 col-3 text-end d-flex align-items-center justify-content-end">
-                <div class="menu-icon" (click)="openMenu()">
+                <div class="menu-icon" (click)="openMenu()" title="Toggle Menu">
                     <i class="{{menu_icon}}"></i>
                 </div>
                 <div class="desktop_menu" [class.mobile_menu]="menuValue">
@@ -21,13 +21,13 @@
                     </div>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item" (click)="closeMenu()">
-                            <a href="" routerLink="/" class="nav-link px-2">Home</a>
+                            <a href="" routerLink="/" class="nav-link px-2" title="Go to Home">Home</a>
                         </li>
                         <li class="list-inline-item" (click)="closeMenu()">
-                            <a href="" routerLink="/services" class="nav-link px-2">Service</a>
+                            <a href="" routerLink="/services" class="nav-link px-2" title="Our services">Service</a>
                         </li>
                         <li class="list-inline-item" (click)="closeMenu()">
-                            <a href="" routerLink="/contact" class="nav-link px-2">Contact</a>
+                            <a href="" routerLink="/contact" class="nav-link px-2" title="Contact Us">Contact</a>
                         </li>
                     </ul>
                 </div>
