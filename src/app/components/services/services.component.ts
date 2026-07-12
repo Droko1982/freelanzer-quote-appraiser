@@ -1,7 +1,8 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-services',
@@ -13,6 +14,7 @@ import { LanguageService } from '../../services/language.service';
 export class ServicesComponent {
 
   public L = inject(LanguageService);
+  private seo = inject(SeoService);
 
   private servicesEn: string[] = [
     'Residential Appraisals',
@@ -48,7 +50,9 @@ export class ServicesComponent {
     'Testaments et successions',
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    effect(() => { this.L.lang(); this.seo.set('services'); });
+  }
 
   get services(): string[] {
     return this.L.lang() === 'fr' ? this.servicesFr : this.servicesEn;

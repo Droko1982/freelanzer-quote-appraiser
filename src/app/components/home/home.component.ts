@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -11,4 +12,9 @@ import { LanguageService } from '../../services/language.service';
 })
 export class HomeComponent {
   public L = inject(LanguageService);
+  private seo = inject(SeoService);
+
+  constructor() {
+    effect(() => { this.L.lang(); this.seo.set('home'); });
+  }
 }

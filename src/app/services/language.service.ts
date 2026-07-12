@@ -85,6 +85,21 @@ const en: Dictionary = {
     ' to discuss your appraisal needs and benefit from our professional advice. Let us help you make informed decisions with confidence.',
   home_get_quote_btn: 'Get a Quote Now',
 
+  // FAQ
+  faq_title: 'Frequently Asked Questions',
+  faq_q1: 'How much does a real estate appraisal cost in Canada?',
+  faq_a1: 'Appraisal fees vary by property type, location and complexity. Request a free quote and we will give you an exact price with no obligation.',
+  faq_q2: 'How long does a home appraisal take?',
+  faq_a2: 'Most residential appraisals are completed within 2–5 business days of the property inspection. Rush service is often available on request.',
+  faq_q3: 'What areas of Canada do you cover?',
+  faq_a3: 'We connect you with qualified appraisers in every province and territory — from Ontario and Quebec to British Columbia, Alberta, the Prairies and Atlantic Canada.',
+  faq_q4: 'Are your appraisers certified?',
+  faq_a4: 'Yes. We work with AACI and CRA designated appraisers who follow the Canadian Uniform Standards of Professional Appraisal Practice (CUSPAP).',
+  faq_q5: 'What can a real estate appraisal be used for?',
+  faq_a5: 'Mortgage financing, refinancing, purchases, matrimonial and divorce settlements, estate settlement, capital gains, tax assessment appeals, and more.',
+  faq_q6: 'Do you offer service in French?',
+  faq_a6: 'Yes — our service is fully bilingual. You can request your appraisal quote in English or French.',
+
   // Services
   serv_title: 'Our Services',
   serv_intro:
@@ -247,6 +262,21 @@ const fr: Dictionary = {
   home_contact_cta_post:
     ' pour discuter de vos besoins en évaluation et profiter de nos conseils professionnels. Laissez-nous vous aider à prendre des décisions éclairées en toute confiance.',
   home_get_quote_btn: 'Obtenez un devis',
+
+  // FAQ
+  faq_title: 'Foire aux questions',
+  faq_q1: 'Combien coûte une évaluation immobilière au Canada?',
+  faq_a1: 'Les honoraires varient selon le type de propriété, l’emplacement et la complexité. Demandez une soumission gratuite et nous vous donnerons un prix exact, sans engagement.',
+  faq_q2: 'Combien de temps prend une évaluation résidentielle?',
+  faq_a2: 'La plupart des évaluations résidentielles sont réalisées dans un délai de 2 à 5 jours ouvrables après l’inspection. Un service accéléré est souvent offert sur demande.',
+  faq_q3: 'Quelles régions du Canada couvrez-vous?',
+  faq_a3: 'Nous vous mettons en relation avec des évaluateurs qualifiés dans chaque province et territoire — de l’Ontario et du Québec à la Colombie-Britannique, l’Alberta, les Prairies et le Canada atlantique.',
+  faq_q4: 'Vos évaluateurs sont-ils agréés?',
+  faq_a4: 'Oui. Nous travaillons avec des évaluateurs désignés AACI et CRA qui respectent les Normes uniformes de pratique professionnelle en matière d’évaluation au Canada (NUPPEC / CUSPAP).',
+  faq_q5: 'À quoi sert une évaluation immobilière?',
+  faq_a5: 'Financement hypothécaire, refinancement, achat, divorce et partage des biens, règlement successoral, gains en capital, contestation d’évaluation foncière et plus encore.',
+  faq_q6: 'Offrez-vous le service en français?',
+  faq_a6: 'Oui — notre service est entièrement bilingue. Vous pouvez demander votre soumission en français ou en anglais.',
 
   // Services
   serv_title: 'Nos services',

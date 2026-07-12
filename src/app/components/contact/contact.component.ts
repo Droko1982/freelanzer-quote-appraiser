@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, effect } from '@angular/core';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
+import { SeoService } from '../../services/seo.service';
 
 /**
  * Where appraisal leads are delivered.
@@ -28,6 +29,7 @@ export class ContactComponent implements OnInit {
 
   public L = inject(LanguageService);
   private http = inject(HttpClient);
+  private seo = inject(SeoService);
 
   contacDto: ContacDTO = new ContacDTO();
   propertyType: string[];
@@ -46,6 +48,7 @@ export class ContactComponent implements OnInit {
   sending = false;
 
   constructor(private route: Router) {
+    effect(() => { this.L.lang(); this.seo.set('contact'); });
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -80,17 +83,27 @@ export class ContactComponent implements OnInit {
     this.sending = true;
 
     const payload: Record<string, string> = {
-      _subject: 'New Appraisal Quote Request — Appraisal Canada',
+      _subject: 'New Appraisal Request — Appraisal Canada',
       _template: 'table',
       _captcha: 'false',
-      firstName: this.contacDto.firstName,
-      lastName: this.contacDto.lastName,
-      phoneNumber: this.contacDto.phoneNumber,
-      emailAddress: this.contacDto.emailAddress,
-      propertyAddress: this.contacDto.address,
-      propertyType: this.contacDto.propertyType,
-      purpose: this.contacDto.purposeType,
-      details: this.contacDto.additionalInfo,
+      Source: 'Appraisal Canada — appraisalcanada.ca',
+      'First Name': this.contacDto.firstName,
+      'Last Name': this.contacDto.lastName,
+      Phone: this.contacDto.phoneNumber,
+      Email: this.contacDto.emailAddress,
+      'Property Address': this.contacDto.address,
+      'Report Type': this.contacDto.reportType,
+      'Report Type (other)': this.contacDto.otherReport,
+      'Property Type': this.contacDto.propertyType,
+      Purpose: this.contacDto.purposeType,
+      'Purpose (other)': this.contacDto.otherPurpose,
+      'Dwelling Style': this.contacDto.dwellingStyleType,
+      'Dwelling Type': this.contacDto.dwellingType,
+      'Dwelling Type (other)': this.contacDto.otherDwellingType,
+      'Special Assessments': this.contacDto.specialAssessments,
+      'Retrospective Appraisal': this.contacDto.isRetrospectiveAppraisal,
+      'Retrospective Date': this.contacDto.retrospectiveAppraisalDate,
+      'Additional Information': this.contacDto.additionalInfo,
     };
 
     this.http.post(FORMSUBMIT_ENDPOINT, payload, {
