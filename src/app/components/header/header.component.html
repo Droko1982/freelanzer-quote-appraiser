@@ -3,16 +3,20 @@
         <div class="row d-flex align-items-center w-100 justify-content-center">
             <div class="col-md-3 col-sm-3 col-3 d-flex align-items-center">
                 <div class="logo">
-                    <a href="" routerLink="/" title="Home">
-                        <img src="../../../assets/logo.png" class="logo" alt="Appraisal Management Logo">
+                    <a href="" routerLink="/" [title]="L.t('nav_home')">
+                        <img src="assets/logo.png" class="logo" alt="Freelanzer — Quote & Appraiser logo">
                     </a>
                 </div>
             </div>
             <div class="col-md-6 col-12 text-center">
-                <h1 class="mb-0">Quote And Appraisal</h1>
+                <h1 class="mb-0">{{ L.t('brand_name') }}</h1>
+                <small class="brand-tagline d-block">{{ L.t('brand_tagline') }}</small>
             </div>
             <div class="col-md-3 col-sm-3 col-3 text-end d-flex align-items-center justify-content-end">
-                <div class="menu-icon" (click)="openMenu()" title="Toggle Menu">
+                <button type="button" class="lang-toggle" (click)="toggleLang()" [attr.aria-label]="L.t('lang_switch_aria')" [title]="L.t('lang_switch_aria')">
+                    <i class="fa-solid fa-globe"></i> {{ L.t('lang_switch') }}
+                </button>
+                <div class="menu-icon" (click)="openMenu()" title="Menu">
                     <i class="{{menu_icon}}"></i>
                 </div>
                 <div class="desktop_menu" [class.mobile_menu]="menuValue">
@@ -21,13 +25,13 @@
                     </div>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item" (click)="closeMenu()">
-                            <a href="" routerLink="/" class="nav-link px-2" title="Go to Home">Home</a>
+                            <a href="" routerLink="/" class="nav-link px-2">{{ L.t('nav_home') }}</a>
                         </li>
                         <li class="list-inline-item" (click)="closeMenu()">
-                            <a href="" routerLink="/services" class="nav-link px-2" title="Our services">Service</a>
+                            <a href="" routerLink="/services" class="nav-link px-2">{{ L.t('nav_services') }}</a>
                         </li>
                         <li class="list-inline-item" (click)="closeMenu()">
-                            <a href="" routerLink="/contact" class="nav-link px-2" title="Contact Us">Contact</a>
+                            <a href="" routerLink="/contact" class="nav-link px-2">{{ L.t('nav_contact') }}</a>
                         </li>
                     </ul>
                 </div>

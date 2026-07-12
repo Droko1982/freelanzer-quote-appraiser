@@ -1,11 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgIf, NgFor, CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import emailjs, { type EmailJSResponseStatus } from 'emailjs-com';
+import { LanguageService } from '../../services/language.service';
+
+/**
+ * Where appraisal leads are delivered.
+ * FormSubmit.co needs ONLY this email address — no account, no API keys.
+ * First submission (or the one-time activation email FormSubmit sends here) turns it on;
+ * after that every request lands in this inbox.
+ * NOTE: Wieland & Associates' EmailJS integration was intentionally removed so no leads route to them.
+ */
+const LEAD_EMAIL = 'morisee@hotmail.com';
+const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
 
 @Component({
   selector: 'app-contact',
@@ -15,6 +25,9 @@ import emailjs, { type EmailJSResponseStatus } from 'emailjs-com';
   imports: [NgIf, NgFor, FormsModule, CommonModule]
 })
 export class ContactComponent implements OnInit {
+
+  public L = inject(LanguageService);
+  private http = inject(HttpClient);
 
   contacDto: ContacDTO = new ContacDTO();
   propertyType: string[];
@@ -30,9 +43,9 @@ export class ContactComponent implements OnInit {
   parkingType: string[];
   dwellingType: string[];
   isRetrospectiveAppraisal: string[];
+  sending = false;
 
-  constructor(
-    private route: Router) {
+  constructor(private route: Router) {
     this.contacDto = new ContacDTO();
     this.propertyType = [];
     this.reportType = [];
@@ -62,8 +75,14 @@ export class ContactComponent implements OnInit {
   }
 
   public sendEmail(event: Event): void {
+    event.preventDefault();
+    if (this.sending) { return; }
+    this.sending = true;
 
-    const templateParams = {
+    const payload: Record<string, string> = {
+      _subject: 'New Appraisal Request — Freelanzer Quote & Appraiser',
+      _template: 'table',
+      _captcha: 'false',
       firstName: this.contacDto.firstName,
       lastName: this.contacDto.lastName,
       emailAddress: this.contacDto.emailAddress,
@@ -100,48 +119,41 @@ export class ContactComponent implements OnInit {
       retrospectiveAppraisalDate: this.contacDto.retrospectiveAppraisalDate,
     };
 
-    emailjs.send('service_rikywrb', 'template_qqmr6lx', templateParams, '2z8UW16Wu-y-K_V_T')
-      .then((response) => {
+    this.http.post(FORMSUBMIT_ENDPOINT, payload, {
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
+    }).subscribe({
+      next: () => {
+        this.sending = false;
         Swal.fire({
           icon: 'success',
-          title: '<h3 style="color: #4CAF50;">Form Submitted Successfully!</h3>',
+          title: `<h3 style="color: #4CAF50;">${this.L.t('ok_title')}</h3>`,
           html: `
-          <p style="color: #555;">Your form has been sent successfully. We will contact you shortly.</p>
-          <p style="font-size: 0.9rem; color: #888;">Thank you for reaching out!</p>
+          <p style="color: #555;">${this.L.t('ok_body')}</p>
+          <p style="font-size: 0.9rem; color: #888;">${this.L.t('ok_thanks')}</p>
         `,
-          confirmButtonText: 'Okay',
+          confirmButtonText: this.L.t('ok_btn'),
           confirmButtonColor: '#4CAF50',
           background: '#f9f9f9',
-          customClass: {
-            popup: 'swal-custom-popup',
-            title: 'swal-custom-title',
-            htmlContainer: 'swal-custom-html',
-          },
-          timer: 5000,
+          timer: 6000,
           timerProgressBar: true,
         });
-        console.log('SUCCESS!', response.status, response.text);
-      })
-      .catch((err) => {
+        this.contacDto = new ContacDTO();
+      },
+      error: () => {
+        this.sending = false;
         Swal.fire({
           icon: 'error',
-          title: '<h3 style="color: #E74C3C;">Error Sending Form</h3>',
+          title: `<h3 style="color: #E74C3C;">${this.L.t('err_title')}</h3>`,
           html: `
-          <p style="color: #555;">There was a problem submitting your form. Please try again later.</p>
-          <p style="font-size: 0.9rem; color: #888;">If the issue persists, contact our support team.</p>
+          <p style="color: #555;">${this.L.t('err_body')}</p>
+          <p style="font-size: 0.9rem; color: #888;">${this.L.t('err_help')}</p>
         `,
-          confirmButtonText: 'Retry',
+          confirmButtonText: this.L.t('err_btn'),
           confirmButtonColor: '#E74C3C',
           background: '#f9f9f9',
-          customClass: {
-            popup: 'swal-custom-popup',
-            title: 'swal-custom-title',
-            htmlContainer: 'swal-custom-html',
-          },
         });
-        console.error('FAILED...', err);
-      });
-
+      }
+    });
   }
 
   private uploadPropertyType() {

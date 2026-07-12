@@ -3,23 +3,27 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="contact-info">
-                <p>Tel: +1 (613) 701-6253</p>
-                <p> quoteappraisal&#64;gmail.com </p>
+                <p>{{ L.t('footer_tel') }} {{ phoneDisplay }}</p>
+                <p>{{ email }}</p>
             </div>
             <div class="footer-text">
-                <p>&copy; 2024 Get an Appraiser. All rights reserved.</p>
+                <p>&copy; {{ year }} {{ L.t('brand_name') }}. {{ L.t('footer_rights') }}</p>
             </div>
         </div>
     </footer>
 
     <!-- Phone and WhatsApp Icons for Direct Call/Message -->
     <div class="icon-container">
-        <a href="tel:6137016253" class="contact-icon" aria-label="Call Us">
-            <i class="fas fa-phone-alt"></i> <!-- Phone icon -->
+        @if (phoneTel) {
+        <a [href]="'tel:' + phoneTel" class="contact-icon" [attr.aria-label]="L.t('call_aria')">
+            <i class="fas fa-phone-alt"></i>
         </a>
-        <a href="https://wa.me/16137016253" class="contact-icon whatsapp" target="_blank" aria-label="WhatsApp Us">
-            <i class="fab fa-whatsapp"></i> <!-- WhatsApp icon -->
+        }
+        @if (whatsapp) {
+        <a [href]="'https://wa.me/' + whatsapp" class="contact-icon whatsapp" target="_blank" rel="noopener" [attr.aria-label]="L.t('whatsapp_aria')">
+            <i class="fab fa-whatsapp"></i>
         </a>
+        }
     </div>
 
 </div>

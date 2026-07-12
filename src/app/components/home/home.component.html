@@ -1,81 +1,52 @@
 <div class="home-container max-w-3xl mx-auto px-4 py-8 space-y-6">
     <!-- Título -->
-    <h2 class="text-center text-2xl font-bold mb-4">Why Is an Appraisal Essential?</h2>
+    <h2 class="text-center text-2xl font-bold mb-4">{{ L.t('home_why_title') }}</h2>
 
     <!-- Descripción inicial -->
-     <article>
-    <p class="text-justify leading-relaxed">
-        Appraisals are crucial for a variety of purposes, including mortgage financing, estate planning, matrimonial
-        asset division, relocations, and more. They provide an unbiased, professional opinion of value that plays a
-        critical role in making informed decisions in various financial and legal contexts.
-    </p>
-  </article>
+    <article>
+        <p class="text-justify leading-relaxed">{{ L.t('home_intro') }}</p>
+    </article>
 
     <!-- Beneficios clave -->
-     <section>
-    <h2 class="text-center text-2xl font-bold mt-8">The Key Benefits of an Appraisal</h2>
+    <section>
+        <h2 class="text-center text-2xl font-bold mt-8">{{ L.t('home_benefits_title') }}</h2>
 
-    <ul class="space-y-4 mt-4">
-        <li class="flex flex-col">
-            <strong class="font-semibold">Accurate Valuation:</strong>
-            <p class="text-justify leading-relaxed">
-                An appraisal report offers a reliable and precise estimate of market value, supported
-                by thorough market analysis conducted by a qualified appraiser. This ensures a credible
-                and professional evaluation that you can trust when making important decisions.
-            </p>
-        </li>
-        <li class="flex flex-col">
-            <strong class="font-semibold">Legal Recognition:</strong>
-            <p class="text-justify leading-relaxed">
-                Professionally conducted appraisals are recognized by courts, financial institutions, and
-                government bodies. This recognition is crucial in cases of litigation, divorce settlements,
-                expropriation, or disputes, where the opinion of value must meet strict standards.
-            </p>
-        </li>
-        <li class="flex flex-col">
-            <strong class="font-semibold">Market Insight:</strong>
-            <p class="text-justify leading-relaxed">
-                An up-to-date appraisal reflects current market conditions, offering the
-                most accurate valuation for your property, whether you are buying, selling,
-                or refinancing.
-            </p>
-        </li>
-        <li class="flex flex-col">
-            <strong class="font-semibold">Protection and Peace of Mind:</strong>
-            <p class="text-justify leading-relaxed">
-                Appraisals conducted by designated professionals, adhering to
-                the Canadian Uniform Standards of Professional Appraisal Practice (CUSPAP),
-                ensure that your interests are safeguarded through a diligent, unbiased approach.
-            </p>
-        </li>
-        <li class="flex flex-col">
-            <strong class="font-semibold">Versatility and Adaptability:</strong>
-            <p class="text-justify leading-relaxed">
-                Appraisals are essential for a wide range of purposes, including pre-listing evaluations, foreclosure
-                processes, tax assessment appeals, replacement costing, estate settlements, and more.
-            </p>
-        </li>
-    </ul>
-  </section>
+        <ul class="space-y-4 mt-4">
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b1_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b1_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b2_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b2_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b3_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b3_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b4_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b4_d') }}</p>
+            </li>
+            <li class="flex flex-col">
+                <strong class="font-semibold">{{ L.t('home_b5_t') }}</strong>
+                <p class="text-justify leading-relaxed">{{ L.t('home_b5_d') }}</p>
+            </li>
+        </ul>
+    </section>
 
     <!-- Texto final -->
-    <p class="text-justify leading-relaxed mt-4">
-        We specialize in connecting you with reputable, recognized, and registered appraisal companies that provide
-        expert services tailored to your specific needs. Whether you’re planning for the future, navigating a legal
-        matter, or seeking a property valuation for financial purposes, we can guide you to the right professionals who
-        adhere to the highest industry standards.
-    </p>
+    <p class="text-justify leading-relaxed mt-4">{{ L.t('home_specialize') }}</p>
 
     <p class="text-center leading-relaxed mt-4">
-        <strong>Contact Us today</strong> to discuss your appraisal needs and benefit from our professional advice. Let
-        us help you make informed decisions with confidence.
+        <strong>{{ L.t('home_contact_cta_pre') }}</strong>{{ L.t('home_contact_cta_post') }}
     </p>
 
     <!-- Botón de cotización -->
     <div class="text-center mt-6">
         <a href="" routerLink="/contact"
             class="quote-button inline-block px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors">
-            Get a Quote Now
+            {{ L.t('home_get_quote_btn') }}
         </a>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-services',
@@ -9,27 +10,14 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './services.component.html',
   styleUrl: './services.component.css'
 })
-export class ServicesComponent implements OnInit {
+export class ServicesComponent {
 
-  services: string[];
+  public L = inject(LanguageService);
 
-  constructor(private router: Router) {
-    this.services = [];
-  }
-
-  ngOnInit(): void {
-    this.uploadServices();
-  }
-
-  getAppraiser() {
-    this.router.navigate(['/contact']);
-  }
-
-  private uploadServices() {
-    this.services = [
-    'Residential',
+  private servicesEn: string[] = [
+    'Residential Appraisals',
+    'Commercial Appraisals',
     'Consulting Services',
-    'Commercial',
     'Mortgage Financing',
     'Relocations – Government and Employee',
     'Matrimonial / Separation of Assets',
@@ -37,10 +25,36 @@ export class ServicesComponent implements OnInit {
     'Capital Gains',
     'Pre-list and Pre-sale Valuations',
     'Power of Sale / Foreclosure',
-    'MPAC Assessment Tax Appeals',
+    'Property Tax Assessment Appeals',
     'Insurance / Replacement Cost Valuations',
     'Expropriation / Right-of-Way Acquisitions',
-    'Wills and Estates'
-    ]
+    'Wills and Estates',
+  ];
+
+  private servicesFr: string[] = [
+    'Évaluations résidentielles',
+    'Évaluations commerciales',
+    'Services de consultation',
+    'Financement hypothécaire',
+    'Réinstallations – gouvernement et employés',
+    'Matrimonial / séparation des biens',
+    'Construction neuve',
+    'Gains en capital',
+    'Évaluations avant mise en vente',
+    'Vente sous seing / saisie',
+    'Contestations d’évaluation foncière',
+    'Assurance / coût de remplacement',
+    'Expropriation / acquisitions d’emprise',
+    'Testaments et successions',
+  ];
+
+  constructor(private router: Router) {}
+
+  get services(): string[] {
+    return this.L.lang() === 'fr' ? this.servicesFr : this.servicesEn;
+  }
+
+  getAppraiser() {
+    this.router.navigate(['/contact']);
   }
 }

@@ -3,6 +3,32 @@ header {
   background:#0f3460;
 }
 
+.brand-tagline {
+  color: #b7c6de;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.lang-toggle {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.lang-toggle:hover {
+  background: #ffffff;
+  color: #0f3460;
+}
+
 .logo {
   width: 90px;
 }

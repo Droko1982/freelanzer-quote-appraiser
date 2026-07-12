@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+  public L = inject(LanguageService);
 
   menuValue: boolean = false
   menu_icon: string = 'fa-solid fa-bars';
@@ -21,5 +24,9 @@ export class HeaderComponent {
   closeMenu() {
     this.menuValue = false;
     this.menu_icon = 'fa-solid fa-bars';
+  }
+
+  toggleLang() {
+    this.L.toggle();
   }
 }
