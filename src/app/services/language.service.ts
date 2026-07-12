@@ -47,8 +47,11 @@ type Dictionary = Record<string, string>;
 
 const en: Dictionary = {
   // Brand / header
-  brand_name: 'Freelanzer',
-  brand_tagline: 'Quote & Appraiser',
+  brand_name: 'Appraisal Canada',
+  brand_tagline: 'Real Estate Appraisals Across Canada',
+  hero_headline: 'Free Real Estate Appraisal Quotes Anywhere in Canada',
+  hero_sub: 'Residential & commercial property valuations by AACI and CRA designated appraisers — fast, professional, and no obligation.',
+  hero_cta: 'Get a Free Quote',
   nav_home: 'Home',
   nav_services: 'Services',
   nav_contact: 'Contact',
@@ -123,7 +126,10 @@ const en: Dictionary = {
   whatsapp_aria: 'WhatsApp Us',
 
   // Contact form
-  ct_title: 'Contact Us — Get an Appraiser',
+  ct_title: 'Get Your Free Appraisal Quote',
+  ct_intro: 'Tell us about your property and we’ll reply with a quote right away. It only takes a minute — no obligation.',
+  ct_message: 'Details (purpose, timing, anything else)',
+  ct_message_ph: 'Tell us anything that helps us prepare your quote',
   ct_first: 'First Name',
   ct_first_ph: 'Please enter your first name',
   ct_last: 'Last Name',
@@ -204,8 +210,11 @@ const en: Dictionary = {
 
 const fr: Dictionary = {
   // Brand / header
-  brand_name: 'Freelanzer',
-  brand_tagline: 'Devis & Évaluation',
+  brand_name: 'Appraisal Canada',
+  brand_tagline: 'Évaluations immobilières partout au Canada',
+  hero_headline: 'Soumission gratuite pour une évaluation immobilière partout au Canada',
+  hero_sub: 'Évaluations résidentielles et commerciales par des évaluateurs agréés AACI et CRA — rapide, professionnel et sans engagement.',
+  hero_cta: 'Obtenez une soumission gratuite',
   nav_home: 'Accueil',
   nav_services: 'Services',
   nav_contact: 'Contact',
@@ -280,7 +289,10 @@ const fr: Dictionary = {
   whatsapp_aria: 'Écrivez-nous sur WhatsApp',
 
   // Contact form
-  ct_title: 'Contactez-nous — Trouvez un évaluateur',
+  ct_title: 'Obtenez votre soumission gratuite',
+  ct_intro: 'Parlez-nous de votre propriété et nous vous reviendrons rapidement avec une soumission. Cela ne prend qu’une minute — sans engagement.',
+  ct_message: 'Détails (objet, échéance, autres précisions)',
+  ct_message_ph: 'Indiquez tout ce qui nous aide à préparer votre soumission',
   ct_first: 'Prénom',
   ct_first_ph: 'Veuillez saisir votre prénom',
   ct_last: 'Nom',

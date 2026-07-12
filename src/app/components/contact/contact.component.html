@@ -1,13 +1,15 @@
 <div class="d-flex justify-content-center align-items-center vh-30">
-  <div class="card" style="width: 100%; max-width: 1500px; margin-top: 20px; ">
+  <div class="card" style="width: 100%; max-width: 720px; margin-top: 20px;">
     <div class="card-header text-center">
-      <h2 class="left-5 "><i class="bi bi-clipboard2-check-fill"></i> {{ L.t('ct_title') }}</h2>
+      <h2 class="left-5"><i class="bi bi-clipboard2-check-fill"></i> {{ L.t('ct_title') }}</h2>
     </div>
 
     <div class="card-body p-4" style="margin-bottom: 20px;">
+      <p class="text-center text-muted mb-4">{{ L.t('ct_intro') }}</p>
+
       <form #f="ngForm" (ngSubmit)="sendEmail($event)" class="needs-validation" novalidate>
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="firstName">{{ L.t('ct_first') }}</label>
+          <label class="col-sm-4 col-form-label" for="firstName">{{ L.t('ct_first') }} *</label>
           <div class="col-sm-8">
             <input #firstName="ngModel" class="form-control"
               [ngClass]="firstName.invalid && firstName.dirty ? 'is-invalid' : ''" type="text" name="firstName"
@@ -16,7 +18,7 @@
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="lastName">{{ L.t('ct_last') }}</label>
+          <label class="col-sm-4 col-form-label" for="lastName">{{ L.t('ct_last') }} *</label>
           <div class="col-sm-8">
             <input #lastName="ngModel" class="form-control"
               [ngClass]="lastName.invalid && lastName.dirty ? 'is-invalid' : ''" type="text" name="lastName"
@@ -25,16 +27,7 @@
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="emailAddress">{{ L.t('ct_email') }}</label>
-          <div class="col-sm-8">
-            <input #email="ngModel" class="form-control" [ngClass]="email.invalid && email.dirty ? 'is-invalid' : ''"
-              type="email" name="emailAddress" id="emailAddress" [(ngModel)]="contacDto.emailAddress" required
-              [placeholder]="L.t('ct_email_ph')" />
-          </div>
-        </div>
-
-        <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="phoneNumber">{{ L.t('ct_phone') }}</label>
+          <label class="col-sm-4 col-form-label" for="phoneNumber">{{ L.t('ct_phone') }} *</label>
           <div class="col-sm-8">
             <input #phone="ngModel" class="form-control" [ngClass]="phone.invalid && phone.dirty ? 'is-invalid' : ''"
               type="tel" name="phoneNumber" id="phoneNumber" [(ngModel)]="contacDto.phoneNumber" required
@@ -43,31 +36,20 @@
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="address">{{ L.t('ct_address') }}</label>
+          <label class="col-sm-4 col-form-label" for="emailAddress">{{ L.t('ct_email') }} *</label>
           <div class="col-sm-8">
-            <input class="form-control" [placeholder]="L.t('ct_address_ph')" type="text" name="address" id="address"
-              [(ngModel)]="contacDto.address" required />
+            <input #email="ngModel" class="form-control" [ngClass]="email.invalid && email.dirty ? 'is-invalid' : ''"
+              type="email" name="emailAddress" id="emailAddress" [(ngModel)]="contacDto.emailAddress" required
+              [placeholder]="L.t('ct_email_ph')" />
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="reportType">{{ L.t('ct_reportType') }}</label>
+          <label class="col-sm-4 col-form-label" for="address">{{ L.t('ct_address') }} *</label>
           <div class="col-sm-8">
-            <select class="form-select" name="reportType" id="reportType" [(ngModel)]="contacDto.reportType">
-              <option value="" selected class="text-center">{{ L.t('ct_reportType_ph') }}</option>
-              @for (item of reportType; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
+            <input class="form-control" [placeholder]="L.t('ct_address_ph')" type="text" name="address" id="address"
+              [(ngModel)]="contacDto.address" required />
           </div>
-
-          @if (contacDto.reportType === 'Other') {
-          <label class="col-sm-4 col-form-label" for="otherReport">{{ L.t('ct_specify') }}</label>
-          <div class="col-sm-8">
-            <textarea class="form-control mt-2 text-center" [placeholder]="L.t('ct_specify')"
-              [(ngModel)]="contacDto.otherReport" name="otherReport" id="otherReport"></textarea>
-          </div>
-          }
         </div>
 
         <div class="mb-3 row">
@@ -82,7 +64,7 @@
           </div>
         </div>
 
-        <div class="mb-3 row" style="margin-bottom: 20px;">
+        <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="purposeType">{{ L.t('ct_purposeType') }}</label>
           <div class="col-sm-8">
             <select class="form-select" name="purposeType" id="purposeType" [(ngModel)]="contacDto.purposeType">
@@ -92,248 +74,17 @@
               }
             </select>
           </div>
-
-          @if (contacDto.purposeType === 'Other') {
-          <label class="col-sm-4 col-form-label" for="otherPurpose">{{ L.t('ct_specify') }}</label>
-          <div class="col-sm-8">
-            <textarea class="form-control mt-2 text-center" [placeholder]="L.t('ct_specify')"
-              [(ngModel)]="contacDto.otherPurpose" name="otherPurpose" id="otherPurpose"></textarea>
-          </div>
-
-          } @else if (contacDto.purposeType === 'Purchase') {
-          <label class="col-sm-4 col-form-label" for="purchaseType">{{ L.t('ct_purchaseType') }}</label>
-          <div class="col-sm-8">
-            <select name="purchaseType" id="purchaseType" class="form-select" [(ngModel)]="contacDto.purchaseType"
-              style="margin-top: 10px;">
-              <option value="" class="text-center">{{ L.t('ct_purchaseType_ph') }}</option>
-              @for (item of purchase; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.purchaseType == 'New Construction') {
-          <label class="col-sm-4 col-form-label" for="constructionCompany">{{ L.t('ct_constructionCompany') }}</label>
-          <div class="col-sm-8">
-            <select name="constructionCompany" id="constructionCompany" class="form-select"
-              [(ngModel)]="contacDto.constructionCompany" style="margin-top: 10px;">
-              <option value="" class="text-center">{{ L.t('ct_constructionCompany_ph') }}</option>
-              @for (item of newConstruction; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.constructionCompany === 'Other') {
-          <label class="col-sm-4 col-form-label" for="othercompany">{{ L.t('ct_otherCompany') }}</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control mt-2 text-center" [placeholder]="L.t('ct_otherCompany_ph')"
-              [(ngModel)]="contacDto.otherConstructionCompany" name="otherConstructionCompany" id="othercompany">
-          </div>
-          }
-
-          <label class="col-sm-4 col-form-label" for="houseModel">{{ L.t('ct_houseModel') }}</label>
-          <div class="col-sm-8">
-            <select name="houseModel" id="houseModel" class="form-select" [(ngModel)]="contacDto.houseModel"
-              style="margin-top: 10px;">
-              <option value="" class="text-center">{{ L.t('ct_houseModel_ph') }}</option>
-              @for (item of modelHause; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          <label class="col-sm-4 col-form-label" for="purchasePrice">{{ L.t('ct_purchasePrice') }}</label>
-          <div class="col-sm-8">
-            <input #price="ngModel" class="form-control" [ngClass]="price.invalid && price.dirty ? 'is-invalid' : ''"
-              type="number" [placeholder]="L.t('ct_purchasePrice_ph')" name="purchasePrice" id="purchasePrice"
-              [(ngModel)]="contacDto.purchasePrice" required style="margin-top: 10px;" />
-          </div>
-          }
-
-          } @else if (contacDto.purposeType === 'Refinance') {
-          <label class="col-sm-4 col-form-label" for="mortgageType">{{ L.t('ct_mortgageType') }}</label>
-          <div class="col-sm-8">
-            <select name="mortgageType" id="mortgageType" class="form-select" [(ngModel)]="contacDto.mortgageType"
-              style="margin-top: 10px;">
-              <option value="" class="text-center">{{ L.t('ct_mortgageType_ph') }}</option>
-              @for (item of refinance; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          <label class="col-sm-4 col-form-label" for="lender">{{ L.t('ct_lender') }}</label>
-          <div class="col-sm-8">
-            <input #lender="ngModel" type="text" class="form-control" [placeholder]="L.t('ct_lender_ph')"
-              name="lender" id="lender" [(ngModel)]="contacDto.lender" required style="margin-top: 10px;">
-          </div>
-
-          <label class="col-sm-4 col-form-label" for="refinanceAmount">{{ L.t('ct_refinanceAmount') }}</label>
-          <div class="col-sm-8">
-            <input #amount="ngModel" type="number" class="form-control" [placeholder]="L.t('ct_refinanceAmount_ph')"
-              name="refinanceAmount" id="refinanceAmount" [(ngModel)]="contacDto.refinanceAmount" required
-              style="margin-top: 10px;">
-          </div>
-
-          <label class="col-sm-4 col-form-label" for="loanToValue">{{ L.t('ct_loanToValue') }}</label>
-          <div class="col-sm-8">
-            <input #value="ngModel" type="number" class="form-control" [placeholder]="L.t('ct_loanToValue_ph')"
-              name="loanToValue" id="loanToValue" [(ngModel)]="contacDto.loanToValue" required
-              style="margin-bottom: 10px; margin-top: 10px;">
-          </div>
-
-          } @else if (contacDto.purposeType === 'Relocation') {
-          <label class="col-sm-4 col-form-label" for="relocationType">{{ L.t('ct_relocationType') }}</label>
-          <div class="col-sm-8">
-            <select name="relocationType" id="relocationType" class="form-select" [(ngModel)]="contacDto.relocationType"
-              style="margin-top: 10px;">
-              <option value="" class="text-center">{{ L.t('ct_relocationType_ph') }}</option>
-              @for (item of relocation; track $index) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.relocationType === 'Other') {
-          <label class="col-sm-4 col-form-label" for="otherRelocationType">{{ L.t('ct_specify') }}</label>
-          <div class="col-sm-8">
-            <textarea class="form-control mt-2 text-center" [placeholder]="L.t('ct_otherRelocation_ph')"
-              [(ngModel)]="contacDto.otherRelocationType" name="otherRelocationType" id="otherRelocationType"></textarea>
-          </div>
-          }
-
-          <label class="col-sm-4 col-form-label" for="referenceNumber">{{ L.t('ct_referenceNumber') }}</label>
-          <div class="col-sm-8">
-            <input #reference="ngModel" type="number" class="form-control" [placeholder]="L.t('ct_referenceNumber_ph')"
-              name="referenceNumber" id="referenceNumber" [(ngModel)]="contacDto.referenceNumber" required
-              style="margin-top: 10px;">
-          </div>
-          }
         </div>
 
         <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="dwellingStyleType">{{ L.t('ct_dwellingStyle') }}</label>
+          <label class="col-sm-4 col-form-label" for="additionalInfo">{{ L.t('ct_message') }}</label>
           <div class="col-sm-8">
-            <select class="form-select" name="dwellingStyleType" id="dwellingStyleType"
-              [(ngModel)]="contacDto.dwellingStyleType">
-              <option value="" selected class="text-center">{{ L.t('ct_dwellingStyle_ph') }}</option>
-              @for (item of dwellingStyle; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.dwellingStyleType === 'Condominium') {
-          <label for="condoFees" class="col-sm-4 col-form-label">{{ L.t('ct_condoFees') }}</label>
-          <div class="col-sm-8">
-            <input #condo="ngModel" type="number" class="form-control" [placeholder]="L.t('ct_condoFees_ph')"
-              name="condoFees" id="condoFees" [(ngModel)]="contacDto.condoFees" required style="margin-top: 10px;">
-          </div>
-
-          <label for="parking" class="col-sm-4 col-form-label">{{ L.t('ct_parking') }}</label>
-          <div class="col-sm-8">
-            <select class="form-select" name="parking" id="parking" [(ngModel)]="contacDto.parking"
-              style="margin-top: 10px;">
-              <option value="" selected class="text-center">{{ L.t('ct_select') }}</option>
-              @for (item of parking; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.parking == 'Yes') {
-
-          <label for="parkingType" class="col-sm-4 col-form-label">{{ L.t('ct_parkingType') }}</label>
-          <div class="col-sm-8">
-            <select class="form-select" name="parkingType" id="parkingType" [(ngModel)]="contacDto.parkingType"
-              style="margin-top: 10px;">
-              <option value="" selected class="text-center">{{ L.t('ct_parkingType_ph') }}</option>
-              @for (item of parkingType; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          <label for="parkingSpaces" class="col-sm-4 col-form-label">{{ L.t('ct_parkingSpaces') }}</label>
-          <div class="col-sm-8">
-            <input #spaces="ngModel" type="number" class="form-control" [placeholder]="L.t('ct_parkingSpaces_ph')"
-              name="parkingSpaces" id="parkingSpaces" [(ngModel)]="contacDto.parkingSpaces" required
-              style="margin-top: 10px;">
-          </div>
-
-          <label for="locker" class="col-sm-4 col-form-label">{{ L.t('ct_locker') }}</label>
-          <div class="col-sm-8">
-            <select class="form-select" name="locker" id="locker" [(ngModel)]="contacDto.locker"
-              style="margin-top: 10px;">
-              <option value="" selected class="text-center">{{ L.t('ct_select') }}</option>
-              @for (item of parking; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          <label for="specialAssessments" class="col-sm-4 col-form-label">{{ L.t('ct_specialAssessments') }}</label>
-          <div class="col-sm-8">
-            <input #special="ngModel" type="text" class="form-control" [placeholder]="L.t('ct_specialAssessments_ph')"
-              name="specialAssessments" id="specialAssessments" [(ngModel)]="contacDto.specialAssessments" required
-              style="margin-top: 10px;">
-          </div>
-          }
-          }
-        </div>
-
-        <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="dwellingType">{{ L.t('ct_dwellingType') }}</label>
-          <div class="col-sm-8">
-            <select class="form-select" name="dwellingType" id="dwellingType" [(ngModel)]="contacDto.dwellingType">
-              <option value="" selected class="text-center">{{ L.t('ct_dwellingType_ph') }}</option>
-              @for (item of dwellingType; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.dwellingType === 'Other') {
-          <label class="col-sm-4 col-form-label" for="otherDwellingType">{{ L.t('ct_specify') }}</label>
-          <div class="col-sm-8">
-            <textarea class="form-control mt-2 text-center" [placeholder]="L.t('ct_specify')"
-              [(ngModel)]="contacDto.otherDwellingType" name="otherDwellingType" id="otherDwellingType"></textarea>
-          </div>
-          }
-        </div>
-
-        <div class="mb-3 row">
-          <label for="additionalInfo" class="col-sm-4 col-form-label text-wrap">{{ L.t('ct_additionalInfo') }}</label>
-          <div class="col-sm-8">
-            <textarea class="form-control mt-2 text-center" [placeholder]="L.t('ct_additionalInfo_ph')"
+            <textarea class="form-control" rows="3" [placeholder]="L.t('ct_message_ph')"
               [(ngModel)]="contacDto.additionalInfo" name="additionalInfo" id="additionalInfo"></textarea>
           </div>
         </div>
 
-        <div class="mb-3 row">
-          <label for="isRetrospectiveAppraisal" class="col-sm-4 col-form-label text-wrap">{{ L.t('ct_isRetro') }}</label>
-          <div class="col-sm-8">
-            <select class="form-select" name="isRetrospectiveAppraisal" id="isRetrospectiveAppraisal"
-              [(ngModel)]="contacDto.isRetrospectiveAppraisal">
-              <option value="" selected class="text-center">{{ L.t('ct_select') }}</option>
-              @for (item of isRetrospectiveAppraisal; track item) {
-              <option class="text-center" [value]="item">{{item}}</option>
-              }
-            </select>
-          </div>
-
-          @if (contacDto.isRetrospectiveAppraisal === 'Yes') {
-          <label for="retrospectiveAppraisalDate" class="col-sm-4 col-form-label">{{ L.t('ct_retroDate') }}</label>
-          <div class="col-sm-8">
-            <input type="date" class="form-control mt-2 text-center" [placeholder]="L.t('ct_retroDate_ph')"
-              [(ngModel)]="contacDto.retrospectiveAppraisalDate" name="retrospectiveAppraisalDate"
-              id="retrospectiveAppraisalDate">
-          </div>
-          }
-        </div>
-
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-4">
           <div class="button-container">
             <button class="btn-primary" [disabled]="sending"><i class="bi bi-send-check-fill"></i> {{ L.t('ct_send') }}</button>
           </div>

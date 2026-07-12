@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://droko1982.github.io/freelanzer-quote-appraiser/sitemap.xml
+Sitemap: https://appraisalcanada.ca/sitemap.xml
