@@ -3,3 +3,98 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Appraisal Canada — global design system
+   ============================================================ */
+:root {
+  --navy: #0f3460;
+  --navy-dark: #0a2647;
+  --navy-light: #1b5a97;
+  --gold: #f5a623;
+  --gold-dark: #d98e00;
+  --red: #d52b1e;
+  --ink: #1f2a3d;
+  --muted: #5b6472;
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --line: #e2e8f0;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-head: 'Poppins', var(--font-body);
+  --shadow-sm: 0 1px 3px rgba(15, 52, 96, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 52, 96, 0.10);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  color: var(--navy);
+  line-height: 1.22;
+  margin: 0 0 .5em;
+}
+
+a { color: var(--navy-light); text-decoration: none; }
+a:hover { color: var(--navy); }
+
+/* Shared button system */
+.ac-btn {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 14px 34px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: transform .18s ease, background-color .2s ease, box-shadow .2s ease;
+}
+.ac-btn-primary {
+  background: var(--gold);
+  color: var(--navy-dark);
+  box-shadow: 0 6px 16px rgba(245, 166, 35, 0.35);
+}
+.ac-btn-primary:hover {
+  background: var(--gold-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.ac-btn-navy {
+  background: var(--navy);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.ac-btn-navy:hover {
+  background: var(--navy-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Layout helpers */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content { flex: 1; }
+
+.section-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}

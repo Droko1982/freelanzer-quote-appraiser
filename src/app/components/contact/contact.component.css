@@ -1,56 +1,82 @@
-input[type="text"]::placeholder {
-    text-align: center;
+:host {
+  display: block;
+  padding: 56px 20px 72px;
 }
 
-input[type="tel"]::placeholder {
-    text-align: center;
+.card {
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 34px rgba(15, 52, 96, 0.12) !important;
+  overflow: hidden;
 }
 
-input[type="email"]::placeholder {
-    text-align: center;
+.card-header {
+  background: linear-gradient(135deg, #0f3460 0%, #1b5a97 100%) !important;
+  border: none !important;
+  padding: 26px 20px !important;
+}
+.card-header h2 {
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
-input[type="number"]::placeholder {
-    text-align: center;
+.card-body { background: #ffffff; }
+
+.col-form-label {
+  font-weight: 600;
+  color: #0f3460;
 }
 
-.custom-button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
+.form-control,
+.form-select {
+  border-radius: 9px;
+  border: 1.5px solid #d9e0ea;
+  padding: 10px 14px;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #1b5a97;
+  box-shadow: 0 0 0 3px rgba(27, 90, 151, 0.15);
+}
 
+input::placeholder,
+textarea::placeholder { color: #9aa4b2; }
 
-  .custom-button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
 
-  .btn-primary {
-    display: inline-block;
-    background-color: #005f73;
-    color: #ffffff;
-    font-size: 1.2em;
-    padding: 5px 36px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.btn-primary {
+  display: inline-block;
+  background-color: #f5a623 !important;
+  color: #0a2647 !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 13px 46px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(245, 166, 35, 0.35);
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: #d98e00 !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 
-  .btn-primary:hover {
-    background-color: #0a9396;
-    transform: scale(1.07);
-  }
-
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-
-  h2 {
-    font-weight: bold;
-  }
-
+@media (max-width: 768px) {
+  :host { padding: 36px 14px 56px; }
+}

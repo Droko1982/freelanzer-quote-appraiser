@@ -1,112 +1,144 @@
-header {
-  padding: 10px;
-  background:#0f3460;
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #0f3460;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
 }
 
+.header-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Brand (logo + name) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-right: auto;
+}
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.brand-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.55rem;
+  color: #ffffff;
+  letter-spacing: .2px;
+}
 .brand-tagline {
-  color: #b7c6de;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  font-size: 0.72rem;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
+  color: #f5a623;
+  font-weight: 600;
 }
 
+/* Nav */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link {
+  color: #dbe6f5;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color .2s ease, color .2s ease;
+}
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.10);
+}
+.nav-link-cta {
+  background: #f5a623;
+  color: #0a2647;
+  font-weight: 700;
+}
+.nav-link-cta:hover {
+  background: #ffbf47;
+  color: #0a2647;
+}
+
+/* Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .lang-toggle {
   background: transparent;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 14px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-right: 12px;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: .2s ease;
   white-space: nowrap;
 }
-
 .lang-toggle:hover {
   background: #ffffff;
   color: #0f3460;
+  border-color: #ffffff;
 }
-
-.logo {
-  width: 90px;
-}
-
-.logo {
-  cursor: pointer;
-}
-
-h1 {
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-  color: #e0e0e0;
-  flex-grow: 1; 
-  text-align: center; 
-}
-
-.desktop_menu {
-  margin-top: 24px;
-}
-
-.desktop_menu ul {
-  padding: 0;
-  margin: 0;
-}
-
-.desktop_menu ul li {
-  list-style-type: none;
-  color: white;
-  display: inline-block;
-  font-size: 18px;
-  margin-left: 26px;
-}
-
-.desktop_menu ul li:hover {
-  font-size: 19px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
-}
-
 .menu-icon {
   display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 4px 6px;
 }
 
-@media screen and (min-width: 128px) and (max-width: 900px) {
-  .desktop_menu {
-    position: fixed;
-    right: -280px;
-    transition: 0.4s ease-in-out;
-    top: 0;
-    background:#0f3460;
-    width: 280px;
-    height: 100%;
-    z-index: 10;
-    padding-top: 0;
-  }
+/* Mobile */
+@media (max-width: 860px) {
+  .brand-name { font-size: 1.25rem; }
+  .brand-logo { width: 48px; height: 48px; }
+  .menu-icon { display: block; }
 
-  .desktop_menu ul li {
-    display: block;
-    text-align: left;
-    margin: 0;
-    padding: 10px 0 10px 26px;
-    border-bottom: 1px solid gray;
-  }
-  
-  .menu-icon {
-    display: block;
-    color: white;
-    font-size: 40px;
-    padding: 10px
-  }
-
-  .mobile_menu {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
     right: 0;
-    transition: 0.4s ease-in-out;
-    padding: 0;
-    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #0a2647;
+    padding: 8px 16px 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    display: none;
   }
+  .nav.open { display: flex; }
+  .nav-link {
+    padding: 14px 12px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .nav-link-cta { margin-top: 6px; }
 }
-  
 
+@media (max-width: 420px) {
+  .brand-tagline { display: none; }
+  .brand-name { font-size: 1.1rem; }
+}
