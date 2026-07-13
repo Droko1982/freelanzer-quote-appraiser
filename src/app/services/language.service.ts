@@ -41,6 +41,14 @@ export class LanguageService {
   t(key: string): string {
     return DICT[this.lang()][key] ?? DICT.en[key] ?? key;
   }
+
+  /** Business WhatsApp line (Ontario / GTA). */
+  readonly whatsappNumber = '19053676998';
+
+  /** wa.me link opening a chat with a language-aware pre-filled message. */
+  whatsappUrl(): string {
+    return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(this.t('wa_msg'))}`;
+  }
 }
 
 type Dictionary = Record<string, string>;
@@ -57,6 +65,8 @@ const en: Dictionary = {
   nav_contact: 'Contact',
   lang_switch: 'FR',
   lang_switch_aria: 'Passer au français',
+  wa_btn: 'Chat on WhatsApp',
+  wa_msg: 'Hi Appraisal Canada, I would like a free quote for a real estate appraisal.',
 
   // Home
   home_why_title: 'Why Is an Appraisal Essential?',
@@ -84,6 +94,15 @@ const en: Dictionary = {
   home_contact_cta_post:
     ' to discuss your appraisal needs and benefit from our professional advice. Let us help you make informed decisions with confidence.',
   home_get_quote_btn: 'Get a Quote Now',
+
+  // How it works / trusted network
+  hiw_title: 'How It Works',
+  hiw_1t: 'A Trusted Network',
+  hiw_1d: 'We work with respected, established appraisal firms in Ottawa, Toronto and across Canada — so you deal only with qualified, recognized professionals.',
+  hiw_2t: 'The Right Appraiser',
+  hiw_2d: 'Tell us about your property and purpose, and we match you with the right AACI or CRA designated appraiser for the job.',
+  hiw_3t: 'Fast & Free',
+  hiw_3d: 'Get an accurate, no-obligation quote quickly — through our short form or straight over WhatsApp.',
 
   // FAQ
   faq_title: 'Frequently Asked Questions',
@@ -235,6 +254,8 @@ const fr: Dictionary = {
   nav_contact: 'Contact',
   lang_switch: 'EN',
   lang_switch_aria: 'Switch to English',
+  wa_btn: 'Discuter sur WhatsApp',
+  wa_msg: 'Bonjour Appraisal Canada, j’aimerais une soumission gratuite pour une évaluation immobilière.',
 
   // Home
   home_why_title: 'Pourquoi une évaluation est-elle essentielle?',
@@ -262,6 +283,15 @@ const fr: Dictionary = {
   home_contact_cta_post:
     ' pour discuter de vos besoins en évaluation et profiter de nos conseils professionnels. Laissez-nous vous aider à prendre des décisions éclairées en toute confiance.',
   home_get_quote_btn: 'Obtenez un devis',
+
+  // How it works / trusted network
+  hiw_title: 'Comment ça fonctionne',
+  hiw_1t: 'Un réseau de confiance',
+  hiw_1d: 'Nous collaborons avec des firmes d’évaluation reconnues et établies à Ottawa, Toronto et partout au Canada — vous ne traitez qu’avec des professionnels qualifiés et reconnus.',
+  hiw_2t: 'Le bon évaluateur',
+  hiw_2d: 'Parlez-nous de votre propriété et de l’objet de l’évaluation, et nous vous jumelons avec l’évaluateur agréé AACI ou CRA qui convient.',
+  hiw_3t: 'Rapide et gratuit',
+  hiw_3d: 'Obtenez une soumission exacte et sans engagement rapidement — par notre formulaire ou directement sur WhatsApp.',
 
   // FAQ
   faq_title: 'Foire aux questions',

@@ -20,7 +20,7 @@
         </a>
         }
         @if (whatsapp) {
-        <a [href]="'https://wa.me/' + whatsapp" class="contact-icon whatsapp" target="_blank" rel="noopener" [attr.aria-label]="L.t('whatsapp_aria')">
+        <a [href]="L.whatsappUrl()" class="contact-icon whatsapp" target="_blank" rel="noopener" [attr.aria-label]="L.t('whatsapp_aria')">
             <i class="fab fa-whatsapp"></i>
         </a>
         }

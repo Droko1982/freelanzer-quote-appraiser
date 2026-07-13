@@ -3,7 +3,12 @@
     <div class="hero-inner">
         <h1 class="hero-title">{{ L.t('hero_headline') }}</h1>
         <p class="hero-sub">{{ L.t('hero_sub') }}</p>
-        <a routerLink="/contact" class="hero-cta">{{ L.t('hero_cta') }}</a>
+        <div class="hero-actions">
+            <a routerLink="/contact" class="hero-cta">{{ L.t('hero_cta') }}</a>
+            <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="hero-wa">
+                <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
+            </a>
+        </div>
     </div>
 </section>
 
@@ -59,6 +64,30 @@
         </a>
     </div>
 </div>
+
+<!-- How it works / trusted network -->
+<section class="hiw-section">
+    <div class="hiw-inner">
+        <h2 class="hiw-title">{{ L.t('hiw_title') }}</h2>
+        <div class="hiw-grid">
+            <div class="hiw-card">
+                <div class="hiw-num">1</div>
+                <h3>{{ L.t('hiw_1t') }}</h3>
+                <p>{{ L.t('hiw_1d') }}</p>
+            </div>
+            <div class="hiw-card">
+                <div class="hiw-num">2</div>
+                <h3>{{ L.t('hiw_2t') }}</h3>
+                <p>{{ L.t('hiw_2d') }}</p>
+            </div>
+            <div class="hiw-card">
+                <div class="hiw-num">3</div>
+                <h3>{{ L.t('hiw_3t') }}</h3>
+                <p>{{ L.t('hiw_3d') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- FAQ (SEO) -->
 <section class="faq-section">

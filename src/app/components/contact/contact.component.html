@@ -5,7 +5,13 @@
     </div>
 
     <div class="card-body p-4" style="margin-bottom: 20px;">
-      <p class="text-center text-muted mb-4">{{ L.t('ct_intro') }}</p>
+      <p class="text-center text-muted mb-3">{{ L.t('ct_intro') }}</p>
+
+      <div class="text-center mb-4">
+        <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="wa-inline">
+          <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
+        </a>
+      </div>
 
       <form #f="ngForm" (ngSubmit)="sendEmail($event)" class="needs-validation" novalidate>
         <div class="mb-3 row">
