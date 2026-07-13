@@ -103,6 +103,8 @@ const en: Dictionary = {
   hiw_2d: 'Tell us about your property and purpose, and we match you with the right AACI or CRA designated appraiser for the job.',
   hiw_3t: 'Fast & Free',
   hiw_3d: 'Get an accurate, no-obligation quote quickly — through our short form or straight over WhatsApp.',
+  areas_served_title: 'Appraisals in Your City',
+  areas_served_sub: 'Local real estate, commercial and equipment appraisals across Canada.',
 
   // FAQ
   faq_title: 'Frequently Asked Questions',
@@ -292,6 +294,8 @@ const fr: Dictionary = {
   hiw_2d: 'Parlez-nous de votre propriété et de l’objet de l’évaluation, et nous vous jumelons avec l’évaluateur agréé AACI ou CRA qui convient.',
   hiw_3t: 'Rapide et gratuit',
   hiw_3d: 'Obtenez une soumission exacte et sans engagement rapidement — par notre formulaire ou directement sur WhatsApp.',
+  areas_served_title: 'Évaluations dans votre ville',
+  areas_served_sub: 'Évaluations immobilières, commerciales et d’équipement partout au Canada.',
 
   // FAQ
   faq_title: 'Foire aux questions',

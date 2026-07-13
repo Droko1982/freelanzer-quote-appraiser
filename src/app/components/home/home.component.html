@@ -89,6 +89,19 @@
     </div>
 </section>
 
+<!-- Areas we serve (city landing pages / internal links) -->
+<section class="areas-section">
+    <div class="areas-inner">
+        <h2 class="areas-title">{{ L.t('areas_served_title') }}</h2>
+        <p class="areas-sub">{{ L.t('areas_served_sub') }}</p>
+        <div class="areas-links">
+            @for (c of cities; track c.slug) {
+            <a [routerLink]="['/appraisal', c.slug]">{{ L.lang() === 'fr' ? c.nameFr : c.name }}</a>
+            }
+        </div>
+    </div>
+</section>
+
 <!-- FAQ (SEO) -->
 <section class="faq-section">
     <div class="faq-inner">

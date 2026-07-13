@@ -147,6 +147,7 @@ export class ContactComponent implements OnInit {
     this.propertyType = [
       "Residential",
       "Commercial",
+      "Machinery / Equipment",
     ];
   }
 

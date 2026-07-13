@@ -19,6 +19,7 @@ export class ServicesComponent {
   private servicesEn: string[] = [
     'Residential Appraisals',
     'Commercial Appraisals',
+    'Machinery & Equipment Appraisals',
     'Consulting Services',
     'Mortgage Financing',
     'Relocations – Government and Employee',
@@ -36,6 +37,7 @@ export class ServicesComponent {
   private servicesFr: string[] = [
     'Évaluations résidentielles',
     'Évaluations commerciales',
+    'Évaluations de machinerie et d’équipement',
     'Services de consultation',
     'Financement hypothécaire',
     'Réinstallations – gouvernement et employés',
