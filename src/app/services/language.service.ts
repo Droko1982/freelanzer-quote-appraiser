@@ -22,14 +22,12 @@ export class LanguageService {
   readonly languages = LANGUAGES;
 
   constructor() {
+    // Always default to English. Only honour a language the visitor explicitly chose before.
+    // (No browser auto-detection — English is the initial language for every new visitor.)
     if (isPlatformBrowser(this.platformId)) {
       const saved = localStorage.getItem('freelanzer_lang') as Lang | null;
       if (saved === 'en' || saved === 'fr' || saved === 'es') {
         this.lang.set(saved);
-      } else {
-        const nav = navigator.language?.toLowerCase() ?? '';
-        if (nav.startsWith('fr')) { this.lang.set('fr'); }
-        else if (nav.startsWith('es')) { this.lang.set('es'); }
       }
       document.documentElement.lang = this.lang();
     }
