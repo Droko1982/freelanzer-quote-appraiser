@@ -15,6 +15,11 @@
     </nav>
 
     <div class="header-actions">
+      <button type="button" class="theme-toggle" (click)="theme.toggle()"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'"
+        [title]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'">
+        <i class="fa-solid" [class.fa-moon]="theme.theme() === 'light'" [class.fa-sun]="theme.theme() === 'dark'"></i>
+      </button>
       <div class="lang-select-wrap" title="Language">
         <i class="fa-solid fa-globe"></i>
         <select class="lang-select" [value]="L.lang()" (change)="onLang($event)" aria-label="Language">

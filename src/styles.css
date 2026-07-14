@@ -7,22 +7,53 @@
    Appraisal Canada — global design system
    ============================================================ */
 :root {
+  /* Brand colours (constant across themes) */
   --navy: #0f3460;
   --navy-dark: #0a2647;
   --navy-light: #1b5a97;
   --gold: #f5a623;
   --gold-dark: #d98e00;
   --red: #d52b1e;
-  --ink: #1f2a3d;
-  --muted: #5b6472;
+
+  /* Theme-aware tokens — LIGHT (default) */
   --bg: #eef2f7;
   --card: #ffffff;
+  --card-2: #f7f9fc;
+  --text: #1f2a3d;
+  --ink: #1f2a3d;
+  --muted: #5b6472;
+  --border: #e2e8f0;
   --line: #e2e8f0;
+  --heading: #0f3460;
+  --input-bg: #ffffff;
+  --hero-from: #0a2647;
+  --hero-mid: #0f3460;
+  --hero-to: #1b5a97;
+  --card-shadow: 0 10px 30px rgba(15, 52, 96, 0.08);
+
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   --font-head: 'Poppins', var(--font-body);
   --shadow-sm: 0 1px 3px rgba(15, 52, 96, 0.08);
   --shadow-md: 0 8px 24px rgba(15, 52, 96, 0.10);
   --radius: 14px;
+}
+
+/* DARK theme */
+:root[data-theme="dark"] {
+  --bg: #0b1220;
+  --card: #131d30;
+  --card-2: #18233a;
+  --text: #e6edf7;
+  --ink: #e6edf7;
+  --muted: #a9b6c9;
+  --border: #27344b;
+  --line: #27344b;
+  --heading: #cfe0f6;
+  --input-bg: #0f1a2c;
+  --hero-from: #060d18;
+  --hero-mid: #0c1a30;
+  --hero-to: #12325a;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 * { box-sizing: border-box; }
@@ -34,22 +65,23 @@ html, body {
 
 body {
   font-family: var(--font-body);
-  color: var(--ink);
+  color: var(--text);
   background: var(--bg);
   line-height: 1.65;
+  transition: background-color .3s ease, color .3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-head);
-  color: var(--navy);
+  color: var(--heading);
   line-height: 1.22;
   margin: 0 0 .5em;
 }
 
 a { color: var(--navy-light); text-decoration: none; }
-a:hover { color: var(--navy); }
+a:hover { color: var(--heading); }
 
 /* Shared button system */
 .ac-btn {

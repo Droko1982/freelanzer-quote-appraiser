@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LanguageService, Lang } from '../../services/language.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { LanguageService, Lang } from '../../services/language.service';
 export class HeaderComponent {
 
   public L = inject(LanguageService);
+  public theme = inject(ThemeService);
 
   menuValue: boolean = false
   menu_icon: string = 'fa-solid fa-bars';

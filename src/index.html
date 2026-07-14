@@ -12,6 +12,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Apply saved theme before render to avoid flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('ac_theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Primary SEO -->
   <meta name="description"
     content="Get a fast, free quote for a professional real estate appraisal anywhere in Canada. Residential & commercial valuations by AACI and CRA designated appraisers. Bilingual service — English & French. | Obtenez une soumission rapide et gratuite pour une évaluation immobilière professionnelle partout au Canada.">
