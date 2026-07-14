@@ -7,7 +7,10 @@
                 <p>{{ email }}</p>
             </div>
             <div class="footer-text">
-                <p>&copy; {{ year }} {{ L.t('brand_name') }}. {{ L.t('footer_rights') }}</p>
+                <p>&copy; {{ year }} {{ L.t('brand_name') }}. {{ L.t('footer_rights') }}
+                    <span class="footer-sep">·</span>
+                    <a routerLink="/privacy" class="footer-privacy">{{ L.t('privacy_link') }}</a>
+                </p>
             </div>
         </div>
     </footer>
