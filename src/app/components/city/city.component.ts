@@ -101,9 +101,9 @@ export class CityComponent {
 
   services(): string[] {
     switch (this.l()) {
-      case 'fr': return ['Évaluations résidentielles', 'Évaluations commerciales', 'Machinerie et équipement', 'Financement hypothécaire et refinancement', 'Divorce / séparation des biens', 'Successions et homologation', 'Gains en capital', 'Évaluations avant mise en vente'];
-      case 'es': return ['Evalúos residenciales', 'Evalúos comerciales', 'Maquinaria y equipo', 'Hipoteca y refinanciamiento', 'Divorcio / matrimonial', 'Sucesiones y homologación', 'Ganancias de capital', 'Valoraciones previas a la venta'];
-      default: return ['Residential appraisals', 'Commercial appraisals', 'Machinery & equipment', 'Mortgage & refinance', 'Divorce / matrimonial', 'Estate & probate', 'Capital gains', 'Pre-listing valuations'];
+      case 'fr': return ['Évaluations résidentielles', 'Évaluations commerciales', 'Terrains', 'Machinerie et équipement', 'Financement hypothécaire et refinancement', 'Divorce / séparation des biens', 'Successions et homologation', 'Gains en capital'];
+      case 'es': return ['Evalúos residenciales', 'Evalúos comerciales', 'Terrenos', 'Maquinaria y equipo', 'Hipoteca y refinanciamiento', 'Divorcio / matrimonial', 'Sucesiones y homologación', 'Ganancias de capital'];
+      default: return ['Residential appraisals', 'Commercial appraisals', 'Land appraisals', 'Machinery & equipment', 'Mortgage & refinance', 'Divorce / matrimonial', 'Estate & probate', 'Capital gains'];
     }
   }
   whyPoints(): string[] {
