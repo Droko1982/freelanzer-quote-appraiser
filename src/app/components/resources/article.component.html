@@ -1,0 +1,35 @@
+<article class="art">
+  <div class="art-head">
+    <a routerLink="/resources" class="art-back">{{ backLabel() }}</a>
+    <h1>{{ article().title }}</h1>
+    <p class="art-meta">{{ article().date }} · {{ article().read }}</p>
+  </div>
+
+  <div class="art-card">
+    <p class="art-intro">{{ article().intro }}</p>
+
+    @for (s of article().body; track s.h) {
+    <section class="art-block">
+      @if (s.h) { <h2>{{ s.h }}</h2> }
+      @for (para of s.p; track para) { <p>{{ para }}</p> }
+    </section>
+    }
+
+    <div class="art-cta">
+      <a routerLink="/contact" class="res-cta">{{ ctaLabel() }}</a>
+    </div>
+  </div>
+
+  <section class="art-more">
+    <h3>{{ backLabel().replace('← ', '') }}</h3>
+    <div class="res-grid">
+      @for (a of more(); track a.slug) {
+      <a class="res-card" [routerLink]="['/resources', a.slug]">
+        <span class="res-read">{{ a.read }}</span>
+        <h2>{{ a.title }}</h2>
+        <span class="res-more">Read →</span>
+      </a>
+      }
+    </div>
+  </section>
+</article>

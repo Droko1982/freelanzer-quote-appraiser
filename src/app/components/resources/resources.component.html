@@ -1,0 +1,23 @@
+<section class="res-hero">
+  <div class="res-hero-inner">
+    <h1>{{ heading() }}</h1>
+    <p>{{ sub() }}</p>
+  </div>
+</section>
+
+<div class="res-body">
+  <div class="res-grid">
+    @for (a of articles; track a.slug) {
+    <a class="res-card" [routerLink]="['/resources', a.slug]">
+      <span class="res-read">{{ a.read }}</span>
+      <h2>{{ a.title }}</h2>
+      <p>{{ a.description }}</p>
+      <span class="res-more">Read →</span>
+    </a>
+    }
+  </div>
+
+  <div class="res-cta-band">
+    <a routerLink="/contact" class="res-cta">{{ L.t('hero_cta') }}</a>
+  </div>
+</div>
