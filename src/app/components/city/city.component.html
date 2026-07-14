@@ -21,7 +21,7 @@
     <h2>{{ servicesTitle() }}</h2>
     <ul class="city-services">
       @for (s of services(); track s) {
-      <li><i class="bi bi-check-circle-fill"></i> {{ s }}</li>
+      <li><i class="fa-solid fa-circle-check"></i> {{ s }}</li>
       }
     </ul>
   </section>
@@ -30,7 +30,7 @@
     <h2>{{ whyTitle() }}</h2>
     <ul class="city-why">
       @for (w of whyPoints(); track w) {
-      <li><i class="bi bi-patch-check-fill"></i> {{ w }}</li>
+      <li><i class="fa-solid fa-certificate"></i> {{ w }}</li>
       }
     </ul>
   </section>
