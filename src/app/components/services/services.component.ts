@@ -52,12 +52,31 @@ export class ServicesComponent {
     'Testaments et successions',
   ];
 
+  private servicesEs: string[] = [
+    'Evalúos residenciales',
+    'Evalúos comerciales',
+    'Evalúos de maquinaria y equipo',
+    'Servicios de consultoría',
+    'Financiamiento hipotecario',
+    'Reubicaciones – gobierno y empleados',
+    'Matrimonial / división de bienes',
+    'Construcción nueva',
+    'Ganancias de capital',
+    'Valoraciones previas a la venta',
+    'Venta forzada / ejecución hipotecaria',
+    'Apelaciones de impuesto predial',
+    'Seguro / costo de reemplazo',
+    'Expropiación / servidumbre de paso',
+    'Testamentos y sucesiones',
+  ];
+
   constructor(private router: Router) {
     effect(() => { this.L.lang(); this.seo.set('services'); });
   }
 
   get services(): string[] {
-    return this.L.lang() === 'fr' ? this.servicesFr : this.servicesEn;
+    const l = this.L.lang();
+    return l === 'fr' ? this.servicesFr : l === 'es' ? this.servicesEs : this.servicesEn;
   }
 
   getAppraiser() {

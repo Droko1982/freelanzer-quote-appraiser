@@ -96,7 +96,7 @@
         <p class="areas-sub">{{ L.t('areas_served_sub') }}</p>
         <div class="areas-links">
             @for (c of cities; track c.slug) {
-            <a [routerLink]="['/appraisal', c.slug]">{{ L.lang() === 'fr' ? c.nameFr : c.name }}</a>
+            <a [routerLink]="['/appraisal', c.slug]">{{ L.lang() === 'es' ? c.nameEs : L.lang() === 'fr' ? c.nameFr : c.name }}</a>
             }
         </div>
     </div>

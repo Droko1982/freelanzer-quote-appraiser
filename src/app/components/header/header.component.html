@@ -15,9 +15,14 @@
     </nav>
 
     <div class="header-actions">
-      <button type="button" class="lang-toggle" (click)="toggleLang()" [attr.aria-label]="L.t('lang_switch_aria')" [title]="L.t('lang_switch_aria')">
-        <i class="fa-solid fa-globe"></i> {{ L.t('lang_switch') }}
-      </button>
+      <div class="lang-select-wrap" title="Language">
+        <i class="fa-solid fa-globe"></i>
+        <select class="lang-select" [value]="L.lang()" (change)="onLang($event)" aria-label="Language">
+          @for (l of L.languages; track l.code) {
+          <option [value]="l.code">{{ l.label }}</option>
+          }
+        </select>
+      </div>
       <button type="button" class="menu-icon" (click)="openMenu()" aria-label="Menu">
         <i class="{{menu_icon}}"></i>
       </button>

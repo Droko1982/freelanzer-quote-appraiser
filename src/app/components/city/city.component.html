@@ -59,7 +59,7 @@
     <h2 class="nearby-title">{{ nearbyTitle() }}</h2>
     <div class="nearby-links">
       @for (c of nearby(); track c.slug) {
-      <a [routerLink]="['/appraisal', c.slug]">{{ L.lang() === 'fr' ? c.nameFr : c.name }}</a>
+      <a [routerLink]="['/appraisal', c.slug]">{{ nearbyLabel(c) }}</a>
       }
     </div>
   </section>

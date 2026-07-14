@@ -56,4 +56,18 @@ const SEO: Record<Lang, Record<SeoPage, SeoEntry>> = {
       desc: 'Demandez une soumission d’évaluation immobilière gratuite et sans engagement partout au Canada. Réponse rapide, résidentiel et commercial, service bilingue.',
     },
   },
+  es: {
+    home: {
+      title: 'Appraisal Canada | Evalúos inmobiliarios en todo Canadá',
+      desc: 'Cotizaciones gratis y rápidas para evalúos inmobiliarios residenciales y comerciales en todo Canadá. Tasadores designados AACI y CRA, normas CUSPAP. Servicio en español, inglés y francés.',
+    },
+    services: {
+      title: 'Servicios de evalúo y cobertura nacional | Appraisal Canada',
+      desc: 'Evalúos residenciales, comerciales, hipotecarios, matrimoniales, ganancias de capital, sucesiones, seguros y expropiación. Tasadores en Ontario, Quebec, C.B., Alberta y todo Canadá.',
+    },
+    contact: {
+      title: 'Obtén una cotización gratis de evalúo en Canadá | Appraisal Canada',
+      desc: 'Solicita una cotización de evalúo inmobiliario gratis y sin compromiso en todo Canadá. Respuesta rápida, residencial y comercial, servicio bilingüe.',
+    },
+  },
 };

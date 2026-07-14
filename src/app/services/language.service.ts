@@ -1,7 +1,14 @@
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-export type Lang = 'en' | 'fr';
+export type Lang = 'en' | 'fr' | 'es';
+
+export interface LangOption { code: Lang; label: string; }
+export const LANGUAGES: LangOption[] = [
+  { code: 'en', label: 'English' },
+  { code: 'fr', label: 'Français' },
+  { code: 'es', label: 'Español' },
+];
 
 /**
  * Runtime bilingual (English / Français) service.
@@ -12,21 +19,30 @@ export type Lang = 'en' | 'fr';
 export class LanguageService {
   private platformId = inject(PLATFORM_ID);
   readonly lang = signal<Lang>('en');
+  readonly languages = LANGUAGES;
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       const saved = localStorage.getItem('freelanzer_lang') as Lang | null;
-      if (saved === 'en' || saved === 'fr') {
+      if (saved === 'en' || saved === 'fr' || saved === 'es') {
         this.lang.set(saved);
-      } else if (navigator.language?.toLowerCase().startsWith('fr')) {
-        this.lang.set('fr');
+      } else {
+        const nav = navigator.language?.toLowerCase() ?? '';
+        if (nav.startsWith('fr')) { this.lang.set('fr'); }
+        else if (nav.startsWith('es')) { this.lang.set('es'); }
       }
       document.documentElement.lang = this.lang();
     }
   }
 
   toggle(): void {
-    this.set(this.lang() === 'en' ? 'fr' : 'en');
+    const order: Lang[] = ['en', 'fr', 'es'];
+    const next = order[(order.indexOf(this.lang()) + 1) % order.length];
+    this.set(next);
+  }
+
+  currentLabel(): string {
+    return LANGUAGES.find(l => l.code === this.lang())?.label ?? 'English';
   }
 
   set(l: Lang): void {
@@ -435,4 +451,190 @@ const fr: Dictionary = {
   pending_btn: 'D’accord',
 };
 
-const DICT: Record<Lang, Dictionary> = { en, fr };
+const es: Dictionary = {
+  // Brand / header
+  brand_name: 'Appraisal Canada',
+  brand_tagline: 'Evalúos inmobiliarios en todo Canadá',
+  hero_headline: 'Cotizaciones gratis de evalúos inmobiliarios en todo Canadá',
+  hero_sub: 'Evalúos residenciales y comerciales por tasadores designados AACI y CRA — rápido, profesional y sin compromiso.',
+  hero_cta: 'Cotización gratis',
+  nav_home: 'Inicio',
+  nav_services: 'Servicios',
+  nav_contact: 'Contacto',
+  lang_switch: 'EN',
+  lang_switch_aria: 'Switch to English',
+  wa_btn: 'Escríbenos por WhatsApp',
+  wa_msg: 'Hola Appraisal Canada, quisiera una cotización gratis para un evalúo inmobiliario.',
+
+  // Home
+  home_why_title: '¿Por qué es esencial un evalúo?',
+  home_intro:
+    'Los evalúos son fundamentales para múltiples fines: financiamiento hipotecario, planificación patrimonial, división de bienes matrimoniales, reubicaciones y más. Ofrecen una opinión de valor profesional e imparcial que resulta clave para tomar decisiones informadas en contextos financieros y legales.',
+  home_benefits_title: 'Los beneficios clave de un evalúo',
+  home_b1_t: 'Valoración precisa:',
+  home_b1_d:
+    'Un informe de evalúo ofrece una estimación confiable y precisa del valor de mercado, respaldada por un análisis riguroso realizado por un tasador calificado. Así obtienes una evaluación creíble y profesional en la que puedes confiar para tus decisiones importantes.',
+  home_b2_t: 'Reconocimiento legal:',
+  home_b2_d:
+    'Los evalúos realizados por profesionales son reconocidos por tribunales, instituciones financieras y organismos gubernamentales. Este reconocimiento es crucial en casos de litigio, divorcio, expropiación o disputas, donde la opinión de valor debe cumplir normas estrictas.',
+  home_b3_t: 'Conocimiento del mercado:',
+  home_b3_d:
+    'Un evalúo actualizado refleja las condiciones actuales del mercado y ofrece la valoración más exacta de tu propiedad, ya sea que estés comprando, vendiendo o refinanciando.',
+  home_b4_t: 'Protección y tranquilidad:',
+  home_b4_d:
+    'Los evalúos realizados por profesionales designados, conforme a las Normas Uniformes de Práctica Profesional de Evaluación de Canadá (CUSPAP), garantizan que tus intereses estén protegidos mediante un enfoque diligente e imparcial.',
+  home_b5_t: 'Versatilidad y adaptabilidad:',
+  home_b5_d:
+    'Los evalúos son esenciales para una amplia variedad de fines: valoraciones previas a la venta, procesos de ejecución hipotecaria, apelaciones de impuestos, costo de reemplazo, sucesiones y más.',
+  home_specialize:
+    'Desde hace más de 5 años conectamos a los clientes con tasadores reputados, designados por el Instituto Canadiense de Evaluadores (AIC), en todo el país. Seleccionamos al tasador y a la firma especializada según tu necesidad — comparando empresas confiables y licenciadas y asignándote al profesional adecuado para tu propiedad y objetivo, para que tu evalúo sea exacto, reconocido y válido legalmente.',
+  home_contact_cta_pre: 'Contáctanos hoy',
+  home_contact_cta_post:
+    ' para conversar sobre tu evalúo y aprovechar nuestra asesoría profesional. Te ayudamos a tomar decisiones informadas con confianza.',
+  home_get_quote_btn: 'Cotiza ahora',
+
+  // How it works / trusted network
+  hiw_title: 'Por qué Appraisal Canada',
+  hiw_1t: 'Solo tasadores acreditados',
+  hiw_1d: 'Trabajamos únicamente con firmas establecidas cuyos tasadores están designados por el Instituto Canadiense de Evaluadores (AACI y CRA) — para que tu informe sea creíble, reconocido y válido legalmente.',
+  hiw_2t: 'La firma adecuada para el caso',
+  hiw_2d: 'No toda empresa tiene la licencia correcta para cada evalúo. Comparamos a nuestros socios verificados y te asignamos la firma adecuada según tu propiedad, tu objetivo y tu provincia.',
+  hiw_3t: 'Seleccionamos a tu especialista',
+  hiw_3d: 'Con más de 5 años de alianzas de confianza, seleccionamos al tasador y a la firma especializada en tu necesidad — así te ahorras la búsqueda y trabajas con profesionales comprobados.',
+  areas_served_title: 'Evalúos en tu ciudad',
+  areas_served_sub: 'Evalúos inmobiliarios, comerciales y de equipo en todo Canadá.',
+
+  // FAQ
+  faq_title: 'Preguntas frecuentes',
+  faq_q1: '¿Cuánto cuesta un evalúo inmobiliario en Canadá?',
+  faq_a1: 'Los honorarios varían según el tipo de propiedad, la ubicación y la complejidad. Solicita una cotización gratis y te daremos un precio exacto, sin compromiso.',
+  faq_q2: '¿Cuánto tarda un evalúo residencial?',
+  faq_a2: 'La mayoría de los evalúos residenciales se completan en 2 a 5 días hábiles tras la inspección de la propiedad. A menudo hay servicio urgente disponible a pedido.',
+  faq_q3: '¿Qué zonas de Canadá cubren?',
+  faq_a3: 'Te conectamos con tasadores calificados en cada provincia y territorio — de Ontario y Quebec a la Columbia Británica, Alberta, las Praderas y el Canadá atlántico.',
+  faq_q4: '¿Sus tasadores están certificados?',
+  faq_a4: 'Sí. Trabajamos con tasadores designados AACI y CRA que cumplen las Normas Uniformes de Práctica Profesional de Evaluación de Canadá (CUSPAP).',
+  faq_q5: '¿Para qué sirve un evalúo inmobiliario?',
+  faq_a5: 'Financiamiento hipotecario, refinanciamiento, compras, divorcios y división de bienes, sucesiones, ganancias de capital, apelaciones de impuestos y más.',
+  faq_q6: '¿Ofrecen servicio en español?',
+  faq_a6: 'Sí — puedes solicitar tu cotización de evalúo en español, inglés o francés.',
+
+  // Services
+  serv_title: 'Nuestros servicios',
+  serv_intro:
+    'Ofrecemos una gama completa de servicios de evalúo para tus necesidades residenciales y comerciales. Nuestra red de tasadores se compromete a entregar valoraciones precisas y profesionales para una gran variedad de tipos de propiedad en todo Canadá.',
+  serv_areas_title: 'Zonas de servicio — de costa a costa',
+  serv_areas_intro:
+    'Conectamos a los clientes con tasadores calificados en cada provincia y territorio de Canadá. Dondequiera que esté tu propiedad, podemos ayudarte.',
+  serv_area_on: 'Ontario',
+  serv_area_on_d: 'Ottawa, Toronto (GTA), Mississauga, Brampton, Hamilton, London, Kitchener–Waterloo, Kingston, Windsor, Barrie, Sudbury, Thunder Bay y alrededores.',
+  serv_area_qc: 'Quebec',
+  serv_area_qc_d: 'Montreal, Ciudad de Quebec, Laval, Gatineau, Longueuil, Sherbrooke, Trois-Rivières, Saguenay y regiones cercanas.',
+  serv_area_bc: 'Columbia Británica',
+  serv_area_bc_d: 'Vancouver, Victoria, Surrey, Burnaby, Kelowna, Richmond, Abbotsford, Nanaimo y el Lower Mainland.',
+  serv_area_ab: 'Alberta',
+  serv_area_ab_d: 'Calgary, Edmonton, Red Deer, Lethbridge, Fort McMurray y alrededores.',
+  serv_area_prairies: 'Manitoba y Saskatchewan',
+  serv_area_prairies_d: 'Winnipeg, Brandon, Saskatoon, Regina, Prince Albert y comunidades cercanas.',
+  serv_area_atlantic: 'Canadá atlántico',
+  serv_area_atlantic_d: 'Halifax, Moncton, Fredericton, Saint John, St. John’s, Charlottetown y las provincias marítimas.',
+  serv_area_north: 'Norte de Canadá',
+  serv_area_north_d: 'Whitehorse, Yellowknife, Iqaluit y los territorios.',
+  serv_desig_title: 'Designaciones profesionales de tasador',
+  serv_aaci_t: 'Tasador Acreditado del Instituto Canadiense (AACI)',
+  serv_aaci_d:
+    'Esta designación suele ser de tasadores de propiedades comerciales, aunque también cubre evalúos residenciales. Los tasadores AACI están calificados para evaluar una amplia gama de bienes inmuebles, incluidas propiedades comerciales, industriales, institucionales y agrícolas complejas.',
+  serv_cra_t: 'Tasador Residencial Canadiense (CRA)',
+  serv_cra_d:
+    'Esta designación se centra en evalúos de propiedades residenciales. Los tasadores CRA se especializan en evaluar viviendas individuales, incluidas casas unifamiliares, dúplex y tríplex.',
+  serv_get_btn: 'Encuentra un tasador especializado',
+
+  // Footer
+  footer_tel: 'Tel.:',
+  footer_rights: 'Todos los derechos reservados.',
+  call_aria: 'Llámanos',
+  whatsapp_aria: 'Escríbenos por WhatsApp',
+
+  // Contact form
+  ct_title: 'Obtén tu cotización gratis de evalúo',
+  ct_intro: 'Cuéntanos sobre tu propiedad y te responderemos con una cotización de inmediato. Solo toma un minuto — sin compromiso.',
+  ct_message: 'Detalles (objetivo, plazos, otros datos)',
+  ct_message_ph: 'Cuéntanos cualquier cosa que ayude a preparar tu cotización',
+  ct_first: 'Nombre',
+  ct_first_ph: 'Ingresa tu nombre',
+  ct_last: 'Apellido',
+  ct_last_ph: 'Ingresa tu apellido',
+  ct_email: 'Correo electrónico',
+  ct_email_ph: 'Ingresa tu correo electrónico',
+  ct_phone: 'Número de teléfono',
+  ct_phone_ph: 'Ingresa tu número de teléfono',
+  ct_address: 'Dirección de la propiedad',
+  ct_address_ph: 'Ingresa la dirección de la propiedad',
+  ct_reportType: 'Tipo de informe',
+  ct_reportType_ph: 'Selecciona el tipo de informe',
+  ct_propertyType: 'Tipo de propiedad',
+  ct_propertyType_ph: 'Selecciona el tipo de propiedad',
+  ct_purposeType: 'Objetivo del evalúo',
+  ct_purposeType_ph: 'Selecciona el objetivo',
+  ct_specify: 'Por favor especifica',
+  ct_purchaseType: 'Tipo de compra',
+  ct_purchaseType_ph: 'Selecciona el tipo de compra',
+  ct_constructionCompany: 'Constructora',
+  ct_constructionCompany_ph: 'Selecciona la constructora',
+  ct_otherCompany: 'Otra constructora',
+  ct_otherCompany_ph: 'Especifica la constructora',
+  ct_houseModel: 'Modelo de la casa',
+  ct_houseModel_ph: 'Selecciona el modelo de la casa',
+  ct_purchasePrice: 'Precio de compra',
+  ct_purchasePrice_ph: 'Ingresa el precio de compra',
+  ct_mortgageType: 'Tipo de hipoteca',
+  ct_mortgageType_ph: 'Selecciona el tipo de hipoteca',
+  ct_lender: '¿Quién es el prestamista?',
+  ct_lender_ph: 'Ingresa el prestamista',
+  ct_refinanceAmount: 'Monto del refinanciamiento',
+  ct_refinanceAmount_ph: 'Ingresa el monto del refinanciamiento',
+  ct_loanToValue: 'Relación préstamo-valor',
+  ct_loanToValue_ph: 'Ingresa la relación préstamo-valor',
+  ct_relocationType: 'Tipo de reubicación',
+  ct_relocationType_ph: 'Selecciona el tipo de reubicación',
+  ct_otherRelocation_ph: 'Especifica el tipo de reubicación',
+  ct_referenceNumber: 'Número de referencia',
+  ct_referenceNumber_ph: 'Ingresa el número de referencia',
+  ct_dwellingStyle: 'Estilo de vivienda',
+  ct_dwellingStyle_ph: 'Selecciona el estilo de vivienda',
+  ct_condoFees: 'Cuotas de condominio',
+  ct_condoFees_ph: 'Ingresa las cuotas de condominio',
+  ct_parking: 'Tiene estacionamiento',
+  ct_select: 'Selecciona',
+  ct_parkingType: 'Tipo de estacionamiento',
+  ct_parkingType_ph: 'Selecciona el tipo de estacionamiento',
+  ct_parkingSpaces: '¿Cuántos espacios de estacionamiento?',
+  ct_parkingSpaces_ph: 'Ingresa el número de espacios',
+  ct_locker: 'Bodega / casillero',
+  ct_specialAssessments: 'Cuotas extraordinarias',
+  ct_specialAssessments_ph: 'Ingresa las cuotas extraordinarias',
+  ct_dwellingType: 'Tipo de vivienda',
+  ct_dwellingType_ph: 'Selecciona el tipo de vivienda',
+  ct_additionalInfo: 'Proporciona cualquier información adicional que consideres pertinente para la valoración',
+  ct_additionalInfo_ph: 'Especifica la información adicional',
+  ct_isRetro: '¿Es un evalúo retrospectivo?',
+  ct_retroDate: 'Fecha retrospectiva',
+  ct_retroDate_ph: 'Ingresa la fecha',
+  ct_send: 'Enviar formulario',
+
+  // Form submission feedback
+  ok_title: '¡Formulario enviado con éxito!',
+  ok_body: 'Tu solicitud se envió correctamente. Te contactaremos pronto.',
+  ok_thanks: '¡Gracias por escribirnos!',
+  ok_btn: 'De acuerdo',
+  err_title: 'Error al enviar el formulario',
+  err_body: 'Hubo un problema al enviar tu formulario. Inténtalo de nuevo más tarde.',
+  err_help: 'Si el problema persiste, contáctanos directamente.',
+  err_btn: 'Reintentar',
+  pending_title: '¡Casi listo!',
+  pending_body:
+    '¡Gracias! El envío en línea se está finalizando. Mientras tanto, llámanos o escríbenos por WhatsApp y atenderemos tu solicitud de evalúo de inmediato.',
+  pending_btn: 'De acuerdo',
+};
+
+const DICT: Record<Lang, Dictionary> = { en, fr, es };

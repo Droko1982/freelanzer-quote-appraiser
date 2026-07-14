@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LanguageService } from '../../services/language.service';
+import { LanguageService, Lang } from '../../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -28,5 +28,9 @@ export class HeaderComponent {
 
   toggleLang() {
     this.L.toggle();
+  }
+
+  onLang(event: Event) {
+    this.L.set((event.target as HTMLSelectElement).value as Lang);
   }
 }
