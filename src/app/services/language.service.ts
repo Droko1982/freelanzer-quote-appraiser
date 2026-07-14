@@ -89,20 +89,20 @@ const en: Dictionary = {
   home_b5_d:
     'Appraisals are essential for a wide range of purposes, including pre-listing evaluations, foreclosure processes, tax assessment appeals, replacement costing, estate settlements, and more.',
   home_specialize:
-    'We connect you with reputable, recognized, and registered appraisal professionals across Canada who provide expert services tailored to your specific needs. Whether you’re planning for the future, navigating a legal matter, or seeking a property valuation for financial purposes, we can guide you to the right professionals who adhere to the highest industry standards.',
+    'For over 5 years, we have connected clients with reputable, Appraisal Institute of Canada (AIC) designated appraisers across the country. We do the shopping for you — comparing trusted, licensed firms and matching you with the right professional for your property and purpose, so your appraisal is accurate, recognized and legally valid.',
   home_contact_cta_pre: 'Contact us today',
   home_contact_cta_post:
     ' to discuss your appraisal needs and benefit from our professional advice. Let us help you make informed decisions with confidence.',
   home_get_quote_btn: 'Get a Quote Now',
 
   // How it works / trusted network
-  hiw_title: 'How It Works',
-  hiw_1t: 'A Trusted Network',
-  hiw_1d: 'We work with respected, established appraisal firms in Ottawa, Toronto and across Canada — so you deal only with qualified, recognized professionals.',
-  hiw_2t: 'The Right Appraiser',
-  hiw_2d: 'Tell us about your property and purpose, and we match you with the right AACI or CRA designated appraiser for the job.',
-  hiw_3t: 'Fast & Free',
-  hiw_3d: 'Get an accurate, no-obligation quote quickly — through our short form or straight over WhatsApp.',
+  hiw_title: 'Why Appraisal Canada',
+  hiw_1t: 'Only Accredited Appraisers',
+  hiw_1d: 'We work only with established firms whose appraisers are designated by the Appraisal Institute of Canada (AACI & CRA) — so your report is credible, recognized and legally valid.',
+  hiw_2t: 'The Right Firm for the Job',
+  hiw_2d: 'Not every company holds the right licence for every appraisal. We compare our vetted partners and match you with the right one for your property, purpose and province.',
+  hiw_3t: 'We Do the Shopping for You',
+  hiw_3d: 'Over 5 years building relationships with Canada’s most trusted appraisers. Skip the research — one request and we connect you with the right professional, free.',
   areas_served_title: 'Appraisals in Your City',
   areas_served_sub: 'Local real estate, commercial and equipment appraisals across Canada.',
 
@@ -280,20 +280,20 @@ const fr: Dictionary = {
   home_b5_d:
     'Les évaluations sont essentielles pour une vaste gamme de besoins : évaluations avant mise en vente, procédures de saisie, contestations d’évaluation foncière, coût de remplacement, règlements successoraux et bien plus.',
   home_specialize:
-    'Nous vous mettons en relation avec des évaluateurs réputés, reconnus et agréés partout au Canada, qui offrent des services experts adaptés à vos besoins précis. Que vous prépariez l’avenir, gériez une affaire juridique ou recherchiez une évaluation à des fins financières, nous vous orientons vers les bons professionnels, respectueux des normes les plus élevées de l’industrie.',
+    'Depuis plus de 5 ans, nous mettons les clients en relation avec des évaluateurs réputés, désignés par l’Institut canadien des évaluateurs (ICE), partout au pays. Nous faisons les comparaisons pour vous — en évaluant des firmes fiables et agréées et en vous jumelant avec le bon professionnel pour votre propriété et votre objectif, afin que votre évaluation soit exacte, reconnue et valide légalement.',
   home_contact_cta_pre: 'Contactez-nous dès aujourd’hui',
   home_contact_cta_post:
     ' pour discuter de vos besoins en évaluation et profiter de nos conseils professionnels. Laissez-nous vous aider à prendre des décisions éclairées en toute confiance.',
   home_get_quote_btn: 'Obtenez un devis',
 
   // How it works / trusted network
-  hiw_title: 'Comment ça fonctionne',
-  hiw_1t: 'Un réseau de confiance',
-  hiw_1d: 'Nous collaborons avec des firmes d’évaluation reconnues et établies à Ottawa, Toronto et partout au Canada — vous ne traitez qu’avec des professionnels qualifiés et reconnus.',
-  hiw_2t: 'Le bon évaluateur',
-  hiw_2d: 'Parlez-nous de votre propriété et de l’objet de l’évaluation, et nous vous jumelons avec l’évaluateur agréé AACI ou CRA qui convient.',
-  hiw_3t: 'Rapide et gratuit',
-  hiw_3d: 'Obtenez une soumission exacte et sans engagement rapidement — par notre formulaire ou directement sur WhatsApp.',
+  hiw_title: 'Pourquoi Appraisal Canada',
+  hiw_1t: 'Uniquement des évaluateurs agréés',
+  hiw_1d: 'Nous collaborons seulement avec des firmes établies dont les évaluateurs sont désignés par l’Institut canadien des évaluateurs (AACI et CRA) — pour un rapport crédible, reconnu et valide légalement.',
+  hiw_2t: 'La bonne firme pour le mandat',
+  hiw_2d: 'Toutes les firmes n’ont pas le permis requis pour chaque évaluation. Nous comparons nos partenaires vérifiés et vous jumelons avec la bonne firme pour votre propriété, votre objectif et votre province.',
+  hiw_3t: 'Nous comparons pour vous',
+  hiw_3d: 'Plus de 5 ans à bâtir des relations avec les évaluateurs les plus fiables du Canada. Épargnez-vous les recherches — une seule demande et nous vous connectons au bon professionnel, gratuitement.',
   areas_served_title: 'Évaluations dans votre ville',
   areas_served_sub: 'Évaluations immobilières, commerciales et d’équipement partout au Canada.',
 
