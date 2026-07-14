@@ -86,10 +86,37 @@
   transform: translateY(-3px);
 }
 
+/* Trust strip */
+.trust-strip {
+  position: relative;
+  z-index: 2;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 20px;
+}
+.trust-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 30px;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.trust-item i { color: var(--gold); font-size: 1.15rem; }
+
 /* Content card */
 .home-container {
   max-width: 900px;
-  margin: -8px auto 56px;
+  margin: 34px auto 56px;
   padding: 44px 48px;
   background: var(--card);
   border-radius: 16px;
@@ -291,4 +318,7 @@
   .home-container h2 { font-size: 1.4rem; }
   .faq-item summary { font-size: 1rem; }
   .hiw-grid { grid-template-columns: 1fr; }
+  .trust-item { font-size: 0.82rem; gap: 7px; }
+  .trust-item i { font-size: 1rem; }
+  .trust-inner { gap: 9px 16px; }
 }

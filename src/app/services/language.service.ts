@@ -119,6 +119,11 @@ const en: Dictionary = {
   hiw_3d: 'With over 5 years of trusted partnerships, we select the appraiser and the firm specialized in your specific need — so you skip the research and work with proven professionals.',
   areas_served_title: 'Appraisals in Your City',
   areas_served_sub: 'Local real estate, commercial and equipment appraisals across Canada.',
+  trust_1: 'AIC-designated appraisers',
+  trust_2: 'CUSPAP standards',
+  trust_3: '5+ years of partnerships',
+  trust_4: 'Bilingual service',
+  trust_5: 'Free, no obligation',
 
   // FAQ
   faq_title: 'Frequently Asked Questions',
@@ -310,6 +315,11 @@ const fr: Dictionary = {
   hiw_3d: 'Fort de plus de 5 ans de partenariats de confiance, nous sélectionnons l’évaluateur et la firme spécialisés selon votre besoin précis — vous évitez les recherches et travaillez avec des professionnels reconnus.',
   areas_served_title: 'Évaluations dans votre ville',
   areas_served_sub: 'Évaluations immobilières, commerciales et d’équipement partout au Canada.',
+  trust_1: 'Évaluateurs désignés AIC',
+  trust_2: 'Normes CUSPAP',
+  trust_3: '5+ ans de partenariats',
+  trust_4: 'Service bilingue',
+  trust_5: 'Gratuit, sans engagement',
 
   // FAQ
   faq_title: 'Foire aux questions',
@@ -501,6 +511,11 @@ const es: Dictionary = {
   hiw_3d: 'Con más de 5 años de alianzas de confianza, seleccionamos al tasador y a la firma especializada en tu necesidad — así te ahorras la búsqueda y trabajas con profesionales comprobados.',
   areas_served_title: 'Evalúos en tu ciudad',
   areas_served_sub: 'Evalúos inmobiliarios, comerciales y de equipo en todo Canadá.',
+  trust_1: 'Tasadores designados AIC',
+  trust_2: 'Normas CUSPAP',
+  trust_3: '+5 años de alianzas',
+  trust_4: 'Servicio bilingüe',
+  trust_5: 'Gratis, sin compromiso',
 
   // FAQ
   faq_title: 'Preguntas frecuentes',
