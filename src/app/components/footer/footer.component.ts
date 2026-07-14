@@ -15,6 +15,6 @@ export class FooterComponent {
   readonly phoneDisplay = '+1 (905) 367-6998';
   readonly phoneTel = '+19053676998';
   readonly whatsapp = '19053676998';             // requires WhatsApp Business registered on this line
-  readonly email = 'morisee@hotmail.com';
+  readonly email = 'info@appraisalcanada.ca';
   readonly year = 2026;
 }

@@ -15,7 +15,8 @@ import { SeoService } from '../../services/seo.service';
  * after that every request lands in this inbox.
  * NOTE: Wieland & Associates' EmailJS integration was intentionally removed so no leads route to them.
  */
-const LEAD_EMAIL = 'morisee@hotmail.com';
+const LEAD_EMAIL = 'info@appraisalcanada.ca';
+const LEAD_CC = 'morisee@hotmail.com';
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
 
 @Component({
@@ -86,6 +87,7 @@ export class ContactComponent implements OnInit {
       _subject: 'New Appraisal Request — Appraisal Canada',
       _template: 'table',
       _captcha: 'false',
+      _cc: LEAD_CC,
       Source: 'Appraisal Canada — appraisalcanada.ca',
       'First Name': this.contacDto.firstName,
       'Last Name': this.contacDto.lastName,
