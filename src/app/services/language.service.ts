@@ -252,6 +252,8 @@ const en: Dictionary = {
   ct_send: 'Send Form',
 
   // Form submission feedback
+  val_title: 'Missing Information',
+  val_body: 'Please complete the required fields highlighted in red before sending.',
   ok_title: 'Form Submitted Successfully!',
   ok_body: 'Your request has been sent successfully. We will contact you shortly.',
   ok_thanks: 'Thank you for reaching out!',
@@ -451,6 +453,8 @@ const fr: Dictionary = {
   ct_send: 'Envoyer le formulaire',
 
   // Form submission feedback
+  val_title: 'Renseignements manquants',
+  val_body: 'Veuillez remplir les champs obligatoires en rouge avant d’envoyer.',
   ok_title: 'Formulaire envoyé avec succès!',
   ok_body: 'Votre demande a été envoyée avec succès. Nous vous contacterons sous peu.',
   ok_thanks: 'Merci de nous avoir contactés!',
@@ -645,6 +649,8 @@ const es: Dictionary = {
   ct_send: 'Enviar formulario',
 
   // Form submission feedback
+  val_title: 'Información incompleta',
+  val_body: 'Completa los campos obligatorios marcados en rojo antes de enviar.',
   ok_title: '¡Formulario enviado con éxito!',
   ok_body: 'Tu solicitud se envió correctamente. Te contactaremos pronto.',
   ok_thanks: '¡Gracias por escribirnos!',

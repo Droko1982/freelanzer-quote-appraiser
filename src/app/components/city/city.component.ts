@@ -145,6 +145,36 @@ export class CityComponent {
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: desc });
     this.setCanonical(url);
+    this.setJsonLd('ld-city-service', {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: `Real Estate Appraisal in ${this.city().name}`,
+      serviceType: 'Real Estate Appraisal',
+      description: desc,
+      url,
+      areaServed: { '@type': 'City', name: this.city().name, containedInPlace: { '@type': 'AdministrativeArea', name: this.city().prov } },
+      provider: { '@id': 'https://appraisalcanada.ca/#organization' },
+      availableLanguage: ['en', 'fr', 'es'],
+    });
+    this.setJsonLd('ld-breadcrumb', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://appraisalcanada.ca/' },
+        { '@type': 'ListItem', position: 2, name: `Appraisal in ${this.city().name}`, item: url },
+      ],
+    });
+  }
+
+  private setJsonLd(id: string, data: object): void {
+    let s = this.doc.getElementById(id) as HTMLScriptElement | null;
+    if (!s) {
+      s = this.doc.createElement('script');
+      s.id = id;
+      s.type = 'application/ld+json';
+      this.doc.head.appendChild(s);
+    }
+    s.textContent = JSON.stringify(data);
   }
 
   private setCanonical(url: string): void {

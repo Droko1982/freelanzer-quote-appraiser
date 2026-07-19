@@ -48,7 +48,7 @@
       <div class="apr-card-body">
         <p class="apr-intro">{{ c().formIntro }}</p>
 
-        <form (ngSubmit)="submit($event)" novalidate>
+        <form #af="ngForm" (ngSubmit)="submit($event, af)" novalidate>
           <div class="apr-grid">
             <div class="apr-field">
               <label>{{ c().f_first }} *</label>

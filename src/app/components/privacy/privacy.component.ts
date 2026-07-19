@@ -26,6 +26,8 @@ export class PrivacyComponent {
         : 'Privacy Policy | Appraisal Canada';
       this.titleSvc.setTitle(t);
       this.meta.updateTag({ name: 'description', content: this.intro() });
+      this.meta.updateTag({ property: 'og:title', content: t });
+      this.meta.updateTag({ property: 'og:description', content: this.intro() });
     });
   }
 

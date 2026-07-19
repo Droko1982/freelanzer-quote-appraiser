@@ -103,6 +103,66 @@ export const CITIES: CityInfo[] = [
     blurbFr: 'La péninsule, Dartmouth, Bedford et la municipalité régionale d’Halifax environnante.',
     blurbEs: 'La península, Dartmouth, Bedford y la municipalidad regional de Halifax.',
   },
+  {
+    slug: 'quebec-city', name: 'Québec City', nameFr: 'Ville de Québec', nameEs: 'Ciudad de Quebec', prov: 'Quebec', provFr: 'Québec', provEs: 'Quebec',
+    blurb: 'From Old Québec and Sainte-Foy to Beauport, Charlesbourg and Lévis — residential and commercial valuations across the capital region, in French and English.',
+    blurbFr: 'Du Vieux-Québec et de Sainte-Foy à Beauport, Charlesbourg et Lévis — évaluations résidentielles et commerciales dans toute la région de la Capitale-Nationale, en français et en anglais.',
+    blurbEs: 'Del Viejo Quebec y Sainte-Foy a Beauport, Charlesbourg y Lévis — evalúos residenciales y comerciales en toda la región de la capital, en francés e inglés.',
+  },
+  {
+    slug: 'laval', name: 'Laval', nameFr: 'Laval', nameEs: 'Laval', prov: 'Quebec', provFr: 'Québec', provEs: 'Quebec',
+    blurb: 'Chomedey, Sainte-Rose, Vimont and every Laval neighbourhood — homes, condos and commercial property just north of Montréal.',
+    blurbFr: 'Chomedey, Sainte-Rose, Vimont et tous les quartiers de Laval — maisons, condos et propriétés commerciales juste au nord de Montréal.',
+    blurbEs: 'Chomedey, Sainte-Rose, Vimont y todos los barrios de Laval — casas, condominios y propiedades comerciales al norte de Montreal.',
+  },
+  {
+    slug: 'victoria', name: 'Victoria', nameFr: 'Victoria', nameEs: 'Victoria', prov: 'British Columbia', provFr: 'Colombie-Britannique', provEs: 'Columbia Británica',
+    blurb: 'James Bay, Oak Bay, Saanich and the Westshore — residential and commercial appraisals across Greater Victoria and southern Vancouver Island.',
+    blurbFr: 'James Bay, Oak Bay, Saanich et le Westshore — évaluations résidentielles et commerciales dans le Grand Victoria et le sud de l’île de Vancouver.',
+    blurbEs: 'James Bay, Oak Bay, Saanich y el Westshore — evalúos residenciales y comerciales en el Gran Victoria y el sur de la isla de Vancouver.',
+  },
+  {
+    slug: 'surrey', name: 'Surrey', nameFr: 'Surrey', nameEs: 'Surrey', prov: 'British Columbia', provFr: 'Colombie-Britannique', provEs: 'Columbia Británica',
+    blurb: 'Fleetwood, Guildford, Newton, Cloverdale and South Surrey — one of Canada’s fastest-growing markets, plus Langley and White Rock.',
+    blurbFr: 'Fleetwood, Guildford, Newton, Cloverdale et South Surrey — l’un des marchés à plus forte croissance au Canada, ainsi que Langley et White Rock.',
+    blurbEs: 'Fleetwood, Guildford, Newton, Cloverdale y South Surrey — uno de los mercados de mayor crecimiento de Canadá, además de Langley y White Rock.',
+  },
+  {
+    slug: 'kelowna', name: 'Kelowna', nameFr: 'Kelowna', nameEs: 'Kelowna', prov: 'British Columbia', provFr: 'Colombie-Britannique', provEs: 'Columbia Británica',
+    blurb: 'Downtown, Glenmore, the Mission and West Kelowna — homes, waterfront, acreages and vineyards across the Okanagan Valley.',
+    blurbFr: 'Le centre-ville, Glenmore, la Mission et West Kelowna — maisons, propriétés riveraines, terrains et vignobles dans la vallée de l’Okanagan.',
+    blurbEs: 'El centro, Glenmore, la Mission y West Kelowna — casas, propiedades frente al lago, terrenos y viñedos en el valle de Okanagan.',
+  },
+  {
+    slug: 'windsor', name: 'Windsor', nameFr: 'Windsor', nameEs: 'Windsor', prov: 'Ontario', provFr: 'Ontario', provEs: 'Ontario',
+    blurb: 'Walkerville, South Windsor, Riverside and LaSalle — residential and commercial appraisals across Windsor–Essex on the Detroit border.',
+    blurbFr: 'Walkerville, South Windsor, Riverside et LaSalle — évaluations résidentielles et commerciales dans Windsor–Essex, à la frontière de Détroit.',
+    blurbEs: 'Walkerville, South Windsor, Riverside y LaSalle — evalúos residenciales y comerciales en Windsor–Essex, en la frontera con Detroit.',
+  },
+  {
+    slug: 'regina', name: 'Regina', nameFr: 'Regina', nameEs: 'Regina', prov: 'Saskatchewan', provFr: 'Saskatchewan', provEs: 'Saskatchewan',
+    blurb: 'Cathedral, Lakeview, Harbour Landing and the surrounding area — homes, commercial property and farmland around Saskatchewan’s capital.',
+    blurbFr: 'Cathedral, Lakeview, Harbour Landing et les environs — maisons, propriétés commerciales et terres agricoles autour de la capitale de la Saskatchewan.',
+    blurbEs: 'Cathedral, Lakeview, Harbour Landing y alrededores — casas, propiedades comerciales y tierras agrícolas en torno a la capital de Saskatchewan.',
+  },
+  {
+    slug: 'saskatoon', name: 'Saskatoon', nameFr: 'Saskatoon', nameEs: 'Saskatoon', prov: 'Saskatchewan', provFr: 'Saskatchewan', provEs: 'Saskatchewan',
+    blurb: 'Nutana, Stonebridge, Lawson Heights and beyond — residential, commercial and agricultural valuations across the Saskatoon region.',
+    blurbFr: 'Nutana, Stonebridge, Lawson Heights et au-delà — évaluations résidentielles, commerciales et agricoles dans la région de Saskatoon.',
+    blurbEs: 'Nutana, Stonebridge, Lawson Heights y más allá — evalúos residenciales, comerciales y agrícolas en la región de Saskatoon.',
+  },
+  {
+    slug: 'moncton', name: 'Moncton', nameFr: 'Moncton', nameEs: 'Moncton', prov: 'New Brunswick', provFr: 'Nouveau-Brunswick', provEs: 'Nuevo Brunswick',
+    blurb: 'Moncton, Dieppe and Riverview — fully bilingual appraisal service across southeastern New Brunswick.',
+    blurbFr: 'Moncton, Dieppe et Riverview — service d’évaluation entièrement bilingue dans le sud-est du Nouveau-Brunswick.',
+    blurbEs: 'Moncton, Dieppe y Riverview — servicio de evalúo totalmente bilingüe en el sureste de Nuevo Brunswick.',
+  },
+  {
+    slug: 'st-johns', name: "St. John's", nameFr: 'Saint-Jean de Terre-Neuve', nameEs: "St. John's", prov: 'Newfoundland and Labrador', provFr: 'Terre-Neuve-et-Labrador', provEs: 'Terranova y Labrador',
+    blurb: "Downtown St. John's, Mount Pearl, Paradise and the Avalon Peninsula — residential and commercial appraisals in Newfoundland and Labrador.",
+    blurbFr: 'Le centre-ville de Saint-Jean, Mount Pearl, Paradise et la péninsule d’Avalon — évaluations résidentielles et commerciales à Terre-Neuve-et-Labrador.',
+    blurbEs: "El centro de St. John's, Mount Pearl, Paradise y la península de Avalon — evalúos residenciales y comerciales en Terranova y Labrador.",
+  },
 ];
 
 export const CITY_BY_SLUG: Record<string, CityInfo> =

@@ -21,8 +21,14 @@ export class ResourcesComponent {
   constructor() {
     effect(() => {
       this.L.lang();
-      this.titleSvc.setTitle('Appraisal Resources & Guides | Appraisal Canada');
-      this.meta.updateTag({ name: 'description', content: 'Guides on real estate appraisal in Canada: costs, land appraisals, appraisals for divorce and estates, and AIC appraiser designations (AACI & CRA).' });
+      const title = 'Appraisal Resources & Guides | Appraisal Canada';
+      const desc = 'Guides on real estate appraisal in Canada: costs, land appraisals, appraisals for divorce and estates, and AIC appraiser designations (AACI & CRA).';
+      this.titleSvc.setTitle(title);
+      this.meta.updateTag({ name: 'description', content: desc });
+      this.meta.updateTag({ property: 'og:title', content: title });
+      this.meta.updateTag({ property: 'og:description', content: desc });
+      this.meta.updateTag({ name: 'twitter:title', content: title });
+      this.meta.updateTag({ name: 'twitter:description', content: desc });
     });
   }
 

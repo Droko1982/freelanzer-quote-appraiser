@@ -78,9 +78,20 @@ export class ContactComponent implements OnInit {
     this.uploadIsRetrospectiveAppraisal();
   }
 
-  public sendEmail(event: Event): void {
+  public sendEmail(event: Event, form: NgForm): void {
     event.preventDefault();
     if (this.sending) { return; }
+    if (form.invalid) {
+      Object.values(form.controls).forEach(c => { c.markAsDirty(); c.markAsTouched(); });
+      Swal.fire({
+        icon: 'warning',
+        title: this.L.t('val_title'),
+        text: this.L.t('val_body'),
+        confirmButtonText: this.L.t('ok_btn'),
+        confirmButtonColor: '#0f3460',
+      });
+      return;
+    }
     this.sending = true;
 
     const payload: Record<string, string> = {
@@ -180,12 +191,12 @@ export class ContactComponent implements OnInit {
       "Pre-List / Pre-Sale",
       "Relocation",
       "Estate Settlement With Buyout",
-      "Estate Settlement Tittle Tranfer",
+      "Estate Settlement Title Transfer",
       "Probate",
-      "Tittle Transfer",
+      "Title Transfer",
       "Power Of Sale Or Foreclosure",
-      "Consumer proposal",
-      "Hst Rebate - Canada Revenue",
+      "Consumer Proposal",
+      "HST Rebate - Canada Revenue",
       "Prenups",
       "Update",
       "Internal Asset Management",
@@ -241,8 +252,8 @@ export class ContactComponent implements OnInit {
     this.dwellingStyle = [
       "Detached",
       "Row Unit",
-      "Semi Datached",
-      "Apartament",
+      "Semi Detached",
+      "Apartment",
       "Condominium"
     ],
 
@@ -268,8 +279,8 @@ export class ContactComponent implements OnInit {
       "Bungalow (1 Storey)",
       "Bungalow With Loft",
       "Double",
-      "Duplex / Secundary Dwelling Unit / In-Law Suite",
-      "Hi ranch",
+      "Duplex / Secondary Dwelling Unit / In-Law Suite",
+      "Hi-Ranch",
       "Mobile",
       "Modular",
       "One Level",

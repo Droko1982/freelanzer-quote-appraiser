@@ -1,6 +1,6 @@
 import { Component, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
@@ -41,6 +41,10 @@ export class AppraisersComponent {
       const t = this.c();
       this.titleSvc.setTitle(t.metaTitle);
       this.meta.updateTag({ name: 'description', content: t.metaDesc });
+      this.meta.updateTag({ property: 'og:title', content: t.metaTitle });
+      this.meta.updateTag({ property: 'og:description', content: t.metaDesc });
+      this.meta.updateTag({ name: 'twitter:title', content: t.metaTitle });
+      this.meta.updateTag({ name: 'twitter:description', content: t.metaDesc });
     });
   }
 
@@ -51,9 +55,20 @@ export class AppraisersComponent {
   private l(): Lang { return this.L.lang(); }
   c() { return CONTENT[this.l()] ?? CONTENT.en; }
 
-  submit(event: Event): void {
+  submit(event: Event, form: NgForm): void {
     event.preventDefault();
     if (this.sending) { return; }
+    if (form.invalid) {
+      Object.values(form.controls).forEach(c => { c.markAsDirty(); c.markAsTouched(); });
+      Swal.fire({
+        icon: 'warning',
+        title: this.L.t('val_title'),
+        text: this.L.t('val_body'),
+        confirmButtonText: this.L.t('ok_btn'),
+        confirmButtonColor: '#0f3460',
+      });
+      return;
+    }
     this.sending = true;
     const t = this.c();
     const payload: Record<string, string> = {

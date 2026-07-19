@@ -17,5 +17,5 @@ export class FooterComponent {
   readonly phoneTel = '+19053676998';
   readonly whatsapp = '19053676998';             // requires WhatsApp Business registered on this line
   readonly email = 'info@appraisalcanada.ca';
-  readonly year = 2026;
+  readonly year = new Date().getFullYear();
 }
