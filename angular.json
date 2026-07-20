@@ -24,7 +24,8 @@
               "src/favicon.ico",
               "src/assets",
               { "glob": "robots.txt", "input": "src", "output": "" },
-              { "glob": "sitemap.xml", "input": "src", "output": "" }
+              { "glob": "sitemap.xml", "input": "src", "output": "" },
+              { "glob": "404.html", "input": "src", "output": "" }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
