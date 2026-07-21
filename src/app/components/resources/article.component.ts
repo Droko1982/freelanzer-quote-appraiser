@@ -48,7 +48,7 @@ export class ArticleComponent {
 
   private updateSeo(): void {
     const a = this.article();
-    const url = `https://appraisalcanada.ca/resources/${a.slug}`;
+    const url = `https://appraisalcanada.ca/resources/${a.slug}/`;
     this.titleSvc.setTitle(`${a.title} | Appraisal Canada`);
     this.meta.updateTag({ name: 'description', content: a.description });
     this.meta.updateTag({ property: 'og:title', content: a.title });
@@ -80,7 +80,7 @@ export class ArticleComponent {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://appraisalcanada.ca/' },
-        { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://appraisalcanada.ca/resources' },
+        { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://appraisalcanada.ca/resources/' },
         { '@type': 'ListItem', position: 3, name: a.title, item: url },
       ],
     });

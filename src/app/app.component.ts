@@ -31,7 +31,9 @@ export class AppComponent {
     // and matching og:url, so no page claims to be a duplicate of the homepage.
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(e => {
       const path = (e as NavigationEnd).urlAfterRedirects.split('?')[0].split('#')[0];
-      const url = SITE_URL + (path === '/' ? '/' : path);
+      // GitHub Pages serves every route as a directory (/services/), so canonical URLs
+      // must carry the trailing slash — otherwise they point at a 301 redirect.
+      const url = SITE_URL + (path === '/' ? '/' : path.replace(/\/$/, '') + '/');
       this.setCanonical(url);
       this.meta.updateTag({ property: 'og:url', content: url });
       // GA4 only auto-tracks the initial load; report SPA navigations ourselves.

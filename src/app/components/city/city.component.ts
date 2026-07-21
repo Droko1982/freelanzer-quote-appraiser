@@ -122,7 +122,7 @@ export class CityComponent {
 
   private updateSeo(): void {
     const c = this.cityName();
-    const url = `https://appraisalcanada.ca/appraisal/${this.city().slug}`;
+    const url = `https://appraisalcanada.ca/appraisal/${this.city().slug}/`;
     let title: string; let desc: string;
     switch (this.l()) {
       case 'fr':
