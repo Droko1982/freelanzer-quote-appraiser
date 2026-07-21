@@ -124,6 +124,7 @@ export class ContactComponent implements OnInit {
     }).subscribe({
       next: () => {
         this.sending = false;
+        window.gtag?.('event', 'generate_lead', { method: 'quote_form' });
         Swal.fire({
           icon: 'success',
           title: `<h3 style="color: #4CAF50;">${this.L.t('ok_title')}</h3>`,

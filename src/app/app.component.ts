@@ -44,6 +44,22 @@ export class AppComponent {
       }
       this.firstNav = false;
     });
+
+    // Conversion tracking for ads: record WhatsApp / phone / email taps site-wide.
+    if (isPlatformBrowser(this.platformId)) {
+      this.doc.addEventListener('click', (ev) => {
+        const a = (ev.target as Element | null)?.closest?.('a');
+        if (!a) { return; }
+        const href = a.getAttribute('href') ?? '';
+        if (href.includes('wa.me')) {
+          window.gtag?.('event', 'contact_whatsapp', { link_url: href });
+        } else if (href.startsWith('tel:')) {
+          window.gtag?.('event', 'contact_phone', { link_url: href });
+        } else if (href.startsWith('mailto:')) {
+          window.gtag?.('event', 'contact_email', { link_url: href });
+        }
+      });
+    }
   }
 
   private setCanonical(url: string): void {

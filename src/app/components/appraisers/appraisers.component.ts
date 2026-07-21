@@ -96,6 +96,7 @@ export class AppraisersComponent {
     }).subscribe({
       next: () => {
         this.sending = false;
+        window.gtag?.('event', 'generate_lead', { method: 'appraiser_application' });
         Swal.fire({ icon: 'success', title: `<h3 style="color:#4CAF50;">${t.okTitle}</h3>`, html: `<p style="color:#555;">${t.okBody}</p>`, confirmButtonText: t.okBtn, confirmButtonColor: '#4CAF50', timer: 7000, timerProgressBar: true });
         this.dto = this.blank();
       },
