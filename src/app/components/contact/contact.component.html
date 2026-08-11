@@ -59,6 +59,15 @@
         </div>
 
         <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="city">{{ L.t('ct_city') }} *</label>
+          <div class="col-sm-8">
+            <input #city="ngModel" class="form-control"
+              [ngClass]="city.invalid && city.dirty ? 'is-invalid' : ''" type="text" name="city"
+              id="city" [(ngModel)]="contacDto.city" required [placeholder]="L.t('ct_city_ph')" />
+          </div>
+        </div>
+
+        <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="reportType">{{ L.t('ct_reportType') }} *</label>
           <div class="col-sm-8">
             <select class="form-select" name="reportType" id="reportType" [(ngModel)]="contacDto.reportType" required>

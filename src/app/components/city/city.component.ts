@@ -42,6 +42,18 @@ export class CityComponent {
     const c = this.city();
     return this.l() === 'es' ? c.blurbEs : this.l() === 'fr' ? c.blurbFr : c.blurb;
   }
+  market(): string {
+    const c = this.city();
+    return (this.l() === 'es' ? c.marketEs : this.l() === 'fr' ? c.marketFr : c.market) ?? '';
+  }
+  marketTitle(): string {
+    const c = this.cityName();
+    switch (this.l()) {
+      case 'fr': return `Le marché immobilier à ${c}`;
+      case 'es': return `El mercado inmobiliario en ${c}`;
+      default: return `The ${c} property market`;
+    }
+  }
 
   heading(): string {
     const c = this.cityName();
@@ -126,15 +138,15 @@ export class CityComponent {
     let title: string; let desc: string;
     switch (this.l()) {
       case 'fr':
-        title = `Évaluation immobilière à ${c} | Soumission gratuite — Appraisal Canada`;
+        title = `Évaluation immobilière à ${c} | Appraisal Canada`;
         desc = `Évaluation immobilière résidentielle et commerciale à ${c}. Évaluateurs agréés AACI et CRA, soumission gratuite et rapide, service bilingue. Obtenez votre devis dès aujourd’hui.`;
         break;
       case 'es':
-        title = `Evalúo inmobiliario en ${c} | Cotización gratis — Appraisal Canada`;
+        title = `Evalúo inmobiliario en ${c} | Appraisal Canada`;
         desc = `Evalúo inmobiliario residencial y comercial en ${c}. Tasadores designados AACI y CRA, cotización gratis y rápida, servicio bilingüe. Obtén tu cotización hoy.`;
         break;
       default:
-        title = `${c} Real Estate Appraisal | Free Quote — Appraisal Canada`;
+        title = `${c} Real Estate Appraisal | Appraisal Canada`;
         desc = `Residential & commercial real estate appraisal in ${c}. AACI & CRA designated appraisers, fast free quote, bilingual service. Get your quote today.`;
     }
     this.titleSvc.setTitle(title);
@@ -163,6 +175,17 @@ export class CityComponent {
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://appraisalcanada.ca/' },
         { '@type': 'ListItem', position: 2, name: `Appraisal in ${this.city().name}`, item: url },
       ],
+    });
+    // Only the three questions this page actually renders (see the template) —
+    // Google requires FAQ markup to match the visible content of the same URL.
+    this.setJsonLd('ld-faq', {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [1, 2, 4].map(n => ({
+        '@type': 'Question',
+        name: this.L.t(`faq_q${n}`),
+        acceptedAnswer: { '@type': 'Answer', text: this.L.t(`faq_a${n}`) },
+      })),
     });
   }
 

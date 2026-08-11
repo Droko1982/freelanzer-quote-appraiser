@@ -5,6 +5,7 @@ export class ContacDTO {
     public emailAddress: string = '',
     public phoneNumber: string = '',
     public address: string = '',
+    public city: string = '',
     public reportType: string = '',
     public otherReport: string = '',
     public propertyType: string = '',

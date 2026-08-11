@@ -4,9 +4,10 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { SeoService } from '../../services/seo.service';
+import { CITY_BY_SLUG } from '../../data/cities';
 
 /**
  * Where appraisal leads are delivered.
@@ -48,6 +49,8 @@ export class ContactComponent implements OnInit {
   isRetrospectiveAppraisal: string[];
   sending = false;
 
+  private activated = inject(ActivatedRoute);
+
   constructor(private route: Router) {
     effect(() => { this.L.lang(); this.seo.set('contact'); });
     this.contacDto = new ContacDTO();
@@ -67,6 +70,12 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Arriving from a city landing page (/contact?city=toronto) pre-fills the city,
+    // so visitors coming from a local page or ad have one less field to type.
+    const slug = this.activated.snapshot.queryParamMap.get('city');
+    if (slug && CITY_BY_SLUG[slug]) {
+      this.contacDto.city = CITY_BY_SLUG[slug].name;
+    }
     this.uploadPropertyType();
     this.uploadDwellingStyle();
     this.uploadDwellingType();
@@ -105,6 +114,7 @@ export class ContactComponent implements OnInit {
       Phone: this.contacDto.phoneNumber,
       Email: this.contacDto.emailAddress,
       'Property Address': this.contacDto.address,
+      'City / Town': this.contacDto.city,
       'Report Type': this.contacDto.reportType,
       'Report Type (other)': this.contacDto.otherReport,
       'Property Type': this.contacDto.propertyType,

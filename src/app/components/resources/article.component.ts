@@ -66,6 +66,8 @@ export class ArticleComponent {
       headline: a.title,
       description: a.description,
       inLanguage: 'en-CA',
+      datePublished: a.iso ?? '2026-07-15',
+      dateModified: a.iso ?? '2026-07-15',
       mainEntityOfPage: url,
       image: 'https://appraisalcanada.ca/assets/og.png',
       author: { '@type': 'Organization', name: 'Appraisal Canada', url: 'https://appraisalcanada.ca/' },

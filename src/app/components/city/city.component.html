@@ -3,7 +3,7 @@
     <h1>{{ heading() }}</h1>
     <p>{{ subhead() }}</p>
     <div class="city-actions">
-      <a routerLink="/contact" class="c-btn c-btn-gold">{{ L.t('hero_cta') }}</a>
+      <a routerLink="/contact" [queryParams]="{ city: city().slug }" class="c-btn c-btn-gold">{{ L.t('hero_cta') }}</a>
       <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="c-btn c-btn-wa">
         <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
       </a>
@@ -16,6 +16,13 @@
     <p class="lead">{{ intro() }}</p>
     <p class="muted">{{ blurb() }}</p>
   </article>
+
+  @if (market()) {
+  <section class="city-block">
+    <h2>{{ marketTitle() }}</h2>
+    <p>{{ market() }}</p>
+  </section>
+  }
 
   <section class="city-block">
     <h2>{{ servicesTitle() }}</h2>
@@ -47,7 +54,7 @@
   <section class="city-cta">
     <h2>{{ ctaTitle() }}</h2>
     <div class="city-actions">
-      <a routerLink="/contact" class="c-btn c-btn-gold">{{ L.t('hero_cta') }}</a>
+      <a routerLink="/contact" [queryParams]="{ city: city().slug }" class="c-btn c-btn-gold">{{ L.t('hero_cta') }}</a>
       <a [href]="L.whatsappUrl()" target="_blank" rel="noopener" class="c-btn c-btn-wa">
         <i class="fab fa-whatsapp"></i> {{ L.t('wa_btn') }}
       </a>
