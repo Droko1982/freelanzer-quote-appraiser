@@ -16,6 +16,9 @@ import { CITY_BY_SLUG } from '../../data/cities';
  * after that every request lands in this inbox.
  * NOTE: Wieland & Associates' EmailJS integration was intentionally removed so no leads route to them.
  */
+/** What the FormSubmit AJAX endpoint returns. It answers 200 even on refusal. */
+interface FormSubmitResponse { success?: string; message?: string; }
+
 const LEAD_EMAIL = 'info@appraisalcanada.ca';
 const LEAD_CC = 'morisee@hotmail.com';
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
@@ -98,7 +101,10 @@ export class ContactComponent implements OnInit {
         text: this.L.t('val_body'),
         confirmButtonText: this.L.t('ok_btn'),
         confirmButtonColor: '#0f3460',
-      });
+      // The warning names no field, and on a form this long the offending one is
+      // usually off-screen — the visitor was left staring at the Send button with
+      // nothing to act on. Put them on the first field that needs an answer.
+      }).then(() => this.focusFirstInvalid(form));
       return;
     }
     this.sending = true;
@@ -165,10 +171,21 @@ export class ContactComponent implements OnInit {
       }
     }
 
-    this.http.post(FORMSUBMIT_ENDPOINT, payload, {
+    this.http.post<FormSubmitResponse>(FORMSUBMIT_ENDPOINT, payload, {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
     }).subscribe({
-      next: () => {
+      next: (res) => {
+        // FormSubmit answers 200 even when it refuses a submission — most often
+        // while the recipient address is not activated, or when it rate-limits.
+        // Treating any 200 as delivered told the visitor their request was sent,
+        // wiped the form, and counted a GA4 conversion for a lead that never
+        // arrived, which also hid the outage. Check what it actually said.
+        if (String(res?.success) !== 'true') {
+          console.error('FormSubmit rejected the submission', res);
+          this.sending = false;
+          this.showFailure();
+          return;
+        }
         this.sending = false;
         window.gtag?.('event', 'generate_lead', { method: 'quote_form' });
         Swal.fire({
@@ -184,22 +201,53 @@ export class ContactComponent implements OnInit {
           timer: 6000,
           timerProgressBar: true,
         });
+        // resetForm() clears the values AND the dirty/touched/submitted flags.
+        // Blanking the model alone left every control still marked invalid, so
+        // the emptied form lit up red behind the success dialog and read as a
+        // rejection.
         this.contacDto = new ContacDTO();
+        form.resetForm();
       },
-      error: () => {
+      error: (err) => {
+        console.error('FormSubmit request failed', err);
         this.sending = false;
-        Swal.fire({
-          icon: 'error',
-          title: `<h3 style="color: #E74C3C;">${this.L.t('err_title')}</h3>`,
-          html: `
+        this.showFailure();
+      }
+    });
+  }
+
+  /** Scrolls to and focuses the first control that failed validation. */
+  private focusFirstInvalid(form: NgForm): void {
+    const name = Object.keys(form.controls).find(k => form.controls[k].invalid);
+    if (!name) { return; }
+    const el = document.querySelector<HTMLElement>(`[name="${name}"]`);
+    if (!el) { return; }
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.focus({ preventScroll: true });
+  }
+
+  /**
+   * Shown whenever the lead did not get through. Includes the phone and
+   * WhatsApp numbers so a failed submit still ends in a way to reach us.
+   */
+  private showFailure(): void {
+    Swal.fire({
+      icon: 'error',
+      title: `<h3 style="color: #E74C3C;">${this.L.t('err_title')}</h3>`,
+      html: `
           <p style="color: #555;">${this.L.t('err_body')}</p>
           <p style="font-size: 0.9rem; color: #888;">${this.L.t('err_help')}</p>
+          <p style="font-size: 0.95rem; margin-top: 14px;">
+            <a href="tel:+19053676998" style="color:#0f3460;font-weight:700;">+1 (905) 367-6998</a>
+            &nbsp;·&nbsp;
+            <a href="${this.L.whatsappUrl()}" target="_blank" rel="noopener" style="color:#17803e;font-weight:700;">WhatsApp</a>
+            &nbsp;·&nbsp;
+            <a href="mailto:${LEAD_EMAIL}" style="color:#0f3460;font-weight:700;">${LEAD_EMAIL}</a>
+          </p>
         `,
-          confirmButtonText: this.L.t('err_btn'),
-          confirmButtonColor: '#E74C3C',
-          background: '#f9f9f9',
-        });
-      }
+      confirmButtonText: this.L.t('err_btn'),
+      confirmButtonColor: '#E74C3C',
+      background: '#f9f9f9',
     });
   }
 

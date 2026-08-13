@@ -88,7 +88,7 @@ export class CityComponent {
     const c = this.cityName();
     switch (this.l()) {
       case 'fr': return `Évaluation immobilière à ${c}`;
-      case 'es': return `Evalúo inmobiliario en ${c}`;
+      case 'es': return `Avalúo inmobiliario en ${c}`;
       default: return `Real Estate Appraisal in ${c}`;
     }
   }
@@ -104,7 +104,7 @@ export class CityComponent {
     const c = this.cityName(); const p = this.provName();
     switch (this.l()) {
       case 'fr': return `Vous cherchez une évaluation immobilière professionnelle à ${c}? Appraisal Canada vous met en relation avec des évaluateurs qualifiés et reconnus pour les propriétés résidentielles et commerciales partout à ${c}, ${p}. Que ce soit pour un financement hypothécaire, un refinancement, un achat, un divorce, un règlement successoral ou des gains en capital, nous vous jumelons avec le bon évaluateur et vous obtenons une soumission gratuite et sans engagement — souvent le jour même.`;
-      case 'es': return `¿Buscas un evalúo inmobiliario profesional en ${c}? Appraisal Canada te conecta con tasadores calificados y reconocidos para propiedades residenciales y comerciales en todo ${c}, ${p}. Ya sea para financiamiento hipotecario, refinanciamiento, compra, divorcio, sucesión o ganancias de capital, te asignamos el tasador adecuado y te conseguimos una cotización gratis y sin compromiso — a menudo el mismo día.`;
+      case 'es': return `¿Buscas un avalúo inmobiliario profesional en ${c}? Appraisal Canada te conecta con tasadores calificados y reconocidos para propiedades residenciales y comerciales en todo ${c}, ${p}. Ya sea para financiamiento hipotecario, refinanciamiento, compra, divorcio, sucesión o ganancias de capital, te asignamos el tasador adecuado y te conseguimos una cotización gratis y sin compromiso — a menudo el mismo día.`;
       default: return `Looking for a professional real estate appraisal in ${c}? Appraisal Canada connects you with qualified, recognized appraisers for residential and commercial property throughout ${c}, ${p}. Whether it’s for mortgage financing, refinancing, a purchase, divorce, estate settlement or capital gains, we match you with the right appraiser and get you a free, no-obligation quote — often the same day.`;
     }
   }
@@ -112,7 +112,7 @@ export class CityComponent {
     const c = this.cityName();
     switch (this.l()) {
       case 'fr': return `Services d’évaluation à ${c}`;
-      case 'es': return `Servicios de evalúo en ${c}`;
+      case 'es': return `Servicios de avalúo en ${c}`;
       default: return `Appraisal services in ${c}`;
     }
   }
@@ -128,7 +128,7 @@ export class CityComponent {
     const c = this.cityName();
     switch (this.l()) {
       case 'fr': return `Obtenez votre soumission gratuite à ${c}`;
-      case 'es': return `Obtén tu cotización gratis de evalúo en ${c}`;
+      case 'es': return `Obtén tu cotización gratis de avalúo en ${c}`;
       default: return `Get your free ${c} appraisal quote`;
     }
   }
@@ -143,7 +143,7 @@ export class CityComponent {
   services(): string[] {
     switch (this.l()) {
       case 'fr': return ['Évaluations résidentielles', 'Évaluations commerciales', 'Terrains', 'Machinerie et équipement', 'Financement hypothécaire et refinancement', 'Divorce / séparation des biens', 'Successions et homologation', 'Gains en capital'];
-      case 'es': return ['Evalúos residenciales', 'Evalúos comerciales', 'Terrenos', 'Maquinaria y equipo', 'Hipoteca y refinanciamiento', 'Divorcio / matrimonial', 'Sucesiones y homologación', 'Ganancias de capital'];
+      case 'es': return ['Avalúos residenciales', 'Avalúos comerciales', 'Terrenos', 'Maquinaria y equipo', 'Hipoteca y refinanciamiento', 'Divorcio / matrimonial', 'Sucesiones y homologación', 'Ganancias de capital'];
       default: return ['Residential appraisals', 'Commercial appraisals', 'Land appraisals', 'Machinery & equipment', 'Mortgage & refinance', 'Divorce / matrimonial', 'Estate & probate', 'Capital gains'];
     }
   }
@@ -154,8 +154,21 @@ export class CityComponent {
       default: return ['AACI & CRA designated appraisers', 'CUSPAP standards followed', 'Bilingual service (English & French)', 'Free, no-obligation quote', 'Fast response, often same day'];
     }
   }
+  /**
+   * "Other areas we serve". This used to slice the head of CITIES, which is
+   * ordered Ottawa, Toronto, Mississauga… — so every one of the 41 city pages
+   * offered the same eight Ontario cities. A visitor on the Victoria page was
+   * shown no BC market at all, and the internal links of all 41 pages pooled
+   * into the same eight URLs while the other 33 were linked only from the home
+   * page. Same province first, then the rest, so the list is both sensible to
+   * the reader and spread across the site.
+   */
   nearby(): CityInfo[] {
-    return CITIES.filter(c => c.slug !== this.city().slug).slice(0, 8);
+    const here = this.city();
+    const others = CITIES.filter(c => c.slug !== here.slug);
+    const sameProvince = others.filter(c => c.prov === here.prov);
+    const elsewhere = others.filter(c => c.prov !== here.prov);
+    return [...sameProvince, ...elsewhere].slice(0, 8);
   }
   nearbyLabel(c: CityInfo): string {
     return this.l() === 'es' ? c.nameEs : this.l() === 'fr' ? c.nameFr : c.name;
@@ -171,8 +184,8 @@ export class CityComponent {
         desc = `Évaluation immobilière résidentielle et commerciale à ${c}. Évaluateurs agréés AACI et CRA, soumission gratuite et rapide, service bilingue. Obtenez votre devis dès aujourd’hui.`;
         break;
       case 'es':
-        title = `Evalúo inmobiliario en ${c} | Appraisal Canada`;
-        desc = `Evalúo inmobiliario residencial y comercial en ${c}. Tasadores designados AACI y CRA, cotización gratis y rápida, servicio bilingüe. Obtén tu cotización hoy.`;
+        title = `Avalúo inmobiliario en ${c} | Appraisal Canada`;
+        desc = `Avalúo inmobiliario residencial y comercial en ${c}. Tasadores designados AACI y CRA, cotización gratis y rápida, servicio bilingüe. Obtén tu cotización hoy.`;
         break;
       default:
         title = `${c} Real Estate Appraisal | Appraisal Canada`;

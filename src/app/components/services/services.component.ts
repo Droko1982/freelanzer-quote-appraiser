@@ -55,10 +55,10 @@ export class ServicesComponent {
   ];
 
   private servicesEs: string[] = [
-    'Evalúos residenciales',
-    'Evalúos comerciales',
-    'Evalúos de terrenos',
-    'Evalúos de maquinaria y equipo',
+    'Avalúos residenciales',
+    'Avalúos comerciales',
+    'Avalúos de terrenos',
+    'Avalúos de maquinaria y equipo',
     'Servicios de consultoría',
     'Financiamiento hipotecario',
     'Reubicaciones – BGRS, gobierno y corporativo',

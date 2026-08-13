@@ -83,7 +83,7 @@ export class PrivacyComponent {
       ];
       case 'es': return [
         { h: 'Información que recopilamos', p: [
-          'Información que nos proporcionas: al llenar nuestro formulario recopilamos tu nombre, correo, teléfono, dirección de la propiedad y los detalles de tu solicitud de evalúo.',
+          'Información que nos proporcionas: al llenar nuestro formulario recopilamos tu nombre, correo, teléfono, dirección de la propiedad y los detalles de tu solicitud de avalúo.',
           'Información recopilada automáticamente: usamos Google Analytics para entender el uso del sitio (páginas vistas, dispositivo, ubicación aproximada, cookies).'] },
         { h: 'Cómo la usamos', p: [
           'Para responder a tu solicitud de cotización y conectarte con un tasador adecuado.',

@@ -91,18 +91,33 @@ export class AppraisersComponent {
       Website: this.dto.website,
       Message: this.dto.message,
     };
-    this.http.post(FORMSUBMIT_ENDPOINT, payload, {
+    const fail = () => {
+      this.sending = false;
+      Swal.fire({ icon: 'error', title: `<h3 style="color:#E74C3C;">${t.errTitle}</h3>`, html: `<p style="color:#555;">${t.errBody}</p>`, confirmButtonText: t.errBtn, confirmButtonColor: '#E74C3C' });
+    };
+
+    this.http.post<{ success?: string; message?: string }>(FORMSUBMIT_ENDPOINT, payload, {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
     }).subscribe({
-      next: () => {
+      next: (res) => {
+        // FormSubmit answers 200 even when it refuses the submission, so a
+        // rejected application would otherwise be reported as sent and wiped.
+        if (String(res?.success) !== 'true') {
+          console.error('FormSubmit rejected the application', res);
+          fail();
+          return;
+        }
         this.sending = false;
         window.gtag?.('event', 'generate_lead', { method: 'appraiser_application' });
         Swal.fire({ icon: 'success', title: `<h3 style="color:#4CAF50;">${t.okTitle}</h3>`, html: `<p style="color:#555;">${t.okBody}</p>`, confirmButtonText: t.okBtn, confirmButtonColor: '#4CAF50', timer: 7000, timerProgressBar: true });
+        // resetForm() also clears dirty/touched, so the emptied form does not
+        // repaint itself as invalid behind the success dialog.
         this.dto = this.blank();
+        form.resetForm();
       },
-      error: () => {
-        this.sending = false;
-        Swal.fire({ icon: 'error', title: `<h3 style="color:#E74C3C;">${t.errTitle}</h3>`, html: `<p style="color:#555;">${t.errBody}</p>`, confirmButtonText: t.errBtn, confirmButtonColor: '#E74C3C' });
+      error: (err) => {
+        console.error('FormSubmit request failed', err);
+        fail();
       }
     });
   }
@@ -193,7 +208,7 @@ const CONTENT: Record<Lang, Content> = {
   },
   es: {
     metaTitle: 'Únete a nuestra red de tasadores | Appraisal Canada',
-    metaDesc: '¿Eres tasador designado AIC (AACI/CRA) o licenciado en Canadá? Únete a la red de Appraisal Canada y recibe trabajos de evalúo en tu zona. Inscripción gratis — solo pagas por trabajo realizado.',
+    metaDesc: '¿Eres tasador designado AIC (AACI/CRA) o licenciado en Canadá? Únete a la red de Appraisal Canada y recibe trabajos de avalúo en tu zona. Inscripción gratis — solo pagas por trabajo realizado.',
     heroTitle: 'Únete a nuestra red de tasadores',
     heroSub: '¿Eres tasador designado AIC o licenciado? Concéntrate en tus informes — nosotros te traemos nuevos clientes en todo Canadá.',
     heroCta: 'Postularme',
@@ -209,7 +224,7 @@ const CONTENT: Record<Lang, Content> = {
     steps: [
       { h: '1. Postúlate', d: 'Llena el formulario de abajo con tus credenciales y zona de cobertura.' },
       { h: '2. Verificamos', d: 'Confirmamos tu designación AIC / licencia para mantener una red confiable.' },
-      { h: '3. Te asignamos', d: 'Cuando un cliente necesita un evalúo en tu zona y especialidad, te lo enviamos.' },
+      { h: '3. Te asignamos', d: 'Cuando un cliente necesita un avalúo en tu zona y especialidad, te lo enviamos.' },
     ],
     feeTitle: 'Condiciones simples y justas',
     feeText: 'Se aplica una comisión de referido del 10 % por trabajo realizado — sin costo inicial ni cuotas mensuales. Solo pagas cuando te pagan.',

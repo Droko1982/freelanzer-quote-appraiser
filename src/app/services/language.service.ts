@@ -77,6 +77,14 @@ const en: Dictionary = {
   nav_home: 'Home',
   nav_services: 'Services',
   nav_contact: 'Contact',
+
+  // Accessible names for the icon-only header controls (screen readers only).
+  a11y_skip: 'Skip to main content',
+  a11y_primary_nav: 'Primary',
+  a11y_menu: 'Menu',
+  a11y_language: 'Language',
+  a11y_light_mode: 'Switch to light mode',
+  a11y_dark_mode: 'Switch to dark mode',
   nav_appraisers: 'For Appraisers',
   nav_resources: 'Resources',
   lang_switch: 'FR',
@@ -280,6 +288,14 @@ const fr: Dictionary = {
   nav_home: 'Accueil',
   nav_services: 'Services',
   nav_contact: 'Contact',
+
+  // Noms accessibles des commandes d'en-tête (lecteurs d'écran).
+  a11y_skip: 'Aller au contenu principal',
+  a11y_primary_nav: 'Principal',
+  a11y_menu: 'Menu',
+  a11y_language: 'Langue',
+  a11y_light_mode: 'Passer en mode clair',
+  a11y_dark_mode: 'Passer en mode sombre',
   nav_appraisers: 'Pour évaluateurs',
   nav_resources: 'Ressources',
   lang_switch: 'EN',
@@ -476,45 +492,53 @@ const fr: Dictionary = {
 const es: Dictionary = {
   // Brand / header
   brand_name: 'Appraisal Canada',
-  brand_tagline: 'Evalúos inmobiliarios en todo Canadá',
-  hero_headline: 'Cotizaciones gratis de evalúos inmobiliarios en todo Canadá',
-  hero_sub: 'Evalúos residenciales y comerciales por tasadores designados AACI y CRA — rápido, profesional y sin compromiso.',
+  brand_tagline: 'Avalúos inmobiliarios en todo Canadá',
+  hero_headline: 'Cotizaciones gratis de avalúos inmobiliarios en todo Canadá',
+  hero_sub: 'Avalúos residenciales y comerciales por tasadores designados AACI y CRA — rápido, profesional y sin compromiso.',
   hero_cta: 'Cotización gratis',
   nav_home: 'Inicio',
   nav_services: 'Servicios',
   nav_contact: 'Contacto',
+
+  // Nombres accesibles de los controles del encabezado (lectores de pantalla).
+  a11y_skip: 'Ir al contenido principal',
+  a11y_primary_nav: 'Principal',
+  a11y_menu: 'Menú',
+  a11y_language: 'Idioma',
+  a11y_light_mode: 'Cambiar a modo claro',
+  a11y_dark_mode: 'Cambiar a modo oscuro',
   nav_appraisers: 'Para tasadores',
   nav_resources: 'Recursos',
   lang_switch: 'EN',
   lang_switch_aria: 'Switch to English',
   wa_btn: 'Escríbenos por WhatsApp',
-  wa_msg: 'Hola Appraisal Canada, quisiera una cotización gratis para un evalúo inmobiliario.',
+  wa_msg: 'Hola Appraisal Canada, quisiera una cotización gratis para un avalúo inmobiliario.',
 
   // Home
-  home_why_title: '¿Por qué es esencial un evalúo?',
+  home_why_title: '¿Por qué es esencial un avalúo?',
   home_intro:
-    'Los evalúos son fundamentales para múltiples fines: financiamiento hipotecario, planificación patrimonial, división de bienes matrimoniales, reubicaciones y más. Ofrecen una opinión de valor profesional e imparcial que resulta clave para tomar decisiones informadas en contextos financieros y legales.',
-  home_benefits_title: 'Los beneficios clave de un evalúo',
+    'Los avalúos son fundamentales para múltiples fines: financiamiento hipotecario, planificación patrimonial, división de bienes matrimoniales, reubicaciones y más. Ofrecen una opinión de valor profesional e imparcial que resulta clave para tomar decisiones informadas en contextos financieros y legales.',
+  home_benefits_title: 'Los beneficios clave de un avalúo',
   home_b1_t: 'Valoración precisa:',
   home_b1_d:
-    'Un informe de evalúo ofrece una estimación confiable y precisa del valor de mercado, respaldada por un análisis riguroso realizado por un tasador calificado. Así obtienes una evaluación creíble y profesional en la que puedes confiar para tus decisiones importantes.',
+    'Un informe de avalúo ofrece una estimación confiable y precisa del valor de mercado, respaldada por un análisis riguroso realizado por un tasador calificado. Así obtienes una evaluación creíble y profesional en la que puedes confiar para tus decisiones importantes.',
   home_b2_t: 'Reconocimiento legal:',
   home_b2_d:
-    'Los evalúos realizados por profesionales son reconocidos por tribunales, instituciones financieras y organismos gubernamentales. Este reconocimiento es crucial en casos de litigio, divorcio, expropiación o disputas, donde la opinión de valor debe cumplir normas estrictas.',
+    'Los avalúos realizados por profesionales son reconocidos por tribunales, instituciones financieras y organismos gubernamentales. Este reconocimiento es crucial en casos de litigio, divorcio, expropiación o disputas, donde la opinión de valor debe cumplir normas estrictas.',
   home_b3_t: 'Conocimiento del mercado:',
   home_b3_d:
-    'Un evalúo actualizado refleja las condiciones actuales del mercado y ofrece la valoración más exacta de tu propiedad, ya sea que estés comprando, vendiendo o refinanciando.',
+    'Un avalúo actualizado refleja las condiciones actuales del mercado y ofrece la valoración más exacta de tu propiedad, ya sea que estés comprando, vendiendo o refinanciando.',
   home_b4_t: 'Protección y tranquilidad:',
   home_b4_d:
-    'Los evalúos realizados por profesionales designados, conforme a las Normas Uniformes de Práctica Profesional de Evaluación de Canadá (CUSPAP), garantizan que tus intereses estén protegidos mediante un enfoque diligente e imparcial.',
+    'Los avalúos realizados por profesionales designados, conforme a las Normas Uniformes de Práctica Profesional de Evaluación de Canadá (CUSPAP), garantizan que tus intereses estén protegidos mediante un enfoque diligente e imparcial.',
   home_b5_t: 'Versatilidad y adaptabilidad:',
   home_b5_d:
-    'Los evalúos son esenciales para una amplia variedad de fines: valoraciones previas a la venta, procesos de ejecución hipotecaria, apelaciones de impuestos, costo de reemplazo, sucesiones y más.',
+    'Los avalúos son esenciales para una amplia variedad de fines: valoraciones previas a la venta, procesos de ejecución hipotecaria, apelaciones de impuestos, costo de reemplazo, sucesiones y más.',
   home_specialize:
-    'Desde hace más de 5 años conectamos a los clientes con tasadores reputados, designados por el Instituto Canadiense de Evaluadores (AIC), en todo el país. Seleccionamos al tasador y a la firma especializada según tu necesidad — comparando empresas confiables y licenciadas y asignándote al profesional adecuado para tu propiedad y objetivo, para que tu evalúo sea exacto, reconocido y válido legalmente.',
+    'Desde hace más de 5 años conectamos a los clientes con tasadores reputados, designados por el Instituto Canadiense de Evaluadores (AIC), en todo el país. Seleccionamos al tasador y a la firma especializada según tu necesidad — comparando empresas confiables y licenciadas y asignándote al profesional adecuado para tu propiedad y objetivo, para que tu avalúo sea exacto, reconocido y válido legalmente.',
   home_contact_cta_pre: 'Contáctanos hoy',
   home_contact_cta_post:
-    ' para conversar sobre tu evalúo y aprovechar nuestra asesoría profesional. Te ayudamos a tomar decisiones informadas con confianza.',
+    ' para conversar sobre tu avalúo y aprovechar nuestra asesoría profesional. Te ayudamos a tomar decisiones informadas con confianza.',
   home_get_quote_btn: 'Cotiza ahora',
 
   // How it works / trusted network
@@ -522,11 +546,11 @@ const es: Dictionary = {
   hiw_1t: 'Solo tasadores acreditados',
   hiw_1d: 'Trabajamos únicamente con firmas establecidas cuyos tasadores están designados por el Instituto Canadiense de Evaluadores (AACI y CRA) — para que tu informe sea creíble, reconocido y válido legalmente.',
   hiw_2t: 'La firma adecuada para el caso',
-  hiw_2d: 'No toda empresa tiene la licencia correcta para cada evalúo. Comparamos a nuestros socios verificados y te asignamos la firma adecuada según tu propiedad, tu objetivo y tu provincia.',
+  hiw_2d: 'No toda empresa tiene la licencia correcta para cada avalúo. Comparamos a nuestros socios verificados y te asignamos la firma adecuada según tu propiedad, tu objetivo y tu provincia.',
   hiw_3t: 'Seleccionamos a tu especialista',
   hiw_3d: 'Con más de 5 años de alianzas de confianza, seleccionamos al tasador y a la firma especializada en tu necesidad — así te ahorras la búsqueda y trabajas con profesionales comprobados.',
-  areas_served_title: 'Evalúos en tu ciudad',
-  areas_served_sub: 'Evalúos inmobiliarios, comerciales y de equipo en todo Canadá.',
+  areas_served_title: 'Avalúos en tu ciudad',
+  areas_served_sub: 'Avalúos inmobiliarios, comerciales y de equipo en todo Canadá.',
   trust_1: 'Tasadores designados AIC',
   trust_2: 'Normas CUSPAP',
   trust_3: '+5 años de alianzas',
@@ -535,23 +559,23 @@ const es: Dictionary = {
 
   // FAQ
   faq_title: 'Preguntas frecuentes',
-  faq_q1: '¿Cuánto cuesta un evalúo inmobiliario en Canadá?',
+  faq_q1: '¿Cuánto cuesta un avalúo inmobiliario en Canadá?',
   faq_a1: 'Los honorarios varían según el tipo de propiedad, la ubicación y la complejidad. Solicita una cotización gratis y te daremos un precio exacto, sin compromiso.',
-  faq_q2: '¿Cuánto tarda un evalúo residencial?',
-  faq_a2: 'La mayoría de los evalúos residenciales se completan en 2 a 5 días hábiles tras la inspección de la propiedad. A menudo hay servicio urgente disponible a pedido.',
+  faq_q2: '¿Cuánto tarda un avalúo residencial?',
+  faq_a2: 'La mayoría de los avalúos residenciales se completan en 2 a 5 días hábiles tras la inspección de la propiedad. A menudo hay servicio urgente disponible a pedido.',
   faq_q3: '¿Qué zonas de Canadá cubren?',
   faq_a3: 'Te conectamos con tasadores calificados en cada provincia y territorio — de Ontario y Quebec a la Columbia Británica, Alberta, las Praderas y el Canadá atlántico.',
   faq_q4: '¿Sus tasadores están certificados?',
   faq_a4: 'Sí. Trabajamos con tasadores designados AACI y CRA que cumplen las Normas Uniformes de Práctica Profesional de Evaluación de Canadá (CUSPAP).',
-  faq_q5: '¿Para qué sirve un evalúo inmobiliario?',
+  faq_q5: '¿Para qué sirve un avalúo inmobiliario?',
   faq_a5: 'Financiamiento hipotecario, refinanciamiento, compras, divorcios y división de bienes, sucesiones, ganancias de capital, apelaciones de impuestos y más.',
   faq_q6: '¿Ofrecen servicio en español?',
-  faq_a6: 'Sí — puedes solicitar tu cotización de evalúo en español, inglés o francés.',
+  faq_a6: 'Sí — puedes solicitar tu cotización de avalúo en español, inglés o francés.',
 
   // Services
   serv_title: 'Nuestros servicios',
   serv_intro:
-    'Ofrecemos una gama completa de servicios de evalúo para tus necesidades residenciales y comerciales. Nuestra red de tasadores se compromete a entregar valoraciones precisas y profesionales para una gran variedad de tipos de propiedad en todo Canadá.',
+    'Ofrecemos una gama completa de servicios de avalúo para tus necesidades residenciales y comerciales. Nuestra red de tasadores se compromete a entregar valoraciones precisas y profesionales para una gran variedad de tipos de propiedad en todo Canadá.',
   serv_areas_title: 'Zonas de servicio — de costa a costa',
   serv_areas_intro:
     'Conectamos a los clientes con tasadores calificados en cada provincia y territorio de Canadá. Dondequiera que esté tu propiedad, podemos ayudarte.',
@@ -572,10 +596,10 @@ const es: Dictionary = {
   serv_desig_title: 'Designaciones profesionales de tasador',
   serv_aaci_t: 'Tasador Acreditado del Instituto Canadiense (AACI)',
   serv_aaci_d:
-    'Esta designación suele ser de tasadores de propiedades comerciales, aunque también cubre evalúos residenciales. Los tasadores AACI están calificados para evaluar una amplia gama de bienes inmuebles, incluidas propiedades comerciales, industriales, institucionales y agrícolas complejas.',
+    'Esta designación suele ser de tasadores de propiedades comerciales, aunque también cubre avalúos residenciales. Los tasadores AACI están calificados para evaluar una amplia gama de bienes inmuebles, incluidas propiedades comerciales, industriales, institucionales y agrícolas complejas.',
   serv_cra_t: 'Tasador Residencial Canadiense (CRA)',
   serv_cra_d:
-    'Esta designación se centra en evalúos de propiedades residenciales. Los tasadores CRA se especializan en evaluar viviendas individuales, incluidas casas unifamiliares, dúplex y tríplex.',
+    'Esta designación se centra en avalúos de propiedades residenciales. Los tasadores CRA se especializan en evaluar viviendas individuales, incluidas casas unifamiliares, dúplex y tríplex.',
   serv_get_btn: 'Encuentra un tasador especializado',
 
   // Footer
@@ -586,7 +610,7 @@ const es: Dictionary = {
   whatsapp_aria: 'Escríbenos por WhatsApp',
 
   // Contact form
-  ct_title: 'Obtén tu cotización gratis de evalúo',
+  ct_title: 'Obtén tu cotización gratis de avalúo',
   ct_intro: 'Cuéntanos sobre tu propiedad y te responderemos con una cotización de inmediato. Solo toma un minuto — sin compromiso.',
   ct_message: 'Detalles (objetivo, plazos, otros datos)',
   ct_message_ph: 'Cuéntanos cualquier cosa que ayude a preparar tu cotización',
@@ -606,7 +630,7 @@ const es: Dictionary = {
   ct_reportType_ph: 'Selecciona el tipo de informe',
   ct_propertyType: 'Tipo de propiedad',
   ct_propertyType_ph: 'Selecciona el tipo de propiedad',
-  ct_purposeType: 'Objetivo del evalúo',
+  ct_purposeType: 'Objetivo del avalúo',
   ct_purposeType_ph: 'Selecciona el objetivo',
   ct_specify: 'Por favor especifica',
   ct_purchaseType: 'Tipo de compra',
@@ -649,7 +673,7 @@ const es: Dictionary = {
   ct_dwellingType_ph: 'Selecciona el tipo de vivienda',
   ct_additionalInfo: 'Proporciona cualquier información adicional que consideres pertinente para la valoración',
   ct_additionalInfo_ph: 'Especifica la información adicional',
-  ct_isRetro: '¿Es un evalúo retrospectivo?',
+  ct_isRetro: '¿Es un avalúo retrospectivo?',
   ct_retroDate: 'Fecha retrospectiva',
   ct_retroDate_ph: 'Ingresa la fecha',
   ct_send: 'Enviar formulario',
@@ -667,7 +691,7 @@ const es: Dictionary = {
   err_btn: 'Reintentar',
   pending_title: '¡Casi listo!',
   pending_body:
-    '¡Gracias! El envío en línea se está finalizando. Mientras tanto, llámanos o escríbenos por WhatsApp y atenderemos tu solicitud de evalúo de inmediato.',
+    '¡Gracias! El envío en línea se está finalizando. Mientras tanto, llámanos o escríbenos por WhatsApp y atenderemos tu solicitud de avalúo de inmediato.',
   pending_btn: 'De acuerdo',
 };
 

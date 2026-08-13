@@ -136,6 +136,12 @@
   outline: none;
   padding-right: 2px;
 }
+/* outline:none above strips the focus ring; put a visible one back for keyboard users. */
+.lang-select:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 .lang-select option {
   color: #0f3460;
   background: #ffffff;

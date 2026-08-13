@@ -42,7 +42,7 @@ export class ResourcesComponent {
   sub(): string {
     switch (this.L.lang()) {
       case 'fr': return 'Réponses claires sur l’évaluation immobilière au Canada.';
-      case 'es': return 'Respuestas claras sobre el evalúo inmobiliario en Canadá.';
+      case 'es': return 'Respuestas claras sobre el avalúo inmobiliario en Canadá.';
       default: return 'Clear answers about real estate appraisal in Canada.';
     }
   }

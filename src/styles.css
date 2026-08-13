@@ -122,6 +122,25 @@ h1, h2, h3, h4 {
   margin: 0 0 .5em;
 }
 
+/* Skip link: off-screen until focused, then pinned to the top-left. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  background: var(--navy);
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 0 0 8px 0;
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+main:focus { outline: none; }
+
 a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--heading); }
 

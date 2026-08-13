@@ -1,6 +1,9 @@
 <div class="main-container">
+  <!-- Lets keyboard and screen-reader users jump the header, which is 5 nav
+       links plus 3 controls on all 56 pages. Visible only once focused. -->
+  <a class="skip-link" href="#main">{{ L.t('a11y_skip') }}</a>
   <app-header></app-header>
-  <main class="content">
+  <main id="main" class="content" tabindex="-1">
     <router-outlet></router-outlet> <!-- Routed component will be displayed here -->
   </main>
 

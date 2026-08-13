@@ -5,6 +5,7 @@ import { Meta } from '@angular/platform-browser';
 import { filter } from 'rxjs';
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { LanguageService } from './services/language.service';
 
 const SITE_URL = 'https://appraisalcanada.ca';
 
@@ -20,6 +21,8 @@ declare global {
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  /** Used by the skip link in the template, which is translated like everything else. */
+  public L = inject(LanguageService);
   private router = inject(Router);
   private meta = inject(Meta);
   private doc = inject(DOCUMENT);
