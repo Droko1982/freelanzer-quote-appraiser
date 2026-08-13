@@ -81,7 +81,7 @@
 .apr-submit button:hover { background: #d98e00; color: #fff; transform: translateY(-2px); }
 .apr-submit button:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
-.apr-back { display: inline-block; margin-top: 28px; color: var(--navy-light); font-weight: 600; }
+.apr-back { display: inline-block; margin-top: 28px; color: var(--link); font-weight: 600; }
 
 @media (max-width: 768px) {
   .apr-hero h1 { font-size: 1.7rem; }

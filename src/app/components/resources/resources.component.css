@@ -9,7 +9,7 @@
   font-family: 'Poppins', sans-serif; font-size: 2.1rem; font-weight: 800; color: #fff; margin-bottom: 10px;
 }
 .res-hero p { font-size: 1.1rem; color: #d7e3f4; margin: 0; }
-.art-meta { color: #b7c6de; font-size: .9rem; margin: 6px 0 0; }
+.art-meta { color: #dce7f7; font-size: .9rem; margin: 6px 0 0; }
 .art-back {
   display: inline-block; color: #d7e3f4; font-weight: 600; margin-bottom: 16px; text-decoration: none;
 }
@@ -26,12 +26,12 @@
 }
 .res-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(15,52,96,.14); }
 .res-read {
-  display: inline-block; font-size: .78rem; font-weight: 700; color: var(--gold);
+  display: inline-block; font-size: .78rem; font-weight: 700; color: var(--gold-text);
   text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
 }
 .res-card h2 { color: var(--heading); font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 700; margin: 0 0 8px; line-height: 1.3; }
 .res-card p { color: var(--muted); line-height: 1.6; margin: 0 0 12px; font-size: .96rem; }
-.res-more { color: var(--navy-light); font-weight: 700; }
+.res-more { color: var(--link); font-weight: 700; }
 
 .res-cta-band { text-align: center; margin-top: 40px; }
 .res-cta {

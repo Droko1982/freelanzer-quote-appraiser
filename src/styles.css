@@ -15,6 +15,14 @@
   --gold-dark: #d98e00;
   --red: #d52b1e;
 
+  /* Accessible variants of the brand colours. The fills above are tuned for
+     impact, not for carrying text: gold as text on white is 2.03:1 and the
+     WhatsApp green behind a white label is 1.98:1, both far below the 4.5:1
+     WCAG AA minimum. Use these wherever the colour has to be readable. */
+  --link: #1b5a97;      /* 7.1:1 on white, 6.3:1 on the page background */
+  --gold-text: #8f5c05; /* 5.7:1 on white — gold darkened, same hue */
+  --wa: #17803e;        /* 5.0:1 behind a white label — WhatsApp green darkened */
+
   /* Theme-aware tokens — LIGHT (default) */
   --bg: #eef2f7;
   --card: #ffffff;
@@ -54,7 +62,41 @@
   --hero-mid: #0c1a30;
   --hero-to: #12325a;
   --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+  /* On dark surfaces the navy link is only 2.4:1, while the full-strength gold
+     finally has room to breathe at 8.3:1. */
+  --link: #7fb3f0;
+  --gold-text: #f5a623;
 }
+
+/* Bootstrap's colour utilities are hardcoded for a light page: .text-muted and
+   .text-secondary resolve to greys around #6c757d and .h1-.h6 / .text-dark to
+   #212529, none of which follow [data-theme]. Because a class beats an element
+   selector, `.h2` also silently overrode our own `h1, h2` heading colour. Bind
+   Bootstrap's variables to the theme tokens and restate the utilities so any
+   markup using them stays legible in both themes. */
+:root,
+:root[data-theme="dark"] {
+  --bs-body-color: var(--text);
+  --bs-body-bg: var(--bg);
+  --bs-heading-color: var(--heading);
+  --bs-secondary-color: var(--muted);
+  --bs-tertiary-color: var(--muted);
+  --bs-emphasis-color: var(--text);
+  --bs-border-color: var(--border);
+  --bs-link-color: var(--link);
+  --bs-link-hover-color: var(--heading);
+}
+
+.text-muted,
+.text-secondary { color: var(--muted) !important; }
+
+.text-dark,
+.text-body,
+.text-body-secondary,
+.text-body-emphasis { color: var(--text) !important; }
+
+.h1, .h2, .h3, .h4, .h5, .h6 { color: var(--heading); }
 
 * { box-sizing: border-box; }
 
@@ -80,7 +122,7 @@ h1, h2, h3, h4 {
   margin: 0 0 .5em;
 }
 
-a { color: var(--navy-light); text-decoration: none; }
+a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--heading); }
 
 /* Shared button system */

@@ -60,7 +60,7 @@ textarea::placeholder { color: var(--muted); opacity: 0.8; }
   align-items: center;
   gap: 9px;
   padding: 11px 26px;
-  background-color: #25d366;
+  background-color: var(--wa);
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;

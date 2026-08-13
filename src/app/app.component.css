@@ -118,7 +118,7 @@
   }
   
   .contact-icon.whatsapp {
-    background-color: #25d366; /* WhatsApp color */
+    background-color: var(--wa); /* WhatsApp green, darkened so the white glyph clears WCAG */
   }
   
   .contact-icon.whatsapp:hover {

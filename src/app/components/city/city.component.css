@@ -23,7 +23,7 @@
 }
 .c-btn-gold { background: #f5a623; color: #0a2647; box-shadow: 0 8px 20px rgba(245,166,35,.35); }
 .c-btn-gold:hover { background: #d98e00; color: #fff; transform: translateY(-2px); }
-.c-btn-wa { background: #25d366; color: #fff; box-shadow: 0 8px 20px rgba(37,211,102,.32); }
+.c-btn-wa { background: var(--wa); color: #fff; box-shadow: 0 8px 20px rgba(37,211,102,.32); }
 .c-btn-wa:hover { background: #1eb857; color: #fff; transform: translateY(-2px); }
 .c-btn-wa i { font-size: 1.25rem; }
 
@@ -63,7 +63,7 @@
   font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--heading); position: relative;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.4rem; font-weight: 700; }
+.faq-item summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--gold-text); font-size: 1.4rem; font-weight: 700; }
 .faq-item[open] summary::after { content: "–"; }
 .faq-item p { margin: 0; padding: 0 20px 18px; color: var(--muted); line-height: 1.7; }
 
