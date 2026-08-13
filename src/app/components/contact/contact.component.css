@@ -16,6 +16,9 @@
   border: none !important;
   padding: 26px 20px !important;
 }
+/* Matches whichever heading level the template uses — the title sits on the navy
+   gradient above, so it must stay white however the heading tag changes. */
+.card-header h1,
 .card-header h2 {
   color: #ffffff !important;
   font-family: 'Poppins', sans-serif;
