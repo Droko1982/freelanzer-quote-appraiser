@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, effect } from '@angular/core';
-import { NgIf, NgFor, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ContacDTO } from '../../dto/contac-dto';
@@ -25,7 +25,7 @@ const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
   standalone: true,
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
-  imports: [NgIf, NgFor, FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule]
 })
 export class ContactComponent implements OnInit {
 
@@ -123,11 +123,47 @@ export class ContactComponent implements OnInit {
       'Dwelling Style': this.contacDto.dwellingStyleType,
       'Dwelling Type': this.contacDto.dwellingType,
       'Dwelling Type (other)': this.contacDto.otherDwellingType,
+
+      // Purchase branch
+      'Purchase Type': this.contacDto.purchaseType,
+      'Construction Company': this.contacDto.constructionCompany,
+      'Construction Company (other)': this.contacDto.otherConstructionCompany,
+      'House Model': this.contacDto.houseModel,
+      'Purchase Price': this.contacDto.purchasePrice,
+
+      // Refinance branch
+      'Mortgage Type': this.contacDto.mortgageType,
+      Lender: this.contacDto.lender,
+      'Refinance Amount': this.contacDto.refinanceAmount,
+      'Loan-to-Value': this.contacDto.loanToValue,
+
+      // Relocation branch
+      'Relocation Type': this.contacDto.relocationType,
+      'Relocation Type (other)': this.contacDto.otherRelocationType,
+      'Reference Number': this.contacDto.referenceNumber,
+
+      // Condominium branch
+      'Condo Fees': this.contacDto.condoFees,
+      Parking: this.contacDto.parking,
+      'Parking Type': this.contacDto.parkingType,
+      'Parking Spaces': this.contacDto.parkingSpaces,
+      Locker: this.contacDto.locker,
       'Special Assessments': this.contacDto.specialAssessments,
+
       'Retrospective Appraisal': this.contacDto.isRetrospectiveAppraisal,
       'Retrospective Date': this.contacDto.retrospectiveAppraisalDate,
       'Additional Information': this.contacDto.additionalInfo,
     };
+
+    // Each lead only sees the branches that apply to it, so most of the keys
+    // above are blank. Drop them so the lead email lists just the questions
+    // this client was actually asked. Keys starting with "_" are FormSubmit
+    // directives and must always be sent.
+    for (const key of Object.keys(payload)) {
+      if (!key.startsWith('_') && !String(payload[key] ?? '').trim()) {
+        delete payload[key];
+      }
+    }
 
     this.http.post(FORMSUBMIT_ENDPOINT, payload, {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
@@ -183,11 +219,11 @@ export class ContactComponent implements OnInit {
       "Market Rent",
       "Cancelled Appraisal - Report Written",
       "Capital Gains",
-      "Drive By",
+      "Drive-By",
       "Desktop Appraisal",
       "Progress Report",
       "Completion Certificate",
-      "Replacement cost",
+      "Replacement Cost",
       "Consulting Request",
       "Other"
     ];
@@ -211,7 +247,7 @@ export class ContactComponent implements OnInit {
       "Prenups",
       "Update",
       "Internal Asset Management",
-      "Assist marketing subject property",
+      "Assist Marketing Subject Property",
       "Other"
     ],
 
@@ -230,7 +266,7 @@ export class ContactComponent implements OnInit {
       "Richcraft",
       "Urbandale",
       "Valecraft",
-      "Laridge",
+      "Claridge",
       "Other"
     ],
 

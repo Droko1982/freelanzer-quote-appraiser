@@ -11,6 +11,12 @@
     Deliberately self-contained: no JS required, no app bundle, no external CSS —
     it must render even if everything else on the site fails, so a lost visitor
     can still reach us and become a client.
+
+    The quote form below posts straight to FormSubmit with a plain HTML POST.
+    That is the whole point of this page: even if the Angular app never loads,
+    a visitor can still send a full appraisal request from here and the lead is
+    never lost. A small inline script adds the broken address to the submission
+    so we learn which link failed; with JS off the form still submits fine.
   -->
   <style>
     :root {
@@ -23,11 +29,12 @@
       --card: #ffffff;
       --line: #e2e6ec;
       --wa: #1fa855;
+      --field: #ffffff;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --ink: #e8eaf0; --muted: #a5b1c0; --ground: #10151d;
-        --card: #1a2130; --line: #2b3547;
+        --card: #1a2130; --line: #2b3547; --field: #121a26;
       }
     }
     * { box-sizing: border-box; }
@@ -52,6 +59,7 @@
       padding: 26px 26px 30px; box-shadow: 0 10px 30px rgba(10, 25, 50, 0.12);
       text-align: center;
     }
+    .card + .card { margin-top: 22px; }
     .card h2 { font-size: 18px; margin: 0 0 4px; }
     .card p.sub { color: var(--muted); font-size: 14.5px; margin: 0 auto 20px; max-width: 46ch; }
     .actions { display: flex; flex-direction: column; gap: 10px; }
@@ -68,6 +76,56 @@
     .btn .ico { width: 20px; height: 20px; flex: none; }
     .home-link { display: inline-block; margin-top: 20px; color: var(--navy); font-weight: 600; }
     @media (prefers-color-scheme: dark) { .home-link { color: #8fb3e8; } }
+
+    /* What went wrong */
+    .why { text-align: left; }
+    .why h2 { text-align: center; }
+    .why ul { color: var(--muted); font-size: 14px; margin: 0 0 14px; padding-left: 20px; }
+    .why li { margin-bottom: 5px; }
+    .badurl {
+      display: none; word-break: break-all; text-align: left;
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12.5px;
+      background: var(--ground); border: 1px solid var(--line); border-radius: 8px;
+      padding: 9px 11px; color: var(--muted); margin: 0 0 4px;
+    }
+
+    /* Lead form */
+    form { text-align: left; }
+    .row { margin-bottom: 12px; }
+    .row label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
+    .req { color: #c0392b; }
+    .row input, .row select, .row textarea {
+      width: 100%; padding: 11px 12px; font: inherit; font-size: 15px;
+      color: var(--ink); background: var(--field);
+      border: 1.5px solid var(--line); border-radius: 9px;
+    }
+    .row input:focus, .row select:focus, .row textarea:focus {
+      outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.15);
+    }
+    .row textarea { resize: vertical; min-height: 78px; }
+    .two { display: flex; gap: 12px; }
+    .two > .row { flex: 1; margin-bottom: 12px; }
+    button.send {
+      width: 100%; padding: 14px 18px; margin-top: 4px;
+      background: var(--gold); color: #23200f; border: 0; border-radius: 10px;
+      font: inherit; font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+    button.send:hover { filter: brightness(1.05); }
+    button.send:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+    .formnote { color: var(--muted); font-size: 12.5px; text-align: center; margin: 12px 0 0; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    /* Where to go instead */
+    .links { text-align: left; }
+    .links h2 { text-align: center; }
+    .links nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 6px; }
+    .links a {
+      display: inline-block; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;
+      font-size: 13.5px; text-decoration: none; color: var(--ink); background: var(--ground);
+    }
+    .links a:hover { border-color: var(--navy); }
+    .links .grouptitle { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-align: center; margin: 16px 0 8px; }
+
     .about {
       max-width: 560px; width: 100%; margin-top: 22px; text-align: center;
       color: var(--muted); font-size: 13.5px;
@@ -85,6 +143,7 @@
     <p class="alt">Esta página no está disponible — pero nosotros sí.</p>
   </div>
 
+  <!-- 1. Reach a human immediately -->
   <div class="card">
     <h2>Need a real estate appraisal? Reach us right now:</h2>
     <p class="sub">Free, no-obligation quotes anywhere in Canada — residential, commercial, land and equipment appraisals by AACI &amp; CRA designated appraisers.</p>
@@ -101,17 +160,169 @@
         <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
         info@appraisalcanada.ca
       </a>
-      <a class="btn btn-quote" href="/contact">
+      <a class="btn btn-quote" href="/contact/">
         <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        Get a free quote — online form
+        Get a free quote — full online form
       </a>
     </div>
     <a class="home-link" href="/">← Back to appraisalcanada.ca</a>
+  </div>
+
+  <!-- 2. Send the request right here — works even if the rest of the site is down -->
+  <div class="card">
+    <h2>Or send your appraisal request from this page</h2>
+    <p class="sub">This form goes straight to our inbox — it works even if the rest of the site doesn't. We reply with a firm price, usually the same business day.</p>
+
+    <form action="https://formsubmit.co/info@appraisalcanada.ca" method="POST">
+      <input type="hidden" name="_subject" value="Appraisal request (sent from the 404 page) — Appraisal Canada">
+      <input type="hidden" name="_cc" value="morisee@hotmail.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://appraisalcanada.ca/thank-you.html">
+      <input type="hidden" name="Source" value="Appraisal Canada — 404 page recovery form">
+      <!-- Filled by the inline script below so we can see which link broke. -->
+      <input type="hidden" name="Broken address" id="badurl" value="(not captured)">
+      <input type="hidden" name="Came from" id="ref" value="(direct or unknown)">
+      <!-- Bot trap: real people never see or fill this. -->
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="two">
+        <div class="row">
+          <label for="n">Name <span class="req">*</span></label>
+          <input id="n" type="text" name="Name" required autocomplete="name" placeholder="Your full name">
+        </div>
+        <div class="row">
+          <label for="p">Phone <span class="req">*</span></label>
+          <input id="p" type="tel" name="Phone" required autocomplete="tel" placeholder="(613) 555-0134">
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="e">Email <span class="req">*</span></label>
+        <input id="e" type="email" name="Email" required autocomplete="email" placeholder="you@example.com">
+      </div>
+
+      <div class="row">
+        <label for="a">Property address <span class="req">*</span></label>
+        <input id="a" type="text" name="Property address" required placeholder="Street address, city and province">
+      </div>
+
+      <div class="two">
+        <div class="row">
+          <label for="pt">Property type</label>
+          <select id="pt" name="Property type">
+            <option value="">Please select</option>
+            <option>Residential</option>
+            <option>Commercial</option>
+            <option>Land / Vacant Land</option>
+            <option>Machinery / Equipment</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="pu">Purpose</label>
+          <select id="pu" name="Purpose">
+            <option value="">Please select</option>
+            <option>Purchase</option>
+            <option>Refinance</option>
+            <option>Capital Gains</option>
+            <option>Divorce</option>
+            <option>Estate Settlement</option>
+            <option>Probate</option>
+            <option>Relocation</option>
+            <option>Pre-List / Pre-Sale</option>
+            <option>Power Of Sale Or Foreclosure</option>
+            <option>Consumer Proposal</option>
+            <option>HST Rebate - Canada Revenue</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="m">Anything else we should know?</label>
+        <textarea id="m" name="Details" placeholder="Timing, property details, who the report is for…"></textarea>
+      </div>
+
+      <button class="send" type="submit">Send my appraisal request</button>
+      <p class="formnote">We only use your details to prepare your quote. Service in English, French and Spanish.</p>
+    </form>
+  </div>
+
+  <!-- 3. Explain the failure, and show the address that broke -->
+  <div class="card why">
+    <h2>What happened?</h2>
+    <p class="sub">The address you opened doesn't exist on our site. Nothing is wrong with your request for an appraisal — only with this link.</p>
+    <p class="badurl" id="badurl-shown"></p>
+    <ul>
+      <li>The link may be mistyped, or broken where you clicked it.</li>
+      <li>The page may have been renamed or moved as the site grew.</li>
+      <li>The link may be from an old bookmark, ad or printed material.</li>
+    </ul>
+    <p class="sub" style="margin-bottom:0">If you reached this from one of our own links, please tell us in the form above — we'll fix it, and your request still reaches us either way.</p>
+  </div>
+
+  <!-- 4. Help them find where they were actually going -->
+  <div class="card links">
+    <h2>Looking for one of these?</h2>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/services/">Appraisal services</a>
+      <a href="/contact/">Free quote</a>
+      <a href="/resources/">Guides &amp; costs</a>
+      <a href="/appraisers/">For appraisers</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <p class="grouptitle">Appraisals by city</p>
+    <nav>
+      <a href="/appraisal/toronto/">Toronto</a>
+      <a href="/appraisal/ottawa/">Ottawa</a>
+      <a href="/appraisal/mississauga/">Mississauga</a>
+      <a href="/appraisal/brampton/">Brampton</a>
+      <a href="/appraisal/hamilton/">Hamilton</a>
+      <a href="/appraisal/montreal/">Montréal</a>
+      <a href="/appraisal/laval/">Laval</a>
+      <a href="/appraisal/gatineau/">Gatineau</a>
+      <a href="/appraisal/quebec-city/">Québec City</a>
+      <a href="/appraisal/vancouver/">Vancouver</a>
+      <a href="/appraisal/burnaby/">Burnaby</a>
+      <a href="/appraisal/surrey/">Surrey</a>
+      <a href="/appraisal/victoria/">Victoria</a>
+      <a href="/appraisal/calgary/">Calgary</a>
+      <a href="/appraisal/edmonton/">Edmonton</a>
+      <a href="/appraisal/winnipeg/">Winnipeg</a>
+      <a href="/appraisal/regina/">Regina</a>
+      <a href="/appraisal/saskatoon/">Saskatoon</a>
+      <a href="/appraisal/halifax/">Halifax</a>
+      <a href="/appraisal/moncton/">Moncton</a>
+      <a href="/appraisal/st-johns/">St. John's</a>
+    </nav>
   </div>
 
   <div class="about">
     <p><strong>Appraisal Canada</strong> connects you with qualified, AIC-designated appraisers (AACI &amp; CRA) in every province — for mortgage financing, purchases, refinancing, divorce and estate settlements, capital gains, land and equipment valuations.</p>
     <p class="langs">Service in English · Service en français · Servicio en español</p>
   </div>
+
+  <script>
+    /* Progressive enhancement only: the page and its form work fully without this. */
+    (function () {
+      try {
+        var url = window.location.href;
+        var f = document.getElementById('badurl');
+        if (f) { f.value = url; }
+        var r = document.getElementById('ref');
+        if (r && document.referrer) { r.value = document.referrer; }
+        var shown = document.getElementById('badurl-shown');
+        if (shown) {
+          shown.textContent = 'You asked for: ' + url;
+          shown.style.display = 'block';
+        }
+        /* Count 404s as a conversion-blocking event if analytics happens to be loaded. */
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'page_not_found', { page_location: url, page_referrer: document.referrer || '' });
+        }
+      } catch (e) { /* never let this break the page */ }
+    })();
+  </script>
 </body>
 </html>

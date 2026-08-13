@@ -119,6 +119,135 @@
           }
         </div>
 
+        <!-- Purchase details — only asked when the purpose is a purchase -->
+        @if (contacDto.purposeType === 'Purchase') {
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="purchaseType">{{ L.t('ct_purchaseType') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="purchaseType" id="purchaseType" [(ngModel)]="contacDto.purchaseType">
+              <option value="" selected class="text-center">{{ L.t('ct_purchaseType_ph') }}</option>
+              @for (item of purchase; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        @if (contacDto.purchaseType === 'New Construction') {
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="constructionCompany">{{ L.t('ct_constructionCompany') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="constructionCompany" id="constructionCompany"
+              [(ngModel)]="contacDto.constructionCompany">
+              <option value="" selected class="text-center">{{ L.t('ct_constructionCompany_ph') }}</option>
+              @for (item of newConstruction; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.constructionCompany === 'Other') {
+          <label class="col-sm-4 col-form-label mt-2" for="otherConstructionCompany">{{ L.t('ct_otherCompany') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control mt-2" [placeholder]="L.t('ct_otherCompany_ph')"
+              name="otherConstructionCompany" id="otherConstructionCompany"
+              [(ngModel)]="contacDto.otherConstructionCompany" />
+          </div>
+          }
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="houseModel">{{ L.t('ct_houseModel') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="houseModel" id="houseModel" [(ngModel)]="contacDto.houseModel">
+              <option value="" selected class="text-center">{{ L.t('ct_houseModel_ph') }}</option>
+              @for (item of modelHause; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+        </div>
+        }
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="purchasePrice">{{ L.t('ct_purchasePrice') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_purchasePrice_ph')" name="purchasePrice"
+              id="purchasePrice" [(ngModel)]="contacDto.purchasePrice" />
+          </div>
+        </div>
+        }
+
+        <!-- Refinance details — only asked when the purpose is a refinance -->
+        @if (contacDto.purposeType === 'Refinance') {
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="mortgageType">{{ L.t('ct_mortgageType') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="mortgageType" id="mortgageType" [(ngModel)]="contacDto.mortgageType">
+              <option value="" selected class="text-center">{{ L.t('ct_mortgageType_ph') }}</option>
+              @for (item of refinance; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="lender">{{ L.t('ct_lender') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_lender_ph')" name="lender" id="lender"
+              [(ngModel)]="contacDto.lender" />
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="refinanceAmount">{{ L.t('ct_refinanceAmount') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_refinanceAmount_ph')" name="refinanceAmount"
+              id="refinanceAmount" [(ngModel)]="contacDto.refinanceAmount" />
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="loanToValue">{{ L.t('ct_loanToValue') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_loanToValue_ph')" name="loanToValue"
+              id="loanToValue" [(ngModel)]="contacDto.loanToValue" />
+          </div>
+        </div>
+        }
+
+        <!-- Relocation details — only asked when the purpose is a relocation -->
+        @if (contacDto.purposeType === 'Relocation') {
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="relocationType">{{ L.t('ct_relocationType') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="relocationType" id="relocationType" [(ngModel)]="contacDto.relocationType">
+              <option value="" selected class="text-center">{{ L.t('ct_relocationType_ph') }}</option>
+              @for (item of relocation; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.relocationType === 'Other') {
+          <label class="col-sm-4 col-form-label mt-2" for="otherRelocationType">{{ L.t('ct_specify') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control mt-2" [placeholder]="L.t('ct_otherRelocation_ph')"
+              name="otherRelocationType" id="otherRelocationType" [(ngModel)]="contacDto.otherRelocationType" />
+          </div>
+          }
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="referenceNumber">{{ L.t('ct_referenceNumber') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_referenceNumber_ph')" name="referenceNumber"
+              id="referenceNumber" [(ngModel)]="contacDto.referenceNumber" />
+          </div>
+        </div>
+        }
+
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="dwellingStyleType">{{ L.t('ct_dwellingStyle') }} *</label>
           <div class="col-sm-8">
@@ -131,6 +260,67 @@
             </select>
           </div>
         </div>
+
+        <!-- Condominium details — only asked for condos -->
+        @if (contacDto.dwellingStyleType === 'Condominium') {
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="condoFees">{{ L.t('ct_condoFees') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_condoFees_ph')" name="condoFees"
+              id="condoFees" [(ngModel)]="contacDto.condoFees" />
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="parking">{{ L.t('ct_parking') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="parking" id="parking" [(ngModel)]="contacDto.parking">
+              <option value="" selected class="text-center">{{ L.t('ct_select') }}</option>
+              @for (item of parking; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          @if (contacDto.parking === 'Yes') {
+          <label class="col-sm-4 col-form-label mt-2" for="parkingType">{{ L.t('ct_parkingType') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select mt-2" name="parkingType" id="parkingType" [(ngModel)]="contacDto.parkingType">
+              <option value="" selected class="text-center">{{ L.t('ct_parkingType_ph') }}</option>
+              @for (item of parkingType; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+
+          <label class="col-sm-4 col-form-label mt-2" for="parkingSpaces">{{ L.t('ct_parkingSpaces') }}</label>
+          <div class="col-sm-8">
+            <input type="number" min="0" class="form-control mt-2" [placeholder]="L.t('ct_parkingSpaces_ph')"
+              name="parkingSpaces" id="parkingSpaces" [(ngModel)]="contacDto.parkingSpaces" />
+          </div>
+          }
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="locker">{{ L.t('ct_locker') }}</label>
+          <div class="col-sm-8">
+            <select class="form-select" name="locker" id="locker" [(ngModel)]="contacDto.locker">
+              <option value="" selected class="text-center">{{ L.t('ct_select') }}</option>
+              @for (item of parking; track item) {
+              <option class="text-center" [value]="item">{{item}}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 col-form-label" for="specialAssessments">{{ L.t('ct_specialAssessments') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [placeholder]="L.t('ct_specialAssessments_ph')"
+              name="specialAssessments" id="specialAssessments" [(ngModel)]="contacDto.specialAssessments" />
+          </div>
+        </div>
+        }
 
         <div class="mb-3 row">
           <label class="col-sm-4 col-form-label" for="dwellingType">{{ L.t('ct_dwellingType') }} *</label>
@@ -150,14 +340,6 @@
               [(ngModel)]="contacDto.otherDwellingType" name="otherDwellingType" id="otherDwellingType"></textarea>
           </div>
           }
-        </div>
-
-        <div class="mb-3 row">
-          <label class="col-sm-4 col-form-label" for="specialAssessments">{{ L.t('ct_specialAssessments') }}</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" [placeholder]="L.t('ct_specialAssessments_ph')"
-              name="specialAssessments" id="specialAssessments" [(ngModel)]="contacDto.specialAssessments" />
-          </div>
         </div>
 
         <div class="mb-3 row">

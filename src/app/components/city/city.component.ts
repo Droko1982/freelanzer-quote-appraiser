@@ -5,6 +5,35 @@ import { Title, Meta } from '@angular/platform-browser';
 import { LanguageService, Lang } from '../../services/language.service';
 import { CityInfo, CITIES, CITY_BY_SLUG } from '../../data/cities';
 
+/**
+ * The appraisal types quoted through the form, declared on every city page so
+ * each local market claims the whole service menu rather than one generic
+ * "Real Estate Appraisal" label. Keep in step with the purpose and report
+ * lists in the quote form (contact.component.ts).
+ */
+const CITY_SERVICES = [
+  'Residential Appraisal',
+  'Commercial Appraisal',
+  'Land and Vacant Land Appraisal',
+  'Machinery and Equipment Appraisal',
+  'Mortgage Financing Appraisal',
+  'Refinance Appraisal',
+  'Purchase Appraisal',
+  'New Construction Appraisal',
+  'Capital Gains Appraisal',
+  'Divorce and Separation Appraisal',
+  'Estate Settlement Appraisal',
+  'Probate Valuation',
+  'Relocation Appraisal',
+  'Pre-List and Pre-Sale Valuation',
+  'Retrospective Appraisal',
+  'Market Rent Appraisal',
+  'Desktop Appraisal',
+  'Drive-By Appraisal',
+  'Replacement Cost Appraisal',
+  'Condominium Appraisal',
+];
+
 @Component({
   selector: 'app-city',
   standalone: true,
@@ -161,12 +190,23 @@ export class CityComponent {
       '@context': 'https://schema.org',
       '@type': 'Service',
       name: `Real Estate Appraisal in ${this.city().name}`,
-      serviceType: 'Real Estate Appraisal',
+      serviceType: CITY_SERVICES,
       description: desc,
       url,
       areaServed: { '@type': 'City', name: this.city().name, containedInPlace: { '@type': 'AdministrativeArea', name: this.city().prov } },
       provider: { '@id': 'https://appraisalcanada.ca/#organization' },
       availableLanguage: ['en', 'fr', 'es'],
+      // Naming each appraisal type per city, rather than one generic "Real Estate
+      // Appraisal", is what lets a city page rank for "divorce appraisal <city>",
+      // "capital gains appraisal <city>" and the rest of the long tail.
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: `Appraisal services in ${this.city().name}`,
+        itemListElement: CITY_SERVICES.map(s => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: `${s} — ${this.city().name}` },
+        })),
+      },
     });
     this.setJsonLd('ld-breadcrumb', {
       '@context': 'https://schema.org',
